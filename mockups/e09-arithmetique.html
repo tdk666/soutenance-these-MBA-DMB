@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>E09 — L'arithmétique Kajman</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* Écran 09 · bloc 4 · l'arithmétique de la négociation, trois lignes.
+     En live : les trois lignes entrent une à une au déclenchement
+     (compteur animé), puis la barre subit l'amputation ÷2 (1 400 ms,
+     ease-morph) : les segments 6 à 10 se vident et deviennent fantômes. */
+
+  .kicker {
+    position: absolute; left: 140px; top: 92px;
+    color: var(--gris-clair);
+  }
+
+  .rows { position: absolute; left: 140px; top: 178px; }
+  .row { margin-bottom: 48px; }
+  .row .label { color: var(--gris-clair); margin-bottom: 10px; }
+  .row .value {
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 144;
+    font-weight: 440;
+    line-height: 0.94;
+    color: var(--blanc);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .row--1 .value, .row--2 .value { font-size: 118px; }
+  .row--3 .value { font-size: 188px; font-weight: 500; }
+  .row--3 .label { color: var(--blanc); }
+  /* opérateurs recalibrés : plus petits, centrés sur la hauteur des chiffres */
+  .value .op {
+    font-size: 0.6em;
+    font-weight: 560;
+    font-variation-settings: 'opsz' 18;
+    vertical-align: 0.12em;
+    letter-spacing: 0;
+  }
+
+  /* l'objet graphique, état 1 : la mission en journées, amputée */
+  .objet { position: absolute; left: 140px; right: 140px; bottom: 108px; }
+  .objet .legende {
+    display: flex; justify-content: space-between;
+    margin-bottom: 22px;
+  }
+  .objet .legende .label { color: var(--gris-clair); }
+  .objet .barre { display: flex; gap: 8px; height: 64px; }
+  .objet .seg { flex: 1; background: var(--blanc); }
+  .objet .seg--fantome {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px rgba(185, 189, 196, 0.45);
+  }
+
+  .source {
+    position: absolute; left: 140px; bottom: 44px;
+    font-family: var(--grotesque);
+    font-size: 28px; font-weight: 400;
+    color: var(--gris-clair);
+    letter-spacing: 0.01em;
+  }
+</style>
+</head>
+<body>
+<div class="stage stage--bleu">
+
+  <div class="kicker label">La négociation annuelle · l'arithmétique</div>
+
+  <div class="rows">
+    <div class="row row--1">
+      <div class="label">Tenté sur le prix unitaire</div>
+      <div class="value"><span class="op">+</span>&thinsp;13 à 20&thinsp;%</div>
+    </div>
+    <div class="row row--2">
+      <div class="label">Imposé sur les jours</div>
+      <div class="value"><span class="op">÷</span>&thinsp;2</div>
+    </div>
+    <div class="row row--3">
+      <div class="label">De revenu sur le périmètre</div>
+      <div class="value"><span class="op">≈</span>&thinsp;−40&thinsp;%</div>
+    </div>
+  </div>
+
+  <div class="objet">
+    <div class="legende">
+      <span class="label">La mission facturée, en journées</span>
+      <span class="label">−50&thinsp;% de l'assiette</span>
+    </div>
+    <div class="barre">
+      <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+      <div class="seg"></div><div class="seg"></div>
+      <div class="seg seg--fantome"></div><div class="seg seg--fantome"></div>
+      <div class="seg seg--fantome"></div><div class="seg seg--fantome"></div>
+      <div class="seg seg--fantome"></div>
+    </div>
+  </div>
+
+  <div class="source">David Kajman, directeur administratif et financier, Havas Paris</div>
+
+  <div class="grain"></div>
+</div>
+</body>
+</html>

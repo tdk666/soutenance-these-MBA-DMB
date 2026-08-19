@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>E03 — Le verdict</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* Écran 03 · bloc 1 · « −9,24 % » plein écran, seul.
+     En live : la date « 3 février 2026 » se dissout, le chiffre descend
+     de 0,00 % à −9,24 % en 900 ms (ease-entree), puis se pose. */
+  .verdict {
+    position: absolute;
+    left: 118px;
+    top: 50%;
+    transform: translateY(-53%);
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 144;
+    font-weight: 560;
+    font-size: 588px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--blanc);
+    white-space: nowrap;
+  }
+  .verdict .pct {
+    font-size: 0.62em;
+    font-variation-settings: 'opsz' 144;
+    margin-left: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="stage stage--noir">
+  <div class="verdict">−9,24&thinsp;<span class="pct">%</span></div>
+  <div class="grain"></div>
+</div>
+</body>
+</html>

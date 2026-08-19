@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>E21 — Le renversement</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* Écran 21 · bloc 8 · la phrase de renversement, blanc sur noir.
+     En live : chaque phrase apparaît au déclenchement, groupe de mots
+     par groupe de mots, au rythme du débit lent. Quand la seconde
+     apparaît, la première recule à 42 % d'opacité. */
+  .renversement {
+    position: absolute;
+    left: 160px; top: 50%;
+    transform: translateY(-50%);
+    max-width: 1560px;
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 60;
+    font-weight: 360;
+    font-size: 82px;
+    line-height: 1.24;
+    letter-spacing: -0.008em;
+  }
+  .phrase-1 { color: rgba(255, 255, 255, 0.5); margin-bottom: 64px; }
+  .phrase-2 { color: var(--blanc); font-weight: 400; }
+</style>
+</head>
+<body>
+<div class="stage stage--noir">
+  <div class="renversement">
+    <div class="phrase-1">Ce n'est pas l'intelligence artificielle qui&nbsp;tue&nbsp;l'agence.</div>
+    <div class="phrase-2">C'est l'agence qui continue de vendre du&nbsp;temps, dans un monde où il ne vaut plus&nbsp;rien.</div>
+  </div>
+  <div class="grain"></div>
+</div>
+</body>
+</html>
