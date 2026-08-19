@@ -1,0 +1,8 @@
+# Déploiement Netlify : le deck est servi tel quel (build single-file offline).
+# Le jour J reste dist/index.html en local; Netlify sert aux répétitions et à la relecture.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
