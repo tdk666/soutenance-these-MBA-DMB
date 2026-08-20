@@ -51,15 +51,15 @@ await page.waitForFunction(() => window.__deck !== undefined);
 await page.waitForTimeout(2600);
 
 const images = [];
-await page.screenshot({ path: join(dossier, 'p00.png') });
-images.push('p00.png');
+await page.screenshot({ path: join(dossier, 'p00.jpg'), type: 'jpeg', quality: 88 });
+images.push('p00.jpg');
 
 const nb = await page.evaluate(() => window.__deck.ecrans.length);
 for (let i = 0; i < nb; i++) {
   await etatFinalEcran(i);
   await page.waitForTimeout(1200);
-  const nom = `p${String(i + 1).padStart(2, '0')}.png`;
-  await page.screenshot({ path: join(dossier, nom) });
+  const nom = `p${String(i + 1).padStart(2, '0')}.jpg`;
+  await page.screenshot({ path: join(dossier, nom), type: 'jpeg', quality: 88 });
   images.push(nom);
   process.stdout.write('.');
 }
@@ -72,7 +72,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><style>
   img { display: block; width: 1920px; height: 1080px; page-break-after: always; }
   img:last-child { page-break-after: auto; }
 </style></head><body>${images
-  .map((f) => `<img src="data:image/png;base64,${readFileSync(join(dossier, f)).toString('base64')}">`)
+  .map((f) => `<img src="data:image/jpeg;base64,${readFileSync(join(dossier, f)).toString('base64')}">`)
   .join('')}</body></html>`;
 const chemin = join(dossier, 'livret.html');
 writeFileSync(chemin, html);
