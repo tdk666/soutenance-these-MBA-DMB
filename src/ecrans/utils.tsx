@@ -19,7 +19,7 @@ export function estBarre(screen: Screen, faits: Set<string>, cible: string): boo
   return step !== undefined && faits.has(step.id);
 }
 
-/** Entrée standard d'un bloc de contenu : masque montant, un seul mouvement. */
+/** Entrée standard d’un bloc de contenu : masque montant, un seul mouvement. */
 export function Entree({
   children,
   visible = true,

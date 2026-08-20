@@ -32,12 +32,12 @@ describe('chrono à checkpoints (doctrine du script)', () => {
 
   it('capture à la sortie du bon écran, avec le bon écart', () => {
     // cible CP1 v3 : 13:24; sortie constatée à 14:14 → retard de 50 s
-    const capture = capturerCheckpoint(deckConfig, 'E12', tcToMs('14:14'));
+    const capture = capturerCheckpoint(deckConfig, 'E14', tcToMs('14:14'));
     expect(capture).not.toBeNull();
     expect(capture!.checkpoint.id).toBe('CP1');
     expect(capture!.ecartMs).toBe(50_000);
     expect(capture!.instruction).toMatch(/C3/);
-    expect(capturerCheckpoint(deckConfig, 'E08', 100_000)).toBeNull();
+    expect(capturerCheckpoint(deckConfig, 'E10', 100_000)).toBeNull();
   });
 
   it('les six cibles v3 sont dans le config', () => {

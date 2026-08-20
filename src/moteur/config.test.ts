@@ -4,8 +4,8 @@ import { tcToMs } from './timecode';
 import type { ScreenId, SilenceId } from '../types';
 
 describe('invariants du deck.config', () => {
-  it('21 écrans, ordonnés E01 → E21', () => {
-    expect(deckConfig.screens.length).toBe(21);
+  it('23 écrans, ordonnés E01 → E23', () => {
+    expect(deckConfig.screens.length).toBe(23);
     deckConfig.screens.forEach((s, i) => {
       expect(s.id).toBe(`E${String(i + 1).padStart(2, '0')}`);
     });

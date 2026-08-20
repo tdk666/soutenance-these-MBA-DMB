@@ -2,8 +2,8 @@ import type { DeckConfig, ObjetEtat, Step } from '../types';
 
 /**
  * La séquence de régie : la liste ordonnée des beats (déclenchements manuels).
- * Le beat 0 est l'état initial (E01, noir). Chaque écran suivant apporte un
- * beat d'entrée, puis un beat par step manuel. Les steps 'chaine' sont
+ * Le beat 0 est l’état initial (E01, noir). Chaque écran suivant apporte un
+ * beat d’entrée, puis un beat par step manuel. Les steps 'chaine' sont
  * accrochés au beat qui les précède et se jouent seuls, avec leur délai.
  */
 export interface Beat {
@@ -47,12 +47,12 @@ export function buildSequence(config: DeckConfig): Beat[] {
   return beats;
 }
 
-/** Nombre de déclenchements manuels (le beat initial n'en est pas un). */
+/** Nombre de déclenchements manuels (le beat initial n’en est pas un). */
 export function nbBeatsManuels(seq: Beat[]): number {
   return seq.length - 1;
 }
 
-/** Premier beat (entrée) d'un écran donné. */
+/** Premier beat (entrée) d’un écran donné. */
 export function beatEntree(seq: Beat[], screenIndex: number): number {
   const b = seq.find((x) => x.screenIndex === screenIndex);
   if (!b) throw new Error(`Écran hors séquence : ${screenIndex}`);
@@ -60,7 +60,7 @@ export function beatEntree(seq: Beat[], screenIndex: number): number {
 }
 
 /**
- * État dérivé, pur et rejouable : quels steps de l'écran courant sont faits
+ * État dérivé, pur et rejouable : quels steps de l’écran courant sont faits
  * à (beatIndex, chainsDone). Les chaînes des beats passés sont faites; celles
  * du beat courant sont limitées à chainsDone (le direct les égrène).
  */
@@ -82,8 +82,8 @@ export function stateAt(
 }
 
 /**
- * État de l'objet graphique : l'état d'arrivée de l'écran courant, modifié
- * par les actions 'objet' déjà accomplies (dans l'ordre des steps).
+ * État de l’objet graphique : l’état d’arrivée de l’écran courant, modifié
+ * par les actions 'objet' déjà accomplies (dans l’ordre des steps).
  */
 export function objetEtatAt(
   config: DeckConfig,
@@ -102,7 +102,7 @@ export function objetEtatAt(
   return etat;
 }
 
-/** État final d'un écran (tous steps faits) : pour les aperçus et la grille. */
+/** État final d’un écran (tous steps faits) : pour les aperçus et la grille. */
 export function etatFinalEcran(config: DeckConfig, screenIndex: number): {
   faits: Set<string>;
   objet: ObjetEtat;

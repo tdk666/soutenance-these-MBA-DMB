@@ -5,9 +5,9 @@ import { ObjetLayer } from './ObjetLayer';
 import { ScreenView } from '../ecrans/ScreenView';
 
 /**
- * Aperçu miniature d'un écran. Par défaut à l'état final (tous steps
- * accomplis); `faits` et `objet` permettent de refléter l'état vivant
- * (vue « à l'écran » du présentateur).
+ * Aperçu miniature d’un écran. Par défaut à l’état final (tous steps
+ * accomplis); `faits` et `objet` permettent de refléter l’état vivant
+ * (vue « à l’écran » du présentateur).
  */
 export function MiniEcran({
   config,

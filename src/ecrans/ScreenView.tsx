@@ -10,7 +10,7 @@ import { Simulateur } from '../simulateur/Simulateur';
 
 /*
  * Les écrans, version définitive (étape 4).
- * Règles : l'écran montre, la parole nomme; les chiffres entrent en
+ * Règles : l’écran montre, la parole nomme; les chiffres entrent en
  * animation, jamais en pavé; un seul mouvement à la fois; aucun texte
  * au-dessous de 28 px; aucun tiret cadratin dans les textes affichés.
  */
@@ -109,7 +109,7 @@ function rangée(n: number, cx: number, y: number): { x: number; y: number }[] {
   return Array.from({ length: n }, (_, i) => ({ x: cx - largeur / 2 + i * (DOT + DOT_GAP_X), y }));
 }
 
-/** 36 points; la base est ordonnée centre d'abord, pour que les 7 fantômes
+/** 36 points; la base est ordonnée centre d’abord, pour que les 7 fantômes
     (les recrutements qui ne se font pas) restent aux extrémités de la base */
 function positionsPyramide(): { x: number; y: number }[] {
   const cx = 960;
@@ -122,7 +122,7 @@ function positionsPyramide(): { x: number; y: number }[] {
   return pos;
 }
 
-/** 29 places du diamant : les 7 dernières unités de la pyramide n'y entrent pas */
+/** 29 places du diamant : les 7 dernières unités de la pyramide n’y entrent pas */
 function positionsDiamant(): { x: number; y: number }[] {
   const cx = 960;
   const y0 = 224;
@@ -196,7 +196,7 @@ function PyramideDiamant({
       </motion.div>
       <Entree visible={morph} live={live} delaiS={1.2} className="absolute" style={{ left: 140, top: 690, width: 420 }}>
         <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
-          Aux extrémités de l'ancienne base : les recrutements qui ne se font pas.
+          Aux extrémités de l’ancienne base : les recrutements qui ne se font pas.
         </div>
       </Entree>
       <Entree visible={morph} live={live} delaiS={1.5} className="absolute" style={{ right: 140, top: 690, width: 420, textAlign: 'right' }}>
@@ -609,7 +609,7 @@ export function ScreenView({
               </div>
             </Entree>
           </motion.div>
-          {/* le baptême n° 1 : le terme n'apparaît qu'au moment où il est prononcé */}
+          {/* le baptême n° 1 : le terme n’apparaît qu’au moment où il est prononcé */}
           <div className="absolute" style={{ left: 140, bottom: 96 }}>
             {bapteme && (
               <TitreAnime
@@ -655,8 +655,9 @@ export function ScreenView({
 
     case 'trois-colonnes': {
       const d = screen.donnees;
+      const filet = surPapier ? 'rgba(16,20,31,0.22)' : 'rgba(255,255,255,0.2)';
       return (
-        <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
+        <div className="absolute inset-0" style={{ color: couleurTexte }}>
           {d.colonnes.map((c, i) => (
             <Entree
               key={c.titre}
@@ -665,8 +666,8 @@ export function ScreenView({
               className="absolute"
               style={{ left: 140 + i * 560, top: 220, width: 500 }}
             >
-              <div className="etiquette" style={{ color: 'var(--gris-clair)', marginBottom: 28 }}>{c.titre}</div>
-              <div style={{ ...serif(72, 'var(--wght-valeur)'), fontSize: 66, lineHeight: 1.05, marginBottom: 40, minHeight: 140 }}>
+              <div className="etiquette" style={{ color: couleurSecondaire, marginBottom: 28 }}>{c.titre}</div>
+              <div style={{ ...serif(72, 'var(--wght-valeur)'), fontSize: 66, lineHeight: 1.05, marginBottom: 40, minHeight: 100 }}>
                 <ValeurAnimee valeur={c.montant} actif={live} />
               </div>
               {c.details.map((det) => (
@@ -675,9 +676,9 @@ export function ScreenView({
                   style={{
                     fontFamily: GROTESQUE,
                     fontSize: 30,
-                    color: 'var(--gris-clair)',
+                    color: couleurSecondaire,
                     padding: '18px 0',
-                    borderTop: '1px solid rgba(255,255,255,0.2)',
+                    borderTop: `1px solid ${filet}`,
                     lineHeight: 1.35,
                   }}
                 >

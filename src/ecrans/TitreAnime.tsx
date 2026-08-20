@@ -37,7 +37,7 @@ export function TitreAnime({
                   display: 'inline-block',
                   overflow: 'hidden',
                   verticalAlign: 'top',
-                  // marge de découpe : les jambages et l'italique ne se rognent pas
+                  // marge de découpe : les jambages et l’italique ne se rognent pas
                   padding: '0.06em 0.02em 0.14em',
                   margin: '-0.06em -0.02em -0.14em',
                 }}

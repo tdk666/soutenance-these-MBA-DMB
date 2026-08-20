@@ -34,9 +34,9 @@ function fondCss(fond: Fond, config: DeckConfig, salleClaire: boolean): string {
 }
 
 /**
- * La scène 1920×1080 mise à l'échelle du viewport. Les bascules de fond sont
- * un rideau : la nouvelle surface monte du bas de l'écran et recouvre
- * l'ancienne (750 ms), pendant que le contenu suivant entre.
+ * La scène 1920×1080 mise à l’échelle du viewport. Les bascules de fond sont
+ * un rideau : la nouvelle surface monte du bas de l’écran et recouvre
+ * l’ancienne (750 ms), pendant que le contenu suivant entre.
  */
 export function Stage({
   fond,
@@ -58,7 +58,7 @@ export function Stage({
     return () => window.removeEventListener('resize', calc);
   }, []);
 
-  // pile de rideaux : l'ancien fond reste en socle, le nouveau monte dessus
+  // pile de rideaux : l’ancien fond reste en socle, le nouveau monte dessus
   const [pile, setPile] = useState<{ cle: number; fond: Fond }[]>([{ cle: 0, fond }]);
   useEffect(() => {
     setPile((p) => {
@@ -90,6 +90,17 @@ export function Stage({
             style={{ background: fondCss(r.fond, config, salleClaire) }}
           />
         ))}
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          animate={{ x: [0, 54, 0], y: [0, -38, 0] }}
+          transition={{ duration: 26, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            background:
+              'radial-gradient(62% 56% at 24% 8%, rgba(255,255,255,0.055), rgba(255,255,255,0) 70%)',
+            opacity: fond === 'bleu' ? 1 : 0,
+            transition: 'opacity 700ms',
+          }}
+        />
         {children}
         <div className="grain" />
       </div>

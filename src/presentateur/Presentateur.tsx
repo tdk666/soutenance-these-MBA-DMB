@@ -8,7 +8,7 @@ import { MiniEcran } from '../moteur/MiniEcran';
 /**
  * Le mode présentateur : chrono à checkpoints, notes du script, prochain
  * geste, aperçus. Outil de pilotage, pas un écran de show : grotesque,
- * fond sombre neutre, information d'abord.
+ * fond sombre neutre, information d’abord.
  */
 
 const JAUNE = '#E8B400';
@@ -88,7 +88,7 @@ export function Presentateur({
   const prochainEcranIndex = regie.seq
     .slice(regie.beatIndex + 1)
     .find((b) => b.screenIndex !== regie.screenIndex)?.screenIndex;
-  // prochain checkpoint : le premier dont l'écran de sortie n'est pas encore passé
+  // prochain checkpoint : le premier dont l’écran de sortie n’est pas encore passé
   const indexEcran = (id: string) => config.screens.findIndex((s) => s.id === id);
   const cp =
     config.checkpoints.find(
@@ -103,7 +103,7 @@ export function Presentateur({
     <div
       className="grid h-full w-full overflow-hidden"
       style={{
-        gridTemplateColumns: '330px 1fr 400px',
+        gridTemplateColumns: '300px 1fr 380px',
         background: '#0C0F16',
         color: '#E7EAF0',
         fontFamily: 'var(--grotesque)',
@@ -247,7 +247,7 @@ export function Presentateur({
 
         <div
           className="min-h-0 flex-1 overflow-y-auto"
-          style={{ marginTop: 18, fontSize: 19, color: '#D3D8E2', paddingRight: 12 }}
+          style={{ marginTop: 16, fontSize: 18, color: '#D3D8E2', paddingRight: 12, lineHeight: 1.5 }}
         >
           <NotesScript texte={screen.notes.script} />
           {screen.notes.consignes && (
@@ -262,13 +262,13 @@ export function Presentateur({
       <div className="flex flex-col gap-5 p-6" style={{ borderLeft: '1px solid #232936' }}>
         <div>
           <div style={{ color: GRIS, fontSize: 13, letterSpacing: '0.12em', marginBottom: 8 }}>
-            À L'ÉCRAN
+            À L’ÉCRAN
           </div>
           <div style={{ border: '1px solid #232936' }}>
             <MiniEcran
               config={config}
               screenIndex={regie.screenIndex}
-              largeur={352}
+              largeur={332}
               faits={regie.faits}
               objet={regie.objetEtat}
             />
@@ -280,7 +280,7 @@ export function Presentateur({
               ÉCRAN SUIVANT · {config.screens[prochainEcranIndex].id}
             </div>
             <div style={{ border: '1px solid #232936' }}>
-              <MiniEcran config={config} screenIndex={prochainEcranIndex} largeur={352} />
+              <MiniEcran config={config} screenIndex={prochainEcranIndex} largeur={332} />
             </div>
             <div style={{ color: GRIS, fontSize: 15, marginTop: 8 }}>
               {config.screens[prochainEcranIndex].titreInterne}
@@ -290,7 +290,7 @@ export function Presentateur({
         <div style={{ marginTop: 'auto', color: GRIS, fontSize: 13, lineHeight: 1.8 }}>
           → / espace : avancer · ← : reculer · Échap : grille
           <br />
-          1-21 puis Entrée : aller à · S : chrono · Maj+R : zéro
+          1-23 puis Entrée : aller à · S : chrono · Maj+R : zéro
           <br />
           F : plein écran · L : salle claire · P : présentateur
         </div>

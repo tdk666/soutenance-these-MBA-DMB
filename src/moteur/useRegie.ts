@@ -5,12 +5,14 @@ import { buildSequence, objetEtatAt, stateAt, beatEntree, type Beat } from './se
 export interface Regie {
   seq: Beat[];
   beatIndex: number;
+  /** chaînes du beat courant déjà égrenées (pour la synchronisation) */
+  chainsDone: number;
   screen: Screen;
   screenIndex: number;
-  /** ids des steps accomplis pour l'écran courant */
+  /** ids des steps accomplis pour l’écran courant */
   faits: Set<string>;
   objetEtat: ObjetEtat;
-  /** true si l'écran a été atteint en avançant (les animations d'entrée se jouent) */
+  /** true si l’écran a été atteint en avançant (les animations d’entrée se jouent) */
   live: boolean;
   /** le prochain beat, pour le mode présentateur */
   prochain: Beat | null;
@@ -19,6 +21,8 @@ export interface Regie {
   avancer: () => void;
   reculer: () => void;
   allerAEcran: (screenIndex: number) => void;
+  /** suivi externe (synchronisation entre onglets) */
+  allerAuBeat: (beatIndex: number, chainsDone: number) => void;
 }
 
 interface Pos {
@@ -29,8 +33,8 @@ interface Pos {
 
 /**
  * La régie : curseur de beats + égrenage des chaînes.
- * Avancer pendant qu'une chaîne s'égrène la termine d'un coup au lieu de
- * changer de beat (« la flèche droite avance une chaîne sans casser l'état »).
+ * Avancer pendant qu’une chaîne s’égrène la termine d’un coup au lieu de
+ * changer de beat (« la flèche droite avance une chaîne sans casser l’état »).
  */
 export function useRegie(
   config: DeckConfig,
@@ -88,6 +92,19 @@ export function useRegie(
     [seq, config],
   );
 
+  /** suivi externe (synchronisation entre onglets) : se cale sur un beat précis */
+  const allerAuBeat = useCallback(
+    (beatIndex: number, chainsDone: number) => {
+      const beat = Math.max(0, Math.min(seq.length - 1, beatIndex));
+      setPos((p) =>
+        p.beat === beat && p.chainsDone === chainsDone
+          ? p
+          : { beat, chainsDone: Math.min(chainsDone, seq[beat].chains.length), live: false },
+      );
+    },
+    [seq],
+  );
+
   const { screenIndex, faits } = stateAt(seq, pos.beat, pos.chainsDone);
   const objetEtat = objetEtatAt(config, seq, pos.beat, pos.chainsDone);
   const beat = seq[pos.beat];
@@ -95,6 +112,7 @@ export function useRegie(
   return {
     seq,
     beatIndex: pos.beat,
+    chainsDone: pos.chainsDone,
     screen: config.screens[screenIndex],
     screenIndex,
     faits,
@@ -105,5 +123,6 @@ export function useRegie(
     avancer,
     reculer,
     allerAEcran,
+    allerAuBeat,
   };
 }

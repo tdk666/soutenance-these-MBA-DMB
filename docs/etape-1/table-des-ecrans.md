@@ -74,3 +74,13 @@ L'écran montre, la parole nomme. Les mots affichés sont toujours plus simples 
 | CP2 | fin bloc 5 (sortie E15) | 16:26 | retard persistant → confirmer C3 · ne pas toucher au bloc 6 |
 | CP3 | fin bloc 6 (sortie E18) | 23:02 | retard ≥ 45 s → C3+C6 · ≥ 90 s → C3+C6+C5 · avance ≥ 30 s → ouvrir R3 |
 | Fin | sortie E21 | 30:04 | · |
+
+## Addendum étape 4 : structure à 23 écrans
+
+La découpe a été affinée après la première répétition sur le mode présentateur : tout ce qui est nommé à la parole doit être vu à l'écran. La méthode passe de un à trois écrans, sans changer une ligne du script.
+
+- **E07 · Les entretiens** : les intervenants des quatre entretiens, nommés, côté agence et côté annonceur.
+- **E08 · Autour du cœur** : la conférence Trois voix (les trois profils cités), l'enquête (34 répondants), le pilier documentaire (les comptes 2024-2026).
+- **E09 · Transparence** : les trois suites (entretiens compensés, IA sous supervision, audit indépendant).
+
+Les écrans E08 à E21 de la table ci-dessus deviennent E10 à E23. Le config (`content/deck.config.ts`) fait foi : 23 écrans, 35 déclenchements manuels, cibles chrono 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08 (CP0 à la sortie d'E09). La page de garde noire précède E01 et se quitte à la première avancée.

@@ -2,7 +2,7 @@ import type { Checkpoint, Decision, DeckConfig, ScreenId } from '../types';
 import { tcToMs } from './timecode';
 
 /**
- * Doctrine : à chaque checkpoint on constate l'écart (positif = retard) et on
+ * Doctrine : à chaque checkpoint on constate l’écart (positif = retard) et on
  * lit la décision. Parmi les décisions satisfaites, on retient celle au seuil
  * le plus exigeant (retard de 95 s au CP3 → « C3 + C6 + C5 », pas « C3 + C6 »).
  */

@@ -1,7 +1,7 @@
 /**
  * Types du deck — source de vérité.
  * (Le fichier docs/etape-1/deck.config.schema.ts est la version validée à
- * l'étape 1; toute évolution se fait ici.)
+ * l’étape 1; toute évolution se fait ici.)
  *
  * Principe : le moteur est agnostique. Tout le contenu (textes, chiffres,
  * timecodes, notes présentateur, doctrine coupes/réserves, hypothèses du
@@ -13,7 +13,8 @@
 export type ScreenId =
   | 'E01' | 'E02' | 'E03' | 'E04' | 'E05' | 'E06' | 'E07'
   | 'E08' | 'E09' | 'E10' | 'E11' | 'E12' | 'E13' | 'E14'
-  | 'E15' | 'E16' | 'E17' | 'E18' | 'E19' | 'E20' | 'E21';
+  | 'E15' | 'E16' | 'E17' | 'E18' | 'E19' | 'E20' | 'E21'
+  | 'E22' | 'E23';
 
 export type BlocId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
@@ -26,14 +27,14 @@ export type Timecode = string;
 
 export type Fond = 'noir' | 'bleu' | 'papier';
 
-/** Les états de l'objet graphique persistant (la colonne vertébrale visuelle). */
+/** Les états de l’objet graphique persistant (la colonne vertébrale visuelle). */
 export type ObjetEtat =
   | { kind: 'absent' }
   | { kind: 'barre'; joursFantomes: 0 | 5; position: 'centre' | 'pied' | 'retrait' }
   | { kind: 'strates'; etiquettes: boolean; position: 'centre' | 'retrait' }
   | { kind: 'frise'; allumes: 0 | 1 | 2 | 3 | 4 };
 
-/* ---------- pas d'animation ---------- */
+/* ---------- pas d’animation ---------- */
 
 export type StepAction =
   | { type: 'reveler'; cible: string }
@@ -46,7 +47,7 @@ export type StepAction =
  * Deux régimes :
  * - 'beat'   : déclenchement manuel (télécommande), ancré sur un mot du script.
  * - 'chaine' : lancé automatiquement par le pas précédent après `delaiMs`.
- * Budget contractuel : 33 beats sur toute la soutenance (entrées d'écran
+ * Budget contractuel : 33 beats sur toute la soutenance (entrées d’écran
  * incluses, E01 exclu car état initial).
  */
 export interface Step {
@@ -154,10 +155,10 @@ export interface ScreenCommun {
   /** pour la grille Échap et le mode présentateur */
   titreInterne: string;
   fond: Fond;
-  /** cible indicative d'entrée, dérivée du script à 120 mots/min */
+  /** cible indicative d’entrée, dérivée du script à 120 mots/min */
   entreeCible: Timecode;
   transitionIn: TransitionIn;
-  /** état de l'objet à l'arrivée sur l'écran */
+  /** état de l’objet à l’arrivée sur l’écran */
   objet: ObjetEtat;
   steps: Step[];
   notes: {
@@ -217,39 +218,39 @@ export interface ModeSalleClaire {
 /* ---------- simulateur (étape 3) ---------- */
 
 export interface SimulateurParams {
-  /** l'état sain du contrat au temps passé */
+  /** l’état sain du contrat au temps passé */
   contrat: {
     jours: number;                 // 10
     tjmEUR: number;                // 1500
-    /** coût complet d'une journée travaillée (salaires chargés) */
+    /** coût complet d’une journée travaillée (salaires chargés) */
     coutJourEUR: number;
-    /** part de frais fixes de l'agence allouée à la mission (ne fond pas avec les jours) */
+    /** part de frais fixes de l’agence allouée à la mission (ne fond pas avec les jours) */
     structureEUR: number;
     /** coût des outils IA à plein gain (croît linéairement avec le curseur) */
     outilsPleinGainEUR: number;
   };
   /** borne du curseur « gain de productivité IA » */
   gainMaxPct: number;              // 50
-  /** hausse du prix de journée tentée par l'agence, atteinte à gain max (v3 : ≈ +15 %) */
+  /** hausse du prix de journée tentée par l’agence, atteinte à gain max (v3 : ≈ +15 %) */
   hausseTjmMaxPct: number;
   /** la redistribution en prix étagé de la même mission */
   etage: {
     lignes: {
       nom: string;
       metrique: string;            // « au temps », « au livrable »...
-      montantEUR: number;          // pour la ligne à l'effet : montant attendu
+      montantEUR: number;          // pour la ligne à l’effet : montant attendu
       nature: 'temps' | 'livrable' | 'droits' | 'variable';
     }[];
     couloir: { basPct: number; hautPct: number };  // 90 / 110 sur la ligne variable
   };
-  /** calibration contractuelle : l'arithmétique Kajman, vérifiée par les tests */
+  /** calibration contractuelle : l’arithmétique Kajman, vérifiée par les tests */
   calibration: {
     aGainPct: number;              // 50
     contractionRevenu: { minPct: number; maxPct: number };  // [-45, -38]
   };
-  /** hypothèses affichables d'un clic, chacune sourcée */
+  /** hypothèses affichables d’un clic, chacune sourcée */
   hypotheses: { cle: string; valeur: string; source: string }[];
-  /** étiquette NEUTRE de l'interrupteur (jamais « prix étagé » avant la parole) */
+  /** étiquette NEUTRE de l’interrupteur (jamais « prix étagé » avant la parole) */
   etiquetteBascule: string;
   etiquetteCurseur: string;
   etiquetteValeurClient: string;
@@ -266,7 +267,7 @@ export interface DeckConfig {
     jury: string;
     dureeCible: Timecode;      // "30:08"
     debitMotsParMin: number;
-    /** la page de garde, affichée avant le noir de l'adresse (hors régie) */
+    /** la page de garde, affichée avant le noir de l’adresse (hors régie) */
     couverture: {
       surtitre: string;
       titre: string;

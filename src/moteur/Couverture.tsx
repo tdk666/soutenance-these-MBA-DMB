@@ -4,8 +4,8 @@ import { EASE_ENTREE } from './motion';
 import { TitreAnime } from '../ecrans/TitreAnime';
 
 /**
- * La page de garde : affichée pendant l'installation du jury, avant le noir
- * de l'adresse. Hors régie : la première flèche l'éteint et ouvre E01.
+ * La page de garde : affichée pendant l’installation du jury, avant le noir
+ * de l’adresse. Hors régie : la première flèche l’éteint et ouvre E01.
  */
 export function Couverture({ config }: { config: DeckConfig }) {
   const c = config.meta.couverture;
@@ -40,7 +40,7 @@ export function Couverture({ config }: { config: DeckConfig }) {
         />
       </div>
 
-      {/* la signature : les dix unités de l'objet, avant leur histoire */}
+      {/* la signature : les dix unités de l’objet, avant leur histoire */}
       <div className="absolute flex" style={{ left: 162, top: '63%', gap: 5 }}>
         {Array.from({ length: 10 }, (_, i) => (
           <motion.div

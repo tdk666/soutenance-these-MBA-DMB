@@ -5,7 +5,7 @@ import { EASE_ENTREE } from '../moteur/motion';
 /**
  * Un chiffre-événement : il entre en comptant, jamais en pavé statique.
  * Chaque chiffre occupe une cellule à chasse fixe pour éviter tout
- * tremblement de largeur pendant l'animation.
+ * tremblement de largeur pendant l’animation.
  */
 export function CompteurChiffre({
   de,

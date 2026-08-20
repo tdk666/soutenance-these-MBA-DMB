@@ -5,7 +5,7 @@
  * → / Espace / PageDown : avancer (un beat, ou terminer la chaîne en cours)
  * ← / PageUp            : reculer
  * Échap                 : grille des écrans (ou fermer / annuler la saisie)
- * 1-21 puis Entrée      : aller à l'écran
+ * 1-23 puis Entrée      : aller à l’écran
  * F                     : plein écran (scène)
  * L                     : mode salle claire
  * S                     : chrono marche/pause
@@ -31,7 +31,7 @@ export interface ClavierHandlers {
 export function attacherClavier(win: Window, h: ClavierHandlers): () => void {
   const onKeyDown = (e: KeyboardEvent) => {
     // le simulateur a des contrôles à la souris (curseur, interrupteur) :
-    // quand l'un d'eux a le focus, les touches de navigation lui restent
+    // quand l’un d’eux a le focus, les touches de navigation lui restent
     const cible = e.target as HTMLElement | null;
     if (cible && (cible.tagName === 'INPUT' || cible.tagName === 'BUTTON')) {
       if (e.key !== 'Escape') return;

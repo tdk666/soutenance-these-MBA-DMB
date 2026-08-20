@@ -4,7 +4,7 @@ import type { ObjetEtat } from '../types';
 import { EASE_MORPH } from './motion';
 
 /**
- * L'objet graphique persistant : DIX UNITÉS qui ne sont jamais démontées.
+ * L’objet graphique persistant : DIX UNITÉS qui ne sont jamais démontées.
  * Les dix journées vendues de la barre se regroupent physiquement en quatre
  * strates (2·3·2·3 unités, les proportions du prix étagé), puis les strates
  * pivotent en frise de vingt-quatre mois. Chaque métamorphose est une
@@ -93,8 +93,8 @@ function geometrie(etat: ObjetEtat): Rect[] | null {
   return rects;
 }
 
-/** durée de la métamorphose selon le changement d'état (elles s'allongent
-    à mesure que l'objet gagne en signification : 1,4 s / 1,6 s / 1,8 s) */
+/** durée de la métamorphose selon le changement d’état (elles s’allongent
+    à mesure que l’objet gagne en signification : 1,4 s / 1,6 s / 1,8 s) */
 function dureeMorph(avant: ObjetEtat['kind'] | null, apres: ObjetEtat['kind']): number {
   if (avant === apres || avant === null) return 0.55;
   if (apres === 'strates') return 1.6;

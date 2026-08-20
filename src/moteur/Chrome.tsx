@@ -26,7 +26,7 @@ export function Chrome({
   const surPapier = screen.fond === 'papier';
   const encre = surPapier ? 'rgba(16,20,31,0.45)' : 'rgba(255,255,255,0.45)';
   const bloc = config.meta.blocs.find((b) => b.id === screen.bloc);
-  // la trace de l'objet occupe ce coin sur les écrans en retrait : le chrome s'efface
+  // la trace de l’objet occupe ce coin sur les écrans en retrait : le chrome s’efface
   const coinOccupe = objetEtat.kind === 'strates' && objetEtat.position === 'retrait';
   return (
     <>

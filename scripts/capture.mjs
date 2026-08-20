@@ -88,8 +88,10 @@ async function detecterDebordements(nom) {
   for (const t of trouves) problemes.push(`${nom} · ${t}`);
 }
 
-// les 21 écrans, à l'état final
-for (let i = 0; i < 21; i++) {
+const ecrans = await page.evaluate(() => window.__deck.ecrans);
+
+// tous les écrans, à l'état final
+for (let i = 0; i < ecrans.length; i++) {
   await etatFinalEcran(i);
   await page.waitForTimeout(1400);
   const id = String(i + 1).padStart(2, '0');
@@ -116,7 +118,7 @@ async function sequenceTransition(nom, prepare, declenche, tempsMs) {
 // l'amputation ÷2 (E09, beat « divise le nombre de jours par deux »)
 await sequenceTransition(
   'amputation',
-  async () => { await deck('aller', 8); await deck('avancer'); },
+  async () => { await deck('aller', ecrans.indexOf('E11')); await deck('avancer'); },
   async () => { await deck('avancer'); },
   [400, 1100, 2200],
 );
@@ -124,7 +126,7 @@ await sequenceTransition(
 // pyramide → diamant (E14)
 await sequenceTransition(
   'diamant',
-  async () => { await deck('aller', 13); },
+  async () => { await deck('aller', ecrans.indexOf('E16')); },
   async () => { await deck('avancer'); },
   [300, 1000, 1900],
 );
@@ -132,13 +134,13 @@ await sequenceTransition(
 // strates → frise (entrée d'E19)
 await sequenceTransition(
   'frise',
-  async () => { await deck('aller', 17); await deck('avancer'); await deck('avancer'); },
+  async () => { await deck('aller', ecrans.indexOf('E20')); await deck('avancer'); await deck('avancer'); },
   async () => { await deck('avancer'); },
   [400, 1200, 2300],
 );
 
-// le simulateur : la séquence des trois gestes (E16, index 15)
-await deck('aller', 15);
+// le simulateur : la séquence des trois gestes
+await deck('aller', ecrans.indexOf('E18'));
 await page.waitForTimeout(800);
 await page.screenshot({ path: `${sortie}/sim-geste-1-contrat.png` });
 for (const [g, nom] of [[25, 'sim-geste-2a-mi-course'], [50, 'sim-geste-2b-choc']]) {
@@ -160,7 +162,7 @@ await page.evaluate(() => {
 console.log('simulateur');
 
 // la grille (Échap)
-await deck('aller', 8);
+await deck('aller', ecrans.indexOf('E11'));
 await page.keyboard.press('Escape');
 await page.waitForTimeout(600);
 await page.screenshot({ path: `${sortie}/grille.png` });
@@ -174,9 +176,9 @@ await pres.goto(`${url}?vue=presentateur`);
 await pres.waitForFunction(() => window.__deck !== undefined);
 await pres.evaluate(() => {
   const d = window.__deck;
-  d.aller(11); // E12
+  d.aller(d.ecrans.indexOf('E14')); // fin du bloc 4
   d.chrono.demarrerOuPause();
-  d.chrono.simuler(13 * 60_000 + 54_000); // 13:54, cible CP1 13:04
+  d.chrono.simuler(14 * 60_000 + 14_000); // 14:14, cible CP1 13:24
 });
 await pres.waitForTimeout(200);
 await pres.evaluate(() => window.__deck.avancer()); // sortie E12 → constat CP1

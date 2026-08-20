@@ -15,8 +15,8 @@ import { FenetrePresentateur } from './presentateur/FenetrePresentateur';
 import { EASE_ENTREE } from './moteur/motion';
 import type { TransitionIn } from './types';
 
-/** sortie brève et uniforme : l'entrée du suivant porte le mouvement */
-const SORTIE = { opacity: 0, transition: { duration: 0.28 } };
+/** sortie brève et uniforme : l’entrée du suivant porte le mouvement */
+const SORTIE = { opacity: 0, scale: 0.987, filter: 'blur(7px)', transition: { duration: 0.32 } };
 
 function variantes(t: TransitionIn) {
   const duree = 'dureeMs' in t ? t.dureeMs / 1000 : 0.5;
@@ -25,9 +25,9 @@ function variantes(t: TransitionIn) {
       return { initial: {}, animate: {}, exit: SORTIE, duree: 0.3 };
     case 'fondu':
     case 'bascule-fond':
-      return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: SORTIE, duree };
+      return { initial: { opacity: 0, filter: 'blur(6px)' }, animate: { opacity: 1, filter: 'blur(0px)' }, exit: SORTIE, duree };
     case 'morph-objet':
-      // la métamorphose de l'objet EST la transition : le contenu suit vite
+      // la métamorphose de l’objet EST la transition : le contenu suit vite
       return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: SORTIE, duree: 0.45 };
     case 'masque-montant':
       return {
@@ -38,8 +38,11 @@ function variantes(t: TransitionIn) {
       };
     case 'glissement':
       return {
-        initial: t.direction === 'gauche' ? { opacity: 0, x: 90 } : { opacity: 0, y: 90 },
-        animate: { opacity: 1, x: 0, y: 0 },
+        initial:
+          t.direction === 'gauche'
+            ? { opacity: 0, x: 90, filter: 'blur(5px)' }
+            : { opacity: 0, y: 90, filter: 'blur(5px)' },
+        animate: { opacity: 1, x: 0, y: 0, filter: 'blur(0px)' },
         exit: SORTIE,
         duree,
       };
@@ -61,7 +64,7 @@ export default function App() {
   // la page de garde : affichée au lancement, hors régie
   const [couverture, setCouverture] = useState(true);
 
-  // les handlers clavier lisent l'état courant via une ref (deux fenêtres, zéro closure périmée)
+  // les handlers clavier lisent l’état courant via une ref (deux fenêtres, zéro closure périmée)
   const ref = useRef({ regie, chrono, grille, selection, saisie, couverture });
   ref.current = { regie, chrono, grille, selection, saisie, couverture };
 
@@ -129,7 +132,78 @@ export default function App() {
     };
   }, []);
 
-  useEffect(() => attacherClavier(window, handlers), [handlers]);
+  /**
+   * Synchronisation entre onglets (répétitions sur Netlify : la vue
+   * ?vue=presentateur suit la scène au beat près; ses touches pilotent la
+   * scène). Le jour J en file://, la fenêtre P reste le canal de référence.
+   */
+  const canal = useMemo(
+    () => ('BroadcastChannel' in window ? new BroadcastChannel('soutenance-sync') : null),
+    [],
+  );
+
+  const handlersEffectifs = useMemo<ClavierHandlers>(() => {
+    if (!vuePresentateurSeule || !canal) return handlers;
+    const envoyer = (action: string) => canal.postMessage({ type: 'commande', action });
+    return {
+      ...handlers,
+      avancer: () => envoyer('avancer'),
+      reculer: () => envoyer('reculer'),
+      bas: () => envoyer('avancer'),
+      haut: () => envoyer('reculer'),
+      chrono: () => envoyer('chrono'),
+      chronoReset: () => envoyer('chronoReset'),
+    };
+  }, [handlers, vuePresentateurSeule, canal]);
+
+  useEffect(() => attacherClavier(window, handlersEffectifs), [handlersEffectifs]);
+
+  // réception : la scène exécute les commandes; le présentateur suit l’état
+  useEffect(() => {
+    if (!canal) return;
+    canal.onmessage = (e: MessageEvent) => {
+      const m = e.data as Record<string, unknown>;
+      if (vuePresentateurSeule) {
+        if (m?.type !== 'etat') return;
+        setCouverture(m.couverture as boolean);
+        ref.current.regie.allerAuBeat(m.beat as number, m.chainsDone as number);
+        ref.current.chrono.suivreExterne(
+          m.chronoMs as number,
+          m.chronoEnMarche as boolean,
+          m.captures as { id: string; ecartMs: number; instruction: string | null }[],
+        );
+      } else {
+        if (m?.type === 'commande') {
+          const action = m.action as string;
+          if (action === 'avancer') handlers.avancer();
+          else if (action === 'reculer') handlers.reculer();
+          else if (action === 'chrono') handlers.chrono();
+          else if (action === 'chronoReset') handlers.chronoReset();
+        }
+      }
+    };
+    return () => {
+      canal.onmessage = null;
+    };
+  }, [canal, vuePresentateurSeule, handlers]);
+
+  // diffusion de l’état par la scène (à chaque rendu : la cadence suit le chrono)
+  useEffect(() => {
+    if (!canal || vuePresentateurSeule) return;
+    canal.postMessage({
+      type: 'etat',
+      beat: regie.beatIndex,
+      chainsDone: regie.chainsDone,
+      couverture,
+      chronoMs: chrono.elapsedMs,
+      chronoEnMarche: chrono.enMarche,
+      captures: chrono.captures.map((c) => ({
+        id: c.checkpoint.id,
+        ecartMs: c.ecartMs,
+        instruction: c.instruction,
+      })),
+    });
+  });
 
   // pilotage externe : captures Playwright et dépannage le jour J
   useEffect(() => {
@@ -148,6 +222,7 @@ export default function App() {
       chainesEnAttente: regie.chainesEnAttente,
       nbBeats: regie.seq.length - 1,
       ecran: regie.screen.id,
+      ecrans: deckConfig.screens.map((s) => s.id),
       chrono: {
         simuler: chrono.simuler,
         demarrerOuPause: chrono.demarrerOuPause,

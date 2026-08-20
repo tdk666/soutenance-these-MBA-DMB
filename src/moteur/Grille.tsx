@@ -3,7 +3,7 @@ import type { DeckConfig } from '../types';
 import { EASE_ENTREE } from './motion';
 import { MiniEcran } from './MiniEcran';
 
-/** Vue d'ensemble (Échap) : les 21 écrans, sélection clavier ou clic. */
+/** Vue d’ensemble (Échap) : les 21 écrans, sélection clavier ou clic. */
 export function Grille({
   config,
   selection,

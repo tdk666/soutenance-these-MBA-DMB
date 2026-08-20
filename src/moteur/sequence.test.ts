@@ -11,17 +11,17 @@ import {
 const seq = buildSequence(deckConfig);
 
 describe('séquence de régie', () => {
-  it('respecte le budget contractuel v3 : 34 beats manuels', () => {
-    // 33 beats validés à l'étape 1, plus le baptême « déflation latente »
-    // sur la figure d'enquête (seule balise ajoutée par la v3)
-    expect(nbBeatsManuels(seq)).toBe(34);
+  it('respecte le budget de régie : 35 beats manuels', () => {
+    // 33 beats validés à l’étape 1, plus le baptême « déflation latente » (v3),
+    // plus l’écran ajouté par l’éclatement de la méthodologie en trois vues
+    expect(nbBeatsManuels(seq)).toBe(35);
   });
 
   it('le baptême « déflation latente » est un beat de la figure d’enquête', () => {
-    const iE11 = deckConfig.screens.findIndex((s) => s.id === 'E11');
-    const beatsE11 = seq.filter((b) => b.screenIndex === iE11);
-    expect(beatsE11.length).toBe(2); // entrée + baptême
-    expect(beatsE11[1].step?.id).toBe('E11.bapteme-deflation');
+    const iE13 = deckConfig.screens.findIndex((s) => s.id === 'E13');
+    const beatsE13 = seq.filter((b) => b.screenIndex === iE13);
+    expect(beatsE13.length).toBe(2); // entrée + baptême
+    expect(beatsE13[1].step?.id).toBe('E13.bapteme-deflation');
   });
 
   it('commence sur E01 et finit sur E21', () => {
@@ -43,20 +43,20 @@ describe('séquence de régie', () => {
   });
 
   it('l’état à un beat est rejouable et complet en arrivée arrière', () => {
-    const iE09 = deckConfig.screens.findIndex((s) => s.id === 'E09');
+    const iE09 = deckConfig.screens.findIndex((s) => s.id === 'E11');
     const entree = beatEntree(seq, iE09);
     // dernier beat de E09 : tous les steps faits, chaînes comprises
     const dernierE09 = seq.filter((b) => b.screenIndex === iE09).at(-1)!;
     const etat = stateAt(seq, dernierE09.index, dernierE09.chains.length);
     const stepsE09 = deckConfig.screens[iE09].steps.map((s) => s.id);
     for (const id of stepsE09) expect(etat.faits.has(id)).toBe(true);
-    // à l'entrée, rien n'est fait
+    // à l’entrée, rien n’est fait
     const debut = stateAt(seq, entree, 0);
     expect(debut.faits.size).toBe(0);
   });
 
   it('l’amputation ÷2 fait passer la barre de 0 à 5 jours fantômes', () => {
-    const iE09 = deckConfig.screens.findIndex((s) => s.id === 'E09');
+    const iE09 = deckConfig.screens.findIndex((s) => s.id === 'E11');
     const beatsE09 = seq.filter((b) => b.screenIndex === iE09);
     const entree = beatsE09[0].index;
     const avant = objetEtatAt(deckConfig, seq, entree, 0);
@@ -67,7 +67,7 @@ describe('séquence de régie', () => {
   });
 
   it('la frise s’allume segment par segment jusqu’à 4', () => {
-    const iE19 = deckConfig.screens.findIndex((s) => s.id === 'E19');
+    const iE19 = deckConfig.screens.findIndex((s) => s.id === 'E21');
     const beatsE19 = seq.filter((b) => b.screenIndex === iE19);
     expect(beatsE19.length).toBe(5); // entrée + 4 segments
     const dernier = beatsE19.at(-1)!;

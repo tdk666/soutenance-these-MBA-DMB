@@ -4,7 +4,7 @@ import { EASE_ENTREE } from '../moteur/motion';
 
 /**
  * Révélation typographique par masque : le texte monte depuis sa ligne de
- * base, découpé par un cadre invisible. C'est l'entrée éditoriale de
+ * base, découpé par un cadre invisible. C’est l’entrée éditoriale de
  * référence du deck : un seul mouvement, jamais un fondu mou.
  */
 export function Masque({

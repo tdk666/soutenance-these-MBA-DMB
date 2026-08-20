@@ -9,11 +9,11 @@ import { etatEtage, etatTjm, formatEUR, formatPct, valeurClientEUR } from './mod
  * Trois gestes à la souris, tenus à 60 secondes :
  *   1. le contrat au temps passé, sain;
  *   2. le curseur « gain de productivité IA » monte de 0 à 50 % : les jours
- *      fondent, le revenu s'effondre, la valeur client (jaune) ne bouge pas;
- *   3. l'interrupteur NEUTRE (« autre unité de compte ») : la même mission
+ *      fondent, le revenu s’effondre, la valeur client (jaune) ne bouge pas;
+ *   3. l’interrupteur NEUTRE (« autre unité de compte ») : la même mission
  *      se redistribue en quatre lignes, la marge tient (elle passe au jaune).
- * Les hypothèses de calcul s'affichent d'un clic (un opérateur P&L demandera
- * d'où sortent les chiffres).
+ * Les hypothèses de calcul s’affichent d’un clic (un opérateur P&L demandera
+ * d’où sortent les chiffres).
  */
 
 const GROTESQUE = 'var(--grotesque)';
@@ -184,7 +184,7 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
           />
         </div>
 
-        {/* hypothèses affichables d'un clic */}
+        {/* hypothèses affichables d’un clic */}
         <button
           onClick={() => setHypotheses((h) => !h)}
           style={{
@@ -234,7 +234,7 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
             <div style={{ marginTop: 18, textAlign: 'center', height: 150 }}>
               <Compteur valeur={revenuAffiche} format={formatEUR} taille={40} />
               <div className="etiquette" style={{ color: 'var(--gris-clair)', fontSize: 28, marginTop: 6 }}>
-                L'agence
+                L’agence
               </div>
             </div>
           </div>
@@ -254,7 +254,7 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
           </div>
         </div>
 
-        {/* l'interrupteur neutre */}
+        {/* l’interrupteur neutre */}
         <div className="flex items-center gap-6" style={{ marginTop: 60 }}>
           <button
             onClick={() => setBascule((b) => !b)}
@@ -301,9 +301,11 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
               left: 140,
               right: 140,
               bottom: 60,
-              background: 'rgba(0, 0, 0, 0.45)',
-              padding: '30px 40px',
-              backdropFilter: 'blur(4px)',
+              background: 'rgba(11, 17, 52, 0.38)',
+              padding: '32px 40px',
+              backdropFilter: 'blur(24px) saturate(140%)',
+              border: '1px solid rgba(255, 255, 255, 0.16)',
+              borderRadius: 16,
             }}
           >
             <div className="etiquette" style={{ color: 'var(--gris-clair)', marginBottom: 18 }}>
