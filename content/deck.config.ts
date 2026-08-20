@@ -306,7 +306,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
       objet: { kind: 'barre', joursFantomes: 0, position: 'centre' },
       layout: 'arithmetique',
       donnees: {
-        kicker: "La négociation annuelle · l’arithmétique",
+        kicker: "Première preuve · la négociation annuelle",
         lignes: [
           { label: 'Tenté sur le prix', valeur: '≈ +15 %' },
           { label: 'Imposé sur les jours', valeur: '÷ 2' },
@@ -371,7 +371,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
       objet: { kind: 'barre', joursFantomes: 5, position: 'pied' },
       layout: 'lignes-comptes',
       donnees: {
-        kicker: 'Havas, juillet 2026 · les comptes',
+        kicker: 'Deuxième preuve · les comptes Havas, juillet 2026',
         lignes: [
           {
             label: "Tout ce que le groupe achetait à l’extérieur pour produire",
@@ -402,7 +402,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
       objet: { kind: 'barre', joursFantomes: 5, position: 'pied' },
       layout: 'figure-enquete',
       donnees: {
-        kicker: "L’enquête · 34 répondants, en nombres absolus",
+        kicker: "Troisième preuve · l’enquête, en nombres absolus",
         barres: [
           {
             label: "Agences : temps de production réduit d’au moins un quart",

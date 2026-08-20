@@ -13,6 +13,7 @@ export function Chrome({
   screenIndex,
   beatIndex,
   nbBeats,
+  crans = [],
   objetEtat,
 }: {
   config: DeckConfig;
@@ -20,11 +21,15 @@ export function Chrome({
   screenIndex: number;
   beatIndex: number;
   nbBeats: number;
+  /** positions des entrées d’écran sur le filet, en fraction de la course */
+  crans?: number[];
   objetEtat: ObjetEtat;
 }) {
   if (screen.fond === 'noir') return null;
   const surPapier = screen.fond === 'papier';
   const encre = surPapier ? 'rgba(16,20,31,0.45)' : 'rgba(255,255,255,0.45)';
+  const filet = surPapier ? 'rgba(16,20,31,0.3)' : 'rgba(255,255,255,0.32)';
+  const repere = surPapier ? 'rgba(16,20,31,0.16)' : 'rgba(255,255,255,0.14)';
   const bloc = config.meta.blocs.find((b) => b.id === screen.bloc);
   // la trace de l’objet occupe ce coin sur les écrans en retrait : le chrome s’efface
   const coinOccupe = objetEtat.kind === 'strates' && objetEtat.position === 'retrait';
@@ -54,18 +59,37 @@ export function Chrome({
           </div>
         </div>
       )}
+      {/* les crans du parcours : une marque par écran, l’instrument sous le filet */}
+      {crans.map((f, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{
+            left: `${f * 100}%`,
+            bottom: 0,
+            width: 1,
+            height: 9,
+            background: repere,
+          }}
+        />
+      ))}
       <motion.div
         className="absolute"
         initial={false}
         animate={{ width: `${(beatIndex / nbBeats) * 100}%` }}
         transition={{ duration: 0.6, ease: EASE_ENTREE }}
-        style={{
-          left: 0,
-          bottom: 0,
-          height: 3,
-          background: surPapier ? 'rgba(16,20,31,0.3)' : 'rgba(255,255,255,0.32)',
-        }}
+        style={{ left: 0, bottom: 0, height: 3, background: filet }}
       />
+      {/* repères de coin, la marque d’imprimeur : uniquement sur papier */}
+      {surPapier &&
+        [
+          { left: 48, top: 48, borderLeft: `1px solid ${repere}`, borderTop: `1px solid ${repere}` },
+          { right: 48, top: 48, borderRight: `1px solid ${repere}`, borderTop: `1px solid ${repere}` },
+          { left: 48, bottom: 48, borderLeft: `1px solid ${repere}`, borderBottom: `1px solid ${repere}` },
+          { right: 48, bottom: 48, borderRight: `1px solid ${repere}`, borderBottom: `1px solid ${repere}` },
+        ].map((pos, i) => (
+          <div key={i} className="absolute" style={{ width: 16, height: 16, ...pos }} />
+        ))}
     </>
   );
 }

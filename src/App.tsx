@@ -8,6 +8,7 @@ import { Stage } from './moteur/Stage';
 import { ObjetLayer } from './moteur/ObjetLayer';
 import { Chrome } from './moteur/Chrome';
 import { Couverture } from './moteur/Couverture';
+import { Interlude } from './moteur/Interlude';
 import { Grille } from './moteur/Grille';
 import { ScreenView } from './ecrans/ScreenView';
 import { Presentateur } from './presentateur/Presentateur';
@@ -15,8 +16,8 @@ import { FenetrePresentateur } from './presentateur/FenetrePresentateur';
 import { EASE_ENTREE } from './moteur/motion';
 import type { TransitionIn } from './types';
 
-/** sortie brève et uniforme : l’entrée du suivant porte le mouvement */
-const SORTIE = { opacity: 0, scale: 0.987, filter: 'blur(7px)', transition: { duration: 0.32 } };
+/** sortie brève et uniforme, dans le flux montant : l’entrée du suivant porte le mouvement */
+const SORTIE = { opacity: 0, y: -12, scale: 0.987, filter: 'blur(7px)', transition: { duration: 0.32 } };
 
 function variantes(t: TransitionIn) {
   const duree = 'dureeMs' in t ? t.dureeMs / 1000 : 0.5;
@@ -25,7 +26,7 @@ function variantes(t: TransitionIn) {
       return { initial: {}, animate: {}, exit: SORTIE, duree: 0.3 };
     case 'fondu':
     case 'bascule-fond':
-      return { initial: { opacity: 0, filter: 'blur(6px)' }, animate: { opacity: 1, filter: 'blur(0px)' }, exit: SORTIE, duree };
+      return { initial: { opacity: 0, y: 18, filter: 'blur(6px)' }, animate: { opacity: 1, y: 0, filter: 'blur(0px)' }, exit: SORTIE, duree };
     case 'morph-objet':
       // la métamorphose de l’objet EST la transition : le contenu suit vite
       return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: SORTIE, duree: 0.45 };
@@ -63,6 +64,30 @@ export default function App() {
   const [presOuverte, setPresOuverte] = useState(false);
   // la page de garde : affichée au lancement, hors régie
   const [couverture, setCouverture] = useState(true);
+  // l’interlude de chapitre : le nom du bloc traverse la scène à son ouverture
+  const [interlude, setInterlude] = useState<{
+    cle: number;
+    numero: number;
+    nom: string;
+    fond: 'bleu' | 'papier';
+  } | null>(null);
+  const blocPrec = useRef(regie.screen.bloc);
+  useEffect(() => {
+    const b = regie.screen.bloc;
+    if (b === blocPrec.current) return;
+    const avant = blocPrec.current;
+    blocPrec.current = b;
+    // seulement en avançant au clic, jamais sur les verdicts noirs ni sur un saut
+    const fond = regie.screen.fond;
+    if (!regie.live || b < avant || fond === 'noir') return;
+    const nom = deckConfig.meta.blocs.find((x) => x.id === b)?.nom;
+    if (nom) setInterlude({ cle: Date.now(), numero: b, nom, fond });
+  }, [regie.screen.bloc, regie.live, regie.screen.fond]);
+  useEffect(() => {
+    if (!interlude) return;
+    const t = setTimeout(() => setInterlude(null), 1700);
+    return () => clearTimeout(t);
+  }, [interlude]);
 
   // les handlers clavier lisent l’état courant via une ref (deux fenêtres, zéro closure périmée)
   const ref = useRef({ regie, chrono, grille, selection, saisie, couverture });
@@ -142,17 +167,23 @@ export default function App() {
     [],
   );
 
+  // la vue présentateur applique ses touches localement (elle doit vivre seule,
+  // sans onglet scène) et les diffuse; quand une scène écoute, son état fait
+  // autorité et recale la vue à chaque diffusion
   const handlersEffectifs = useMemo<ClavierHandlers>(() => {
     if (!vuePresentateurSeule || !canal) return handlers;
-    const envoyer = (action: string) => canal.postMessage({ type: 'commande', action });
+    const relaye = (action: 'avancer' | 'reculer' | 'chrono' | 'chronoReset') => () => {
+      canal.postMessage({ type: 'commande', action });
+      handlers[action]();
+    };
     return {
       ...handlers,
-      avancer: () => envoyer('avancer'),
-      reculer: () => envoyer('reculer'),
-      bas: () => envoyer('avancer'),
-      haut: () => envoyer('reculer'),
-      chrono: () => envoyer('chrono'),
-      chronoReset: () => envoyer('chronoReset'),
+      avancer: relaye('avancer'),
+      reculer: relaye('reculer'),
+      bas: relaye('avancer'),
+      haut: relaye('reculer'),
+      chrono: relaye('chrono'),
+      chronoReset: relaye('chronoReset'),
     };
   }, [handlers, vuePresentateurSeule, canal]);
 
@@ -270,8 +301,22 @@ export default function App() {
           screenIndex={regie.screenIndex}
           beatIndex={regie.beatIndex}
           nbBeats={regie.seq.length - 1}
+          crans={regie.seq
+            .filter((b) => b.kind === 'entree')
+            .map((b) => b.index / (regie.seq.length - 1))}
           objetEtat={regie.objetEtat}
         />
+        <AnimatePresence>
+          {interlude && (
+            <Interlude
+              key={interlude.cle}
+              numero={interlude.numero}
+              nom={interlude.nom}
+              fond={interlude.fond}
+              config={deckConfig}
+            />
+          )}
+        </AnimatePresence>
         <AnimatePresence>{couverture && <Couverture config={deckConfig} />}</AnimatePresence>
       </Stage>
 

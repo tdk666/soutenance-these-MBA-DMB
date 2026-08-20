@@ -10,6 +10,7 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 - **Étape 3 (validée)** : le simulateur, calibré sur l'arithmétique Kajman et couvert par 8 tests.
 - **Étape 4 (en validation)** : tous les écrans définitifs; l'objet graphique en dix unités persistantes qui se métamorphosent réellement (barre → strates → frise); révélations typographiques par masque; pyramide de points → diamant avec les recrutements fantômes; verrous en lecture guidée; frise à zone de détail; compteurs sur tous les chiffres; détecteur automatique de textes coupés dans la passe de vérification.
 - **Étape 4.2 (en validation)** : 23 écrans (la méthode détaillée sur trois écrans, intervenants nommés); page de garde noire; synchronisation entre onglets de la vue présentateur (`?vue=presentateur`) par BroadcastChannel; transitions au flou et rideau de fond; fonds éclairés; chrome éditorial (bloc + folio); panneau d'hypothèses en verre dépoli.
+- **Étape 4.3 (en validation)** : interludes de chapitre (le nom du bloc traverse l'écran à son ouverture); fond bleu vivant (masses de lumière dérivantes); crans d'écrans sur le filet et repères de coin sur papier; pilotage sans ambiguïté dans le présentateur (même écran / changement d'écran, points de gestes); la vue `?vue=presentateur` vit aussi sans onglet scène; compteur de preuves du bloc 4; passe de fil rouge documentée (`docs/passe-fil-rouge.md`).
 - Étape suivante : polish final, PDF de secours, README du jour J (5).
 
 ## Commandes

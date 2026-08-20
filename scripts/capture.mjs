@@ -139,6 +139,14 @@ await sequenceTransition(
   [400, 1200, 2300],
 );
 
+// l'interlude de chapitre (entrée du bloc 4 « Le choc », E09 → E10)
+await sequenceTransition(
+  'interlude',
+  async () => { await deck('aller', ecrans.indexOf('E09')); },
+  async () => { await deck('avancer'); },
+  [450, 950, 1450],
+);
+
 // le simulateur : la séquence des trois gestes
 await deck('aller', ecrans.indexOf('E18'));
 await page.waitForTimeout(800);

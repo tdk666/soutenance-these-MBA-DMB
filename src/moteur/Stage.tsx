@@ -90,6 +90,40 @@ export function Stage({
             style={{ background: fondCss(r.fond, config, salleClaire) }}
           />
         ))}
+        {/* le bleu respire : deux masses profondes dérivent sous la nappe claire */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <motion.div
+          className="pointer-events-none absolute"
+          animate={{ x: [0, 130, 0], y: [0, 70, 0], scale: [1, 1.12, 1] }}
+          transition={{ duration: 38, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            left: -180,
+            top: -260,
+            width: 1050,
+            height: 1050,
+            borderRadius: 9999,
+            background: 'radial-gradient(circle, rgba(64,78,190,0.5), rgba(64,78,190,0) 68%)',
+            filter: 'blur(48px)',
+            opacity: fond === 'bleu' ? 1 : 0,
+            transition: 'opacity 700ms',
+          }}
+        />
+        <motion.div
+          className="pointer-events-none absolute"
+          animate={{ x: [0, -160, 0], y: [0, -90, 0] }}
+          transition={{ duration: 47, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            right: -320,
+            bottom: -380,
+            width: 1250,
+            height: 1250,
+            borderRadius: 9999,
+            background: 'radial-gradient(circle, rgba(9,13,44,0.62), rgba(9,13,44,0) 66%)',
+            filter: 'blur(56px)',
+            opacity: fond === 'bleu' ? 1 : 0,
+            transition: 'opacity 700ms',
+          }}
+        />
         <motion.div
           className="pointer-events-none absolute inset-0"
           animate={{ x: [0, 54, 0], y: [0, -38, 0] }}
@@ -101,6 +135,7 @@ export function Stage({
             transition: 'opacity 700ms',
           }}
         />
+        </div>
         {children}
         <div className="grain" />
       </div>

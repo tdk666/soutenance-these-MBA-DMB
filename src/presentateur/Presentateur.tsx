@@ -88,6 +88,12 @@ export function Presentateur({
   const prochainEcranIndex = regie.seq
     .slice(regie.beatIndex + 1)
     .find((b) => b.screenIndex !== regie.screenIndex)?.screenIndex;
+  // les gestes de l’écran courant : ce que la flèche droite fera vraiment
+  const beatsEcran = regie.seq.filter((b) => b.screenIndex === regie.screenIndex);
+  const gestesFaits = beatsEcran.filter((b) => b.index <= regie.beatIndex).length;
+  const gestesRestants = beatsEcran.length - gestesFaits;
+  const prochainMemeEcran =
+    regie.prochain !== null && regie.prochain.screenIndex === regie.screenIndex;
   // prochain checkpoint : le premier dont l’écran de sortie n’est pas encore passé
   const indexEcran = (id: string) => config.screens.findIndex((s) => s.id === id);
   const cp =
@@ -220,30 +226,80 @@ export function Presentateur({
           ))}
         </div>
 
-        <div
-          style={{
-            background: CARTE,
-            borderRadius: 10,
-            padding: '14px 18px',
-            marginTop: 14,
-            borderLeft: `4px solid ${JAUNE}`,
-          }}
-        >
-          <div style={{ color: GRIS, fontSize: 13, letterSpacing: '0.12em', marginBottom: 6 }}>
-            PROCHAIN GESTE
-          </div>
-          <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.3 }}>
-            {couverture
-              ? 'Page de garde affichée · → pour ouvrir le noir de l’adresse'
-              : regie.chainesEnAttente > 0
-                ? `chaîne en cours (${regie.chainesEnAttente}) · → pour terminer`
-                : regie.prochain
-                  ? regie.prochain.kind === 'entree'
-                    ? regie.prochain.libelle
-                    : `« ${regie.prochain.libelle} »`
-                  : 'fin de la soutenance'}
-          </div>
-        </div>
+        {(() => {
+          // le prochain appui, sans ambiguïté : révélation sur place ou changement d’écran
+          const BLEU_CLAIR = '#9FB4FF';
+          let bord = GRIS;
+          let fondCarte = CARTE;
+          let entete = 'PROCHAIN GESTE';
+          let corps: string;
+          if (couverture) {
+            bord = BLEU_CLAIR;
+            entete = 'PAGE DE GARDE';
+            corps = '→ ouvre le noir de l’adresse';
+          } else if (regie.chainesEnAttente > 0) {
+            bord = JAUNE;
+            fondCarte = '#1E1A0E';
+            entete = 'L’ÉCRAN SE JOUE SEUL';
+            corps = `chaîne en cours (${regie.chainesEnAttente}) · → termine d’un coup, sans changer d’écran`;
+          } else if (prochainMemeEcran && regie.prochain) {
+            bord = JAUNE;
+            fondCarte = '#1E1A0E';
+            entete = `MÊME ÉCRAN · ENCORE ${gestesRestants} ${gestesRestants > 1 ? 'GESTES' : 'GESTE'}`;
+            corps = `« ${regie.prochain.libelle} »`;
+          } else if (regie.prochain && prochainEcranIndex !== undefined) {
+            bord = BLEU_CLAIR;
+            fondCarte = '#12162A';
+            entete = 'ÉCRAN JOUÉ · LE PROCHAIN APPUI CHANGE D’ÉCRAN';
+            corps = `→ ${config.screens[prochainEcranIndex].id} · ${config.screens[prochainEcranIndex].titreInterne}`;
+          } else {
+            entete = 'FIN';
+            corps = 'fin de la soutenance';
+          }
+          return (
+            <div
+              style={{
+                background: fondCarte,
+                borderRadius: 10,
+                padding: '14px 18px',
+                marginTop: 14,
+                borderLeft: `4px solid ${bord}`,
+              }}
+            >
+              <div
+                style={{
+                  color: bord,
+                  fontSize: 13,
+                  letterSpacing: '0.12em',
+                  marginBottom: 6,
+                  fontWeight: 700,
+                }}
+              >
+                {entete}
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.3 }}>{corps}</div>
+              {!couverture && beatsEcran.length > 1 && (
+                <div className="flex items-center gap-2" style={{ marginTop: 10 }}>
+                  {beatsEcran.map((b) => (
+                    <span
+                      key={b.index}
+                      style={{
+                        width: 11,
+                        height: 11,
+                        borderRadius: 99,
+                        background: b.index <= regie.beatIndex ? '#E7EAF0' : 'transparent',
+                        border: `1.5px solid ${b.index <= regie.beatIndex ? '#E7EAF0' : GRIS}`,
+                      }}
+                    />
+                  ))}
+                  <span style={{ color: GRIS, fontSize: 13, marginLeft: 6 }}>
+                    gestes de cet écran
+                  </span>
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         <div
           className="min-h-0 flex-1 overflow-y-auto"
