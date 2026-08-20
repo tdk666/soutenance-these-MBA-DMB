@@ -307,14 +307,14 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
             }}
           >
             <div className="etiquette" style={{ color: 'var(--gris-clair)', marginBottom: 18 }}>
-              Hypothèses de calcul — chacune sourcée
+              Hypothèses de calcul, chacune sourcée
             </div>
             <div className="grid grid-cols-2 gap-x-16 gap-y-3">
               {params.hypotheses.map((h) => (
                 <div key={h.cle} style={{ fontFamily: GROTESQUE, fontSize: 28, lineHeight: 1.35 }}>
                   <span style={{ color: 'var(--gris-clair)' }}>{h.cle} : </span>
                   <span>{h.valeur}</span>
-                  <span style={{ color: 'var(--gris)', fontSize: 28 }}> — {h.source}</span>
+                  <span style={{ color: 'var(--gris)', fontSize: 28 }}> · {h.source}</span>
                 </div>
               ))}
             </div>

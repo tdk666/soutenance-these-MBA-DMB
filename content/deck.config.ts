@@ -23,7 +23,7 @@ export const deckConfig: DeckConfig = {
     {
       id: 'E01',
       bloc: 1,
-      titreInterne: "Noir — l'adresse",
+      titreInterne: "Noir, l'adresse",
       fond: 'noir',
       entreeCible: '0:00',
       transitionIn: { type: 'aucune' },
@@ -163,14 +163,14 @@ Parce que mon sujet initial n'était pas celui-ci. Je voulais écrire sur la cr�
         gauche: {
           titre: 'Côté agence',
           items: [
-            { nom: 'Jean-Jacques Rebouil', role: 'Directeur associé — la relation client' },
-            { nom: 'Ludovic Chevallier', role: "Directeur d'entité — la mécanique commerciale" },
-            { nom: 'David Kajman', role: 'Directeur financier — le choc dans les comptes et les prix' },
+            { nom: 'Jean-Jacques Rebouil', role: 'Directeur associé · la relation client' },
+            { nom: 'Ludovic Chevallier', role: "Directeur d'entité · la mécanique commerciale" },
+            { nom: 'David Kajman', role: 'Directeur financier · le choc dans les comptes et les prix' },
           ],
         },
         droite: {
           titre: 'Côté annonceur',
-          items: [{ nom: 'Élise Pierin', role: 'Acheteuse — FDJ United' }],
+          items: [{ nom: 'Élise Pierin', role: 'Acheteuse · FDJ United' }],
         },
         pastilles: [
           '3 regards de conférence',
@@ -303,7 +303,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c'es
       objet: { kind: 'barre', joursFantomes: 5, position: 'pied' },
       layout: 'lignes-comptes',
       donnees: {
-        kicker: 'Havas, juillet 2026 — les comptes',
+        kicker: 'Havas, juillet 2026 · les comptes',
         lignes: [
           {
             label: "Tout ce que le groupe achetait à l'extérieur pour produire",
@@ -334,7 +334,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c'es
       objet: { kind: 'barre', joursFantomes: 5, position: 'pied' },
       layout: 'figure-enquete',
       donnees: {
-        kicker: "L'enquête — 34 répondants, en nombres absolus",
+        kicker: "L'enquête · 34 répondants, en nombres absolus",
         barres: [
           {
             label: "Agences : temps de production réduit d'au moins un quart",
@@ -527,6 +527,7 @@ Le troisième chantier, c'est l'usine elle-même : produire beaucoup plus pour l
       objet: { kind: 'strates', etiquettes: true, position: 'centre' },
       layout: 'quatre-etages',
       donnees: {
+        titre: 'Le prix étagé',
         etages: [
           {
             nom: 'Le conseil',

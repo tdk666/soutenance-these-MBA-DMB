@@ -51,14 +51,86 @@ async function etatFinalEcran(i) {
 await page.goto(url);
 await page.waitForFunction(() => window.__deck !== undefined);
 
+/** détecte textes coupés et débordements : scrollWidth/Height des feuilles de
+    texte, et boîtes qui sortent de la scène 1920×1080 */
+const problemes = [];
+async function detecterDebordements(nom) {
+  const trouves = await page.evaluate(() => {
+    const scene = document.querySelector('.scene');
+    if (!scene) return [];
+    const sc = scene.getBoundingClientRect();
+    const echelle = sc.width / 1920;
+    const anomalies = [];
+    for (const el of scene.querySelectorAll('*')) {
+      if (!(el instanceof HTMLElement)) continue;
+      const texte = (el.childNodes[0]?.nodeType === 3 ? el.textContent : '') ?? '';
+      // texte coupé dans sa propre boîte (tolérance de rendu 2px)
+      if (
+        texte.trim() &&
+        (el.scrollHeight - el.clientHeight > 4 || el.scrollWidth - el.clientWidth > 4) &&
+        getComputedStyle(el).overflow !== 'visible'
+      ) {
+        anomalies.push(`coupé: « ${texte.trim().slice(0, 40)} »`);
+      }
+      // boîte qui sort de la scène
+      const r = el.getBoundingClientRect();
+      if (texte.trim() && (r.right > sc.right + 2 * echelle || r.bottom > sc.bottom + 2 * echelle)) {
+        anomalies.push(`hors scène: « ${texte.trim().slice(0, 40)} »`);
+      }
+    }
+    return [...new Set(anomalies)].slice(0, 6);
+  });
+  for (const t of trouves) problemes.push(`${nom} · ${t}`);
+}
+
 // les 21 écrans, à l'état final
 for (let i = 0; i < 21; i++) {
   await etatFinalEcran(i);
   await page.waitForTimeout(1400);
   const id = String(i + 1).padStart(2, '0');
   await page.screenshot({ path: `${sortie}/ecran-${id}.png` });
+  await detecterDebordements(`ecran-${id}`);
   console.log(`ecran-${id}`);
 }
+
+// les métamorphoses en séquence : trois images chacune, pour juger le mouvement
+async function sequenceTransition(nom, prepare, declenche, tempsMs) {
+  await prepare();
+  await page.waitForTimeout(300);
+  await declenche();
+  const precedents = [];
+  for (const t of tempsMs) {
+    const attente = t - precedents.reduce((a, b) => a + b, 0);
+    precedents.push(attente);
+    await page.waitForTimeout(attente);
+    await page.screenshot({ path: `${sortie}/morph-${nom}-${t}ms.png` });
+  }
+  console.log(`morph-${nom}`);
+}
+
+// l'amputation ÷2 (E09, beat « divise le nombre de jours par deux »)
+await sequenceTransition(
+  'amputation',
+  async () => { await deck('aller', 8); await deck('avancer'); },
+  async () => { await deck('avancer'); },
+  [400, 1100, 2200],
+);
+
+// pyramide → diamant (E14)
+await sequenceTransition(
+  'diamant',
+  async () => { await deck('aller', 13); },
+  async () => { await deck('avancer'); },
+  [300, 1000, 1900],
+);
+
+// strates → frise (entrée d'E19)
+await sequenceTransition(
+  'frise',
+  async () => { await deck('aller', 17); await deck('avancer'); await deck('avancer'); },
+  async () => { await deck('avancer'); },
+  [400, 1200, 2300],
+);
 
 // le simulateur : la séquence des trois gestes (E16, index 15)
 await deck('aller', 15);
@@ -107,4 +179,12 @@ await pres.waitForTimeout(600);
 await pres.screenshot({ path: `${sortie}/presentateur.png` });
 console.log('presentateur');
 
+if (problemes.length > 0) {
+  console.log('\nDÉBORDEMENTS DÉTECTÉS :');
+  for (const p of problemes) console.log(`  ! ${p}`);
+} else {
+  console.log('\naucun texte coupé, aucun débordement');
+}
+
 await navigateur.close();
+process.exit(problemes.length > 0 ? 2 : 0);

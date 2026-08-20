@@ -13,27 +13,32 @@ import { FenetrePresentateur } from './presentateur/FenetrePresentateur';
 import { EASE_ENTREE } from './moteur/motion';
 import type { TransitionIn } from './types';
 
+/** sortie brève et uniforme : l'entrée du suivant porte le mouvement */
+const SORTIE = { opacity: 0, transition: { duration: 0.28 } };
+
 function variantes(t: TransitionIn) {
   const duree = 'dureeMs' in t ? t.dureeMs / 1000 : 0.5;
   switch (t.type) {
     case 'aucune':
-      return { initial: {}, animate: {}, exit: { opacity: 0 }, duree: 0.3 };
+      return { initial: {}, animate: {}, exit: SORTIE, duree: 0.3 };
     case 'fondu':
     case 'bascule-fond':
+      return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: SORTIE, duree };
     case 'morph-objet':
-      return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, duree };
+      // la métamorphose de l'objet EST la transition : le contenu suit vite
+      return { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: SORTIE, duree: 0.45 };
     case 'masque-montant':
       return {
-        initial: { opacity: 0, y: 60 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -30 },
+        initial: { clipPath: 'inset(100% 0% 0% 0%)', y: 30 },
+        animate: { clipPath: 'inset(0% 0% 0% 0%)', y: 0 },
+        exit: SORTIE,
         duree,
       };
     case 'glissement':
       return {
         initial: t.direction === 'gauche' ? { opacity: 0, x: 90 } : { opacity: 0, y: 90 },
         animate: { opacity: 1, x: 0, y: 0 },
-        exit: { opacity: 0 },
+        exit: SORTIE,
         duree,
       };
   }

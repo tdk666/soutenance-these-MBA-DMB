@@ -126,7 +126,11 @@ export type LayoutDonnees =
   | { layout: 'simulateur'; donnees: Record<string, never> }
   | {
       layout: 'quatre-etages';
-      donnees: { etages: { nom: string; metrique: string; ancrage: string }[] };
+      donnees: {
+        /** le baptême n° 3, prononcé en entrant sur cet écran */
+        titre: string;
+        etages: { nom: string; metrique: string; ancrage: string }[];
+      };
     }
   | {
       layout: 'verrous';
