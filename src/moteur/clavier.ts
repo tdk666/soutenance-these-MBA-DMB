@@ -5,7 +5,7 @@
  * → / Espace / PageDown : avancer (un beat, ou terminer la chaîne en cours)
  * ← / PageUp            : reculer
  * Échap                 : grille des écrans (ou fermer / annuler la saisie)
- * 1-23 puis Entrée      : aller à l’écran
+ * 1-25 puis Entrée      : aller à l’écran
  * F                     : plein écran (scène)
  * L                     : mode salle claire
  * S                     : chrono marche/pause

@@ -32,7 +32,7 @@ export function Interlude({
   // peinte arrive tard, et l’interlude serait déjà en train de sortir)
   const [phase, setPhase] = useState<'tenue' | 'sortie'>('tenue');
   useEffect(() => {
-    const t = setTimeout(() => setPhase('sortie'), 950);
+    const t = setTimeout(() => setPhase('sortie'), 1500);
     return () => clearTimeout(t);
   }, []);
   return (

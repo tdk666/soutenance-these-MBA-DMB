@@ -14,7 +14,9 @@ export type ScreenId =
   | 'E01' | 'E02' | 'E03' | 'E04' | 'E05' | 'E06' | 'E07'
   | 'E08' | 'E09' | 'E10' | 'E11' | 'E12' | 'E13' | 'E14'
   | 'E15' | 'E16' | 'E17' | 'E18' | 'E19' | 'E20' | 'E21'
-  | 'E22' | 'E23';
+  | 'E22' | 'E23'
+  | 'E24'
+  | 'E25';
 
 export type BlocId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
@@ -79,7 +81,13 @@ export type LayoutDonnees =
   | { layout: 'ligne-seule'; donnees: { texte: string } }
   | { layout: 'chiffre-verdict'; donnees: { de: string; valeur: string } }
   | { layout: 'sommaire'; donnees: { lignes: string[] } }
-  | { layout: 'parcours'; donnees: { etapes: { libelle: string; detail?: string }[] } }
+  | {
+      layout: 'parcours';
+      donnees: {
+        etapes: { libelle: string; detail?: string }[];
+        citation?: { texte: string; attribution: string };
+      };
+    }
   | { layout: 'citation-seule'; donnees: { texte: string } }
   | {
       layout: 'deux-cotes';
@@ -98,6 +106,7 @@ export type LayoutDonnees =
         lignes: { label: string; valeur: string }[];
         legendeBarre: { gauche: string; droite: string };
         source: string;
+        citation?: { texte: string; attribution: string };
       };
     }
   | {
@@ -118,7 +127,14 @@ export type LayoutDonnees =
         terme: string;
       };
     }
-  | { layout: 'terme-seul'; donnees: { terme: string; sousLigne?: string } }
+  | {
+      layout: 'terme-seul';
+      donnees: {
+        terme: string;
+        sousLigne?: string;
+        histoire?: { etiquette: string; texte: string };
+      };
+    }
   | {
       layout: 'trois-colonnes';
       donnees: { colonnes: { titre: string; montant: string; details: string[] }[] };
@@ -145,7 +161,9 @@ export type LayoutDonnees =
       };
     }
   | { layout: 'trois-suites'; donnees: { suites: string[] } }
-  | { layout: 'renversement'; donnees: { phrase1: string; phrase2: string } };
+  | { layout: 'renversement'; donnees: { phrase1: string; phrase2: string } }
+  | { layout: 'trois-fois-trois'; donnees: { colonnes: { titre: string; lignes: string[] }[] } }
+  | { layout: 'colophon'; donnees: { merci: string; invitation: string; mentions: string[] } };
 
 /* ---------- écran ---------- */
 

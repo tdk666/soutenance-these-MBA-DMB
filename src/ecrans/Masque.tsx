@@ -3,16 +3,16 @@ import type { CSSProperties, ReactNode } from 'react';
 import { EASE_ENTREE } from '../moteur/motion';
 
 /**
- * Révélation typographique par masque : le texte monte depuis sa ligne de
- * base, découpé par un cadre invisible. C’est l’entrée éditoriale de
- * référence du deck : un seul mouvement, jamais un fondu mou.
+ * Révélation typographique par masque : une montée courte et tendue dans un
+ * cadre invisible, portée par l’opacité. Jamais de longue glissade : le
+ * texte se pose, il ne défile pas.
  */
 export function Masque({
   children,
   visible = true,
   live,
   delaiS = 0,
-  dureeS = 0.85,
+  dureeS = 0.6,
   className,
   style,
 }: {
@@ -28,8 +28,8 @@ export function Masque({
   return (
     <div className={className} style={{ overflow: 'hidden', ...style }}>
       <motion.div
-        initial={live ? { y: '112%' } : false}
-        animate={{ y: '0%' }}
+        initial={live ? { y: '52%', opacity: 0 } : false}
+        animate={{ y: '0%', opacity: 1 }}
         transition={{ duration: dureeS, ease: EASE_ENTREE, delay: delaiS }}
       >
         {children}

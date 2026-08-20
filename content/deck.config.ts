@@ -139,8 +139,22 @@ export const deckConfig: DeckConfig = {
           { libelle: 'Havas Paris Social', detail: 'Alternance, consultant social media' },
           { libelle: 'MBA DMB', detail: 'Spécialisation IA & Data' },
         ],
+        citation: {
+          texte:
+            '« Une super idée, ça peut se trouver en deux jours. Et ça va générer un chiffre d’affaires de malade. »',
+          attribution: 'Un directeur financier, sur le terrain',
+        },
       },
-      steps: [],
+      steps: [
+        {
+          id: 'E05.citation',
+          mode: 'beat',
+          action: { type: 'reveler', cible: 'citation' },
+          pourquoi:
+            'L’étincelle du sujet s’affiche au moment où la phrase est citée, sous le parcours qui y a mené.',
+          repereParole: 'le jour où un directeur financier m’a dit',
+        },
+      ],
       notes: {
         script: `Deux mots sur moi, parce qu’ils expliquent la question. Je suis un littéraire devenu communicant. J’ai d’abord suivi une double licence, histoire à la Sorbonne et information média à Assas, dans l’idée de faire du journalisme. Puis je me suis tourné vers la communication, avec un master en conduite du changement à l’IAE d’Aix-en-Provence, et ses stages : la régie publicitaire des Échos - Le Parisien, puis le partenariat avec les Jeux de Paris chez Air Liquide. Et j’ai repris une année d’études pour partir en alternance chez Havas Paris Social, comme consultant social media. (r) Si j’ai choisi ce MBA, spécialisation IA et Data, c’est précisément pour ajouter un bagage technique à ce profil. Et la démarche DMB, vous allez la voir à l'œuvre : partir de son terrain, y trouver une question de transformation, et la conduire jusqu’à des recommandations applicables lundi matin. Or mon terrain m’a placé à l’endroit exact où la valeur se négocie. (r)
 
@@ -156,7 +170,7 @@ Parce que mon sujet initial n’était pas celui-ci. Je voulais écrire sur la c
       titreInterne: 'Problématique',
       fond: 'papier',
       entreeCible: '~5:08',
-      transitionIn: { type: 'masque-montant', dureeMs: 600 },
+      transitionIn: { type: 'fondu', dureeMs: 600 },
       objet: { kind: 'absent' },
       layout: 'citation-seule',
       donnees: {
@@ -317,8 +331,20 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
           droite: '−50 % des jours',
         },
         source: 'David Kajman, directeur administratif et financier, Havas Paris',
+        citation: {
+          texte: '« Avec l’IA, vous mettez trois fois moins de temps. »',
+          attribution: 'Le client, en ouverture de négociation',
+        },
       },
       steps: [
+        {
+          id: 'E11.constat',
+          mode: 'beat',
+          action: { type: 'reveler', cible: 'citation' },
+          pourquoi:
+            'Le constat du client ouvre la scène : le jury sait qui parle et pourquoi l’arithmétique arrive.',
+          repereParole: 'il ouvre par un constat',
+        },
         {
           id: 'E11.ligne-1',
           mode: 'beat',
@@ -442,13 +468,26 @@ Et ce diagnostic a un dernier étage, que je raconte aussi par une histoire. Del
       titreInterne: 'Dette de vérification',
       fond: 'bleu',
       entreeCible: '~12:50',
-      transitionIn: { type: 'masque-montant', dureeMs: 600 },
+      transitionIn: { type: 'fondu', dureeMs: 600 },
       objet: { kind: 'barre', joursFantomes: 5, position: 'pied' },
       layout: 'terme-seul',
       donnees: {
         terme: 'Dette de vérification',
+        histoire: {
+          etiquette: 'Deloitte, Australie · un rapport truffé de références inventées',
+          texte: 'Le premier remboursement de l’ère générative',
+        },
       },
-      steps: [],
+      steps: [
+        {
+          id: 'E14.revele-terme',
+          mode: 'beat',
+          action: { type: 'reveler', cible: 'terme' },
+          pourquoi:
+            'Baptême n° 2 : l’histoire Deloitte s’affiche d’abord, le terme n’apparaît qu’au moment où il est nommé.',
+          repereParole: 'Je le nomme dette de vérification',
+        },
+      ],
       notes: {
         script: `Ce que cette histoire révèle, c’est un coût que personne ne facturait : celui de tout contrôler, tout sourcer, tout corriger derrière la machine. Je le nomme dette de vérification, et quelqu’un la paie toujours. (r) Et une nuance, avant d’avancer, parce qu’elle conditionne tout le reste : cette déflation trie, elle ne rase pas. L’idée dont personne ne garantit le succès, la responsabilité qu’un annonceur ne peut pas internaliser, la singularité prouvée : tout cela résiste. Ce qui s’évide, c’est le temps d’exécution codifiable.`,
         silences: [],
@@ -650,7 +689,7 @@ Le premier étage garde le conseil au temps, parce que l’erreur historique n�
             nom: 'La mesure',
             objection: 'Comment payer ce que personne ne sait attribuer ?',
             parade:
-              "On ne paie jamais quelqu’un sur ce qu’il ne contrôle pas (Bengt Holmström, prix Nobel 2016)",
+              "On ne paie jamais quelqu’un sur ce qu’il ne contrôle pas (Bengt Holmström, prix Nobel 2016) · et la clause de l’acheteuse : des gains cherchés ensemble, un co-investissement documenté, un prorata",
           },
           {
             nom: 'Le mur des achats',
@@ -794,9 +833,46 @@ Et une ligne de crête traverse ces vingt-quatre mois : à aucun moment on n’a
       },
     },
 
-    /* ---------- E22 · Bloc 8 · Trois suites ---------- */
+    /* ---------- E22 · Bloc 8 · Trois canaux, trois déplacements ---------- */
     {
       id: 'E22',
+      bloc: 8,
+      titreInterne: 'Trois fois trois',
+      fond: 'papier',
+      entreeCible: '27:23',
+      transitionIn: { type: 'bascule-fond', dureeMs: 700 },
+      objet: { kind: 'absent' },
+      layout: 'trois-fois-trois',
+      donnees: {
+        colonnes: [
+          {
+            titre: 'La contrainte, par trois canaux',
+            lignes: [
+              'Le prix, qui opère en silence',
+              'Le travail : les recrutements qui ne se font pas',
+              'La confiance, grevée par la dette de vérification',
+            ],
+          },
+          {
+            titre: 'La survie, par trois déplacements',
+            lignes: [
+              'Comptable : des salaires vers les actifs',
+              'Tarifaire : le prix étagé',
+              'Commercial : la preuve devenue produit',
+            ],
+          },
+        ],
+      },
+      steps: [],
+      notes: {
+        script: `Trois convictions résument ce parcours. La contrainte s’exerce par trois canaux : le prix, qui opère en silence ; le travail, frappé par les recrutements qui ne se font pas ; et la confiance, grevée par la dette de vérification. Et la survie passe par trois déplacements : comptable, des salaires vers les actifs ; tarifaire, le prix étagé ; et commercial, la preuve devenue produit.`,
+        silences: [],
+      },
+    },
+
+    /* ---------- E23 · Bloc 8 · Trois suites ---------- */
+    {
+      id: 'E23',
       bloc: 8,
       titreInterne: 'Trois suites',
       fond: 'papier',
@@ -813,9 +889,7 @@ Et une ligne de crête traverse ces vingt-quatre mois : à aucun moment on n’a
       },
       steps: [],
       notes: {
-        script: `Trois convictions résument ce parcours. La contrainte s’exerce par trois canaux : le prix, qui opère en silence ; le travail, frappé par les recrutements qui ne se font pas ; et la confiance, grevée par la dette de vérification. Et la survie passe par trois déplacements : comptable, des salaires vers les actifs ; tarifaire, le prix étagé ; et commercial, la preuve devenue produit.
-
-Les limites bornent la portée de ce travail, et je les dis : un corpus riche mais resserré, ancré dans un grand groupe et chez un annonceur unique ; une enquête qui éclaire des mécanismes plus qu’elle ne mesure un marché ; et une fenêtre brûlante : ce mémoire s’écrit au milieu de l’événement, entre un règlement appliqué seize jours avant le dépôt et des comptes semestriels intégrés le matin de leur publication. C’est ce qui lui donne sa valeur documentaire, et c’est ce qui lui interdit la prétention au recul.
+        script: `Les limites bornent la portée de ce travail, et je les dis : un corpus riche mais resserré, ancré dans un grand groupe et chez un annonceur unique ; une enquête qui éclaire des mécanismes plus qu’elle ne mesure un marché ; et une fenêtre brûlante : ce mémoire s’écrit au milieu de l’événement, entre un règlement appliqué seize jours avant le dépôt et des comptes semestriels intégrés le matin de leur publication. C’est ce qui lui donne sa valeur documentaire, et c’est ce qui lui interdit la prétention au recul.
 
 Les suites maintenant, et elles sont déjà engagées. Fin septembre, je rejoins Havas Paris Social en poste. La feuille de route que je viens de vous présenter cesse donc d’être un exercice académique : elle a un terrain d’épreuve réel, et je compte bien la confronter, trimestre par trimestre, à la maison qui me l’a inspirée.
 
@@ -830,9 +904,9 @@ S’il fallait tout résumer en une phrase, ce serait celle-ci. ◆ S6`,
       },
     },
 
-    /* ---------- E23 · Bloc 8 · Le renversement ---------- */
+    /* ---------- E24 · Bloc 8 · Le renversement ---------- */
     {
-      id: 'E23',
+      id: 'E24',
       bloc: 8,
       titreInterne: 'Renversement',
       fond: 'noir',
@@ -847,7 +921,7 @@ S’il fallait tout résumer en une phrase, ce serait celle-ci. ◆ S6`,
       },
       steps: [
         {
-          id: 'E23.phrase-1',
+          id: 'E24.phrase-1',
           mode: 'beat',
           action: { type: 'reveler', cible: 'phrase-1' },
           pourquoi:
@@ -855,7 +929,7 @@ S’il fallait tout résumer en une phrase, ce serait celle-ci. ◆ S6`,
           repereParole: "Ce n’est pas l’intelligence artificielle",
         },
         {
-          id: 'E23.phrase-2',
+          id: 'E24.phrase-2',
           mode: 'beat',
           action: { type: 'reveler', cible: 'phrase-2' },
           pourquoi: 'La seconde phrase entre sur la parole et fait reculer la première.',
@@ -873,6 +947,33 @@ Je vous remercie.
         silences: ['S7'],
         consignes:
           "Débit lent. Chaque phrase apparaît en même temps qu’elle est prononcée. Tenir le regard deux secondes après S7.",
+      },
+    },
+
+    /* ---------- E25 · Bloc 8 · Colophon ---------- */
+    {
+      id: 'E25',
+      bloc: 8,
+      titreInterne: 'Colophon',
+      fond: 'noir',
+      entreeCible: '~30:08',
+      transitionIn: { type: 'fondu', dureeMs: 900 },
+      objet: { kind: 'absent' },
+      layout: 'colophon',
+      donnees: {
+        merci: 'Merci',
+        invitation: 'Place à vos questions',
+        mentions: [
+          'Théophile Dequecker',
+          'L’IA générative et le modèle économique des agences',
+          'MBA Digital Marketing & Business · EFAP Paris · 4 septembre 2026',
+        ],
+      },
+      steps: [],
+      notes: {
+        script: `[Après « Je vous remercie » et les deux secondes de regard, un dernier appui : l’écran de fin reste affiché pendant les questions.]`,
+        silences: [],
+        consignes: 'Rien à dire sur cet écran. Il tient seul pendant toute la séance de questions.',
       },
     },
   ],

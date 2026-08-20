@@ -11,10 +11,10 @@ import {
 const seq = buildSequence(deckConfig);
 
 describe('séquence de régie', () => {
-  it('respecte le budget de régie : 35 beats manuels', () => {
+  it('respecte le budget de régie : 40 beats manuels', () => {
     // 33 beats validés à l’étape 1, plus le baptême « déflation latente » (v3),
     // plus l’écran ajouté par l’éclatement de la méthodologie en trois vues
-    expect(nbBeatsManuels(seq)).toBe(35);
+    expect(nbBeatsManuels(seq)).toBe(40);
   });
 
   it('le baptême « déflation latente » est un beat de la figure d’enquête', () => {

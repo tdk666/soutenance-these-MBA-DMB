@@ -346,7 +346,7 @@ export function Presentateur({
         <div style={{ marginTop: 'auto', color: GRIS, fontSize: 13, lineHeight: 1.8 }}>
           → / espace : avancer · ← : reculer · Échap : grille
           <br />
-          1-23 puis Entrée : aller à · S : chrono · Maj+R : zéro
+          1-25 puis Entrée : aller à · S : chrono · Maj+R : zéro
           <br />
           F : plein écran · L : salle claire · P : présentateur
         </div>

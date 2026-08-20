@@ -70,14 +70,14 @@ Coût : ~3 secondes, et le mot « usine » précède les trois plans qui s'affic
 | Moment | Prononcé | À l'écran | Verdict |
 |---|---|---|---|
 | B1 | RELX, Wolters Kluwer | rien (noir, −9,24 % seul) | Voulu : le bloc 1 n'affiche qu'un chiffre. Ne pas toucher. |
-| B2 | la citation du directeur financier (« deux jours... chiffre d'affaires de malade ») | rien | Candidate : c'est l'étincelle du sujet. Une ligne en italique sur l'écran parcours, révélée au moment de la citation, coûterait un beat. À valider. |
+| B2 | la citation du directeur financier (« deux jours... chiffre d'affaires de malade ») | la citation se révèle sous le parcours au moment où elle est citée | Fait (E05, un beat). |
 | B2 | Bastien Jaffre | rien | Correct : détail biographique, l'écran n'a pas à suivre. |
 | B3 | quatre entretiens, conférence, enquête, piliers | tout affiché depuis la découpe en trois écrans | Réglé. |
 | B4 | « Deuxième preuve », « Troisième preuve » | compteur de preuves dans les kickers | Réglé dans cette passe. |
-| B4 | Deloitte, « le premier remboursement de l'ère générative » | seulement « dette de vérification » | Candidate forte : c'est un des trois fragments sans verbe du script. Proposition : la ligne « Deloitte, Australie · le premier remboursement de l'ère générative » se révèle sur l'écran dette de vérification au moment du fragment. Un beat de plus. À valider. |
+| B4 | Deloitte, « le premier remboursement de l'ère générative » | l'histoire ouvre l'écran, le terme n'apparaît qu'à sa nomination | Fait (E14, un beat : baptême n° 2 en montrer-puis-nommer). |
 | B5 | « trois chantiers réels, financés, visibles » | les plans (1) et le diamant (2), le volume (3) n'existe pas à l'écran | Acceptable : le chantier volume est réfuté aussitôt. Option : rappeler « Trois chantiers · aucune caisse » en kicker sur l'écran usine sans caisse. |
-| B6 | la clause Pierin (« pas de supplément déclaratif... prorata ») | le verrou de la mesure affiche Holmström, pas la clause | Candidate : c'est une des sept phrases exactes. Proposition : la ligne « des gains cherchés ensemble, un co-investissement, un prorata » en détail du verrou de la mesure, révélée quand la clause est citée. À valider. |
-| B8 | trois canaux, trois déplacements | rien | Voir couture 5 ci-dessus. |
+| B6 | la clause Pierin (« pas de supplément déclaratif... prorata ») | la clause complète la parade du verrou de la mesure | Fait (E20). |
+| B8 | trois canaux, trois déplacements | un écran dédié, deux colonnes | Fait (E22, option écran retenue). |
 
 ## Les mots à l'écran, contrôle du lexique
 
@@ -86,3 +86,8 @@ Aucun terme interdit à l'écran dans l'état actuel : pas d'« assiette », de 
 ## Ce que je ne propose pas
 
 Pas de reformulation générale du script : le texte v3 est bon, il est raconté, il n'a pas de gras. Les cinq coutures ci-dessus totalisent une vingtaine de secondes de parole en plus, absorbables par la marge du simulateur, et deux candidates d'écran (citation du financier, fragment Deloitte) qui coûtent chacune un beat. Tout le reste doit rester tel quel.
+
+
+## Addendum du 20 août au soir
+
+Le retour de répétition a tranché les candidates d'écran : elles sont toutes intégrées (citation du financier sur E05, constat du client sur E11, histoire Deloitte sur E14, clause de l'acheteuse sur E20, écran des convictions E22). Le deck passe à 25 écrans et 40 gestes, avec un colophon (E25) qui tient l'écran pendant les questions. Restent à valider les cinq coutures de parole ci-dessus : elles n'entrent pas dans les notes sans ton accord.

@@ -84,3 +84,14 @@ La découpe a été affinée après la première répétition sur le mode prése
 - **E09 · Transparence** : les trois suites (entretiens compensés, IA sous supervision, audit indépendant).
 
 Les écrans E08 à E21 de la table ci-dessus deviennent E10 à E23. Le config (`content/deck.config.ts`) fait foi : 23 écrans, 35 déclenchements manuels, cibles chrono 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08 (CP0 à la sortie d'E09). La page de garde noire précède E01 et se quitte à la première avancée.
+
+
+## Addendum étape 4.4 : 25 écrans, 40 gestes
+
+Après la répétition du 20 août, la règle « tout ce qui est prononcé se voit » ajoute deux écrans et quatre échos :
+
+- **E22 · Trois canaux, trois déplacements** : les convictions du bloc 8, en deux colonnes, avant les suites.
+- **E25 · Colophon** : Merci, place aux questions, la barre-signature; il tient l'écran pendant toute la séance de questions.
+- Échos : la citation du financier (E05), le constat du client en ouverture de négociation (E11), l'histoire Deloitte avant le baptême de la dette de vérification (E14), la clause de l'acheteuse dans la parade du verrou de la mesure (E20).
+
+Les anciens E22 et E23 deviennent E23 et E24. Le config fait foi : 25 écrans, 40 déclenchements manuels.

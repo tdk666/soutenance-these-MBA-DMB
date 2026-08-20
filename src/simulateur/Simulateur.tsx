@@ -301,22 +301,23 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
               left: 140,
               right: 140,
               bottom: 60,
-              background: 'rgba(11, 17, 52, 0.38)',
+              background: 'rgba(8, 12, 34, 0.94)',
               padding: '32px 40px',
               backdropFilter: 'blur(24px) saturate(140%)',
-              border: '1px solid rgba(255, 255, 255, 0.16)',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
               borderRadius: 16,
+              boxShadow: '0 28px 90px rgba(0, 0, 0, 0.5)',
             }}
           >
-            <div className="etiquette" style={{ color: 'var(--gris-clair)', marginBottom: 18 }}>
+            <div className="etiquette" style={{ color: '#AEB6C8', marginBottom: 18 }}>
               Hypothèses de calcul, chacune sourcée
             </div>
             <div className="grid grid-cols-2 gap-x-16 gap-y-3">
               {params.hypotheses.map((h) => (
                 <div key={h.cle} style={{ fontFamily: GROTESQUE, fontSize: 28, lineHeight: 1.35 }}>
-                  <span style={{ color: 'var(--gris-clair)' }}>{h.cle} : </span>
-                  <span>{h.valeur}</span>
-                  <span style={{ color: 'var(--gris)', fontSize: 28 }}> · {h.source}</span>
+                  <span style={{ color: '#AEB6C8' }}>{h.cle} : </span>
+                  <span style={{ color: '#F0F2F8' }}>{h.valeur}</span>
+                  <span style={{ color: '#8A929E', fontSize: 28 }}> · {h.source}</span>
                 </div>
               ))}
             </div>

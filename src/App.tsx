@@ -85,7 +85,7 @@ export default function App() {
   }, [regie.screen.bloc, regie.live, regie.screen.fond]);
   useEffect(() => {
     if (!interlude) return;
-    const t = setTimeout(() => setInterlude(null), 1700);
+    const t = setTimeout(() => setInterlude(null), 2300);
     return () => clearTimeout(t);
   }, [interlude]);
 

@@ -369,25 +369,62 @@ export function ScreenView({
               </Entree>
             );
           })}
+          {screen.donnees.citation && (
+            <Entree
+              visible={estRevele(screen, faits, 'citation')}
+              live={live}
+              className="absolute"
+              style={{ left: 170, top: 824, maxWidth: 1580 }}
+            >
+              <div style={{ ...serif(46, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 46, lineHeight: 1.3 }}>
+                {screen.donnees.citation.texte}
+              </div>
+              <div style={{ fontFamily: GROTESQUE, fontSize: 28, color: couleurSecondaire, marginTop: 14 }}>
+                {screen.donnees.citation.attribution}
+              </div>
+            </Entree>
+          )}
         </div>
       );
     }
 
-    case 'citation-seule':
+    case 'citation-seule': {
+      // la question entre mot à mot, comme la page de garde : cinétique, jamais une glissade
+      const mots = screen.donnees.texte.split(' ');
       return (
         <div className="absolute inset-0" style={{ color: couleurTexte }}>
           <div className="etiquette absolute" style={{ left: 160, top: 150, color: couleurSecondaire }}>
             La problématique
           </div>
           <div className="absolute" style={{ left: 160, top: '50%', transform: 'translateY(-50%)', maxWidth: 1580 }}>
-            <Masque live={live} dureeS={1}>
-              <div style={{ ...serif(60, 'var(--wght-texte)'), fontSize: 64, lineHeight: 1.34 }}>
-                {screen.donnees.texte}
-              </div>
-            </Masque>
+            <div style={{ ...serif(60, 'var(--wght-texte)'), fontSize: 64, lineHeight: 1.34 }} aria-label={screen.donnees.texte} role="text">
+              {mots.map((m, i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: 'inline-block',
+                    overflow: 'hidden',
+                    verticalAlign: 'top',
+                    whiteSpace: 'pre',
+                    padding: '0.08em 0.03em 0.16em',
+                    margin: '-0.08em -0.03em -0.16em',
+                  }}
+                >
+                  <motion.span
+                    style={{ display: 'inline-block' }}
+                    initial={live ? { y: '112%', opacity: 0 } : false}
+                    animate={{ y: '0%', opacity: 1 }}
+                    transition={{ duration: 0.6, ease: EASE_ENTREE, delay: 0.08 + i * 0.038 }}
+                  >
+                    {m + (i < mots.length - 1 ? ' ' : '')}
+                  </motion.span>
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       );
+    }
 
     case 'deux-cotes': {
       const d = screen.donnees;
@@ -523,6 +560,21 @@ export function ScreenView({
               );
             })}
           </div>
+          {d.citation && (
+            <Entree
+              visible={estRevele(screen, faits, 'citation')}
+              live={live}
+              className="absolute"
+              style={{ left: 1000, top: 186, width: 780 }}
+            >
+              <div style={{ ...serif(52, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 52, lineHeight: 1.3 }}>
+                {d.citation.texte}
+              </div>
+              <div style={{ fontFamily: GROTESQUE, fontSize: 28, color: 'var(--gris-clair)', marginTop: 16 }}>
+                {d.citation.attribution}
+              </div>
+            </Entree>
+          )}
           <div className="absolute flex justify-between" style={{ left: 140, right: 140, top: 826 }}>
             <span className="etiquette" style={{ color: 'var(--gris-clair)' }}>{d.legendeBarre.gauche}</span>
             <span className="etiquette" style={{ color: 'var(--gris-clair)' }}>{d.legendeBarre.droite}</span>
@@ -625,33 +677,47 @@ export function ScreenView({
       );
     }
 
-    case 'terme-seul':
+    case 'terme-seul': {
+      const d = screen.donnees;
+      // le baptême : quand une histoire précède le terme, il n’apparaît qu’à sa nomination
+      const termeVisible = screen.steps.length === 0 || estRevele(screen, faits, 'terme');
       return (
         <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
-          <div className="absolute" style={{ left: 140, top: '46%', transform: 'translateY(-50%)' }}>
-            <motion.div
-              initial={live ? { fontWeight: 300 } : false}
-              animate={{ fontWeight: 470 }}
-              transition={{ duration: 1.4, ease: EASE_ENTREE }}
-              style={{
-                fontFamily: SERIF,
-                fontVariationSettings: "'opsz' 144",
-                fontSize: 150,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              <TitreAnime texte={screen.donnees.terme} live={live} dureeS={0.85} decalageS={0.022} />
-            </motion.div>
-          </div>
-          {screen.donnees.sousLigne && (
+          {d.histoire && (
+            <Entree live={live} className="absolute" style={{ left: 140, top: 140, maxWidth: 1640 }}>
+              <div className="etiquette" style={{ color: 'var(--gris-clair)' }}>{d.histoire.etiquette}</div>
+              <div style={{ ...serif(64, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 62, lineHeight: 1.25, marginTop: 20 }}>
+                {d.histoire.texte}
+              </div>
+            </Entree>
+          )}
+          {termeVisible && (
+            <div className="absolute" style={{ left: 140, top: d.histoire ? '54%' : '46%', transform: 'translateY(-50%)' }}>
+              <motion.div
+                initial={live ? { fontWeight: 300 } : false}
+                animate={{ fontWeight: 470 }}
+                transition={{ duration: 1.4, ease: EASE_ENTREE }}
+                style={{
+                  fontFamily: SERIF,
+                  fontVariationSettings: "'opsz' 144",
+                  fontSize: 150,
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                <TitreAnime texte={d.terme} live={live} dureeS={0.85} decalageS={0.022} />
+              </motion.div>
+            </div>
+          )}
+          {d.sousLigne && termeVisible && (
             <Entree live={live} delaiS={0.7} className="absolute" style={{ left: 144, top: '61%' }}>
               <div style={{ fontFamily: GROTESQUE, fontSize: 32, color: 'var(--gris-clair)' }}>
-                {screen.donnees.sousLigne}
+                {d.sousLigne}
               </div>
             </Entree>
           )}
         </div>
       );
+    }
 
     case 'trois-colonnes': {
       const d = screen.donnees;
@@ -836,16 +902,19 @@ export function ScreenView({
                 style={{ left: 140, top: 690, width: 1640 }}
               >
                 {d.segments[actif].decisions.map((dec, j) => (
-                  <div
+                  <motion.div
                     key={dec}
                     className="flex items-baseline"
+                    initial={{ opacity: 0, y: 12, filter: 'blur(5px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    transition={{ duration: 0.45, ease: EASE_ENTREE, delay: 0.08 + j * 0.09 }}
                     style={{ padding: '16px 0', borderBottom: j < d.segments[actif].decisions.length - 1 ? '1px solid rgba(255,255,255,0.18)' : 'none' }}
                   >
                     <span className="etiquette" style={{ color: 'var(--gris-clair)', width: 90, flex: '0 0 auto' }}>
                       {String(j + 1).padStart(2, '0')}
                     </span>
                     <span style={{ fontFamily: GROTESQUE, fontSize: 38, lineHeight: 1.3 }}>{dec}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </motion.div>
             )}
@@ -892,6 +961,102 @@ export function ScreenView({
               {screen.donnees.phrase2}
             </div>
           </Masque>
+        </div>
+      );
+    }
+
+    case 'trois-fois-trois': {
+      const cols = screen.donnees.colonnes;
+      const filet = surPapier ? 'rgba(16,20,31,0.18)' : 'rgba(255,255,255,0.2)';
+      return (
+        <div className="absolute inset-0" style={{ color: couleurTexte }}>
+          {cols.map((c, ci) => (
+            <div key={c.titre} className="absolute" style={{ left: ci === 0 ? 160 : 1040, top: 226, width: 720 }}>
+              <Entree live={live} delaiS={ci * 0.14}>
+                <div className="etiquette" style={{ color: couleurSecondaire, marginBottom: 26 }}>{c.titre}</div>
+              </Entree>
+              {c.lignes.map((l, i) => (
+                <Entree key={l} live={live} delaiS={0.22 + ci * 0.14 + i * 0.13}>
+                  <div
+                    style={{
+                      ...serif(44, 'var(--wght-texte)'),
+                      fontSize: 46,
+                      lineHeight: 1.28,
+                      padding: '26px 0',
+                      borderTop: `1px solid ${filet}`,
+                    }}
+                  >
+                    {l}
+                  </div>
+                </Entree>
+              ))}
+            </div>
+          ))}
+          <motion.div
+            className="absolute"
+            initial={live ? { scaleY: 0 } : false}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.9, ease: EASE_ENTREE, delay: 0.3 }}
+            style={{ left: 960, top: 250, width: 1, height: 560, background: filet, transformOrigin: 'top center' }}
+          />
+        </div>
+      );
+    }
+
+    case 'colophon': {
+      const d = screen.donnees;
+      return (
+        <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
+          <div className="absolute" style={{ left: 160, top: 330 }}>
+            <div
+              style={{
+                fontFamily: SERIF,
+                fontVariationSettings: "'opsz' 144",
+                fontWeight: 400,
+                fontSize: 200,
+                letterSpacing: '-0.02em',
+                lineHeight: 1,
+              }}
+            >
+              <TitreAnime texte={d.merci} live={live} dureeS={0.8} decalageS={0.045} />
+            </div>
+            <Entree live={live} delaiS={0.65}>
+              <div className="etiquette" style={{ color: 'var(--gris-clair)', marginTop: 44 }}>{d.invitation}</div>
+            </Entree>
+          </div>
+          {/* la barre-signature : les dix unités de l’objet, au repos */}
+          <div className="absolute flex" style={{ left: 160, right: 160, bottom: 300, gap: 8 }}>
+            {Array.from({ length: 10 }, (_, i) => (
+              <motion.div
+                key={i}
+                initial={live ? { opacity: 0, y: 14 } : false}
+                animate={{ opacity: i < 5 ? 1 : 0.32, y: 0 }}
+                transition={{ duration: 0.5, ease: EASE_ENTREE, delay: 0.5 + i * 0.05 }}
+                style={{
+                  flex: 1,
+                  height: 10,
+                  background: i < 5 ? 'var(--blanc)' : 'transparent',
+                  border: i < 5 ? 'none' : '1px solid rgba(255,255,255,0.55)',
+                }}
+              />
+            ))}
+          </div>
+          <div className="absolute" style={{ left: 160, bottom: 150 }}>
+            {d.mentions.map((m, i) => (
+              <Entree key={m} live={live} delaiS={0.8 + i * 0.1}>
+                <div
+                  style={{
+                    fontFamily: GROTESQUE,
+                    fontSize: 28,
+                    color: i === 0 ? 'var(--blanc)' : 'var(--gris-clair)',
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {m}
+                </div>
+              </Entree>
+            ))}
+          </div>
         </div>
       );
     }
