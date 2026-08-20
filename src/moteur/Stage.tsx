@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import type { DeckConfig, Fond } from '../types';
 import { EASE_FOND } from './motion';
 
+/** couleur plate de référence (miniatures, aperçus) */
 export function couleurFond(fond: Fond, config: DeckConfig, salleClaire: boolean): string {
   switch (fond) {
     case 'noir':
@@ -15,9 +16,27 @@ export function couleurFond(fond: Fond, config: DeckConfig, salleClaire: boolean
 }
 
 /**
- * La scène de référence 1920×1080, mise à l'échelle du viewport (1280×720 à 4K),
- * letterbox noir. Le fond est une couche persistante dont la couleur s'anime :
- * les bascules de fond sont des événements continus, pas des cuts.
+ * Fond éclairé : les aplats deviennent des surfaces lumineuses. Le bleu est
+ * éclairé du coin haut gauche (là où vivent les kickers), le papier a un
+ * grain de lumière descendant; le noir reste absolu.
+ */
+function fondCss(fond: Fond, config: DeckConfig, salleClaire: boolean): string {
+  switch (fond) {
+    case 'noir':
+      return '#000000';
+    case 'bleu':
+      return salleClaire
+        ? `radial-gradient(135% 150% at 18% 0%, #1F2A74 0%, ${config.salleClaire.bleuFonce} 48%, #101740 100%)`
+        : 'radial-gradient(135% 150% at 18% 0%, #283382 0%, #1F2A7A 46%, #161E56 100%)';
+    case 'papier':
+      return 'linear-gradient(168deg, #F9F7F2 0%, #F5F3EE 52%, #EDEAE0 100%)';
+  }
+}
+
+/**
+ * La scène 1920×1080 mise à l'échelle du viewport. Les bascules de fond sont
+ * un rideau : la nouvelle surface monte du bas de l'écran et recouvre
+ * l'ancienne (750 ms), pendant que le contenu suivant entre.
  */
 export function Stage({
   fond,
@@ -39,6 +58,16 @@ export function Stage({
     return () => window.removeEventListener('resize', calc);
   }, []);
 
+  // pile de rideaux : l'ancien fond reste en socle, le nouveau monte dessus
+  const [pile, setPile] = useState<{ cle: number; fond: Fond }[]>([{ cle: 0, fond }]);
+  useEffect(() => {
+    setPile((p) => {
+      const dernier = p[p.length - 1];
+      if (dernier.fond === fond) return p;
+      return [dernier, { cle: dernier.cle + 1, fond }];
+    });
+  }, [fond]);
+
   return (
     <div className="fixed inset-0 flex items-center justify-center overflow-hidden bg-black">
       <div
@@ -51,12 +80,16 @@ export function Stage({
           flex: '0 0 auto',
         }}
       >
-        <motion.div
-          className="absolute inset-0"
-          initial={false}
-          animate={{ backgroundColor: couleurFond(fond, config, salleClaire) }}
-          transition={{ duration: 0.7, ease: EASE_FOND }}
-        />
+        {pile.map((r, i) => (
+          <motion.div
+            key={r.cle}
+            className="absolute inset-0"
+            initial={i === 0 ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
+            animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+            transition={{ duration: 0.75, ease: EASE_FOND }}
+            style={{ background: fondCss(r.fond, config, salleClaire) }}
+          />
+        ))}
         {children}
         <div className="grain" />
       </div>

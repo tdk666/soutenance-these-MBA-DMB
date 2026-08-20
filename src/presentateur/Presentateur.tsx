@@ -77,10 +77,12 @@ export function Presentateur({
   config,
   regie,
   chrono,
+  couverture = false,
 }: {
   config: DeckConfig;
   regie: Regie;
   chrono: Chrono;
+  couverture?: boolean;
 }) {
   const screen = regie.screen;
   const prochainEcranIndex = regie.seq
@@ -231,13 +233,15 @@ export function Presentateur({
             PROCHAIN GESTE
           </div>
           <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.3 }}>
-            {regie.chainesEnAttente > 0
-              ? `chaîne en cours (${regie.chainesEnAttente}) · → pour terminer`
-              : regie.prochain
-                ? regie.prochain.kind === 'entree'
-                  ? regie.prochain.libelle
-                  : `« ${regie.prochain.libelle} »`
-                : 'fin de la soutenance'}
+            {couverture
+              ? 'Page de garde affichée · → pour ouvrir le noir de l’adresse'
+              : regie.chainesEnAttente > 0
+                ? `chaîne en cours (${regie.chainesEnAttente}) · → pour terminer`
+                : regie.prochain
+                  ? regie.prochain.kind === 'entree'
+                    ? regie.prochain.libelle
+                    : `« ${regie.prochain.libelle} »`
+                  : 'fin de la soutenance'}
           </div>
         </div>
 

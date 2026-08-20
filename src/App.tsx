@@ -6,6 +6,8 @@ import { useRegie } from './moteur/useRegie';
 import { useChrono } from './moteur/useChrono';
 import { Stage } from './moteur/Stage';
 import { ObjetLayer } from './moteur/ObjetLayer';
+import { Chrome } from './moteur/Chrome';
+import { Couverture } from './moteur/Couverture';
 import { Grille } from './moteur/Grille';
 import { ScreenView } from './ecrans/ScreenView';
 import { Presentateur } from './presentateur/Presentateur';
@@ -56,25 +58,30 @@ export default function App() {
   const [selection, setSelection] = useState(0);
   const [saisie, setSaisie] = useState('');
   const [presOuverte, setPresOuverte] = useState(false);
+  // la page de garde : affichée au lancement, hors régie
+  const [couverture, setCouverture] = useState(true);
 
   // les handlers clavier lisent l'état courant via une ref (deux fenêtres, zéro closure périmée)
-  const ref = useRef({ regie, chrono, grille, selection, saisie });
-  ref.current = { regie, chrono, grille, selection, saisie };
+  const ref = useRef({ regie, chrono, grille, selection, saisie, couverture });
+  ref.current = { regie, chrono, grille, selection, saisie, couverture };
 
   const handlers = useMemo<ClavierHandlers>(() => {
     const allerSelection = () => {
       setGrille(false);
+      setCouverture(false);
       ref.current.regie.allerAEcran(ref.current.selection);
     };
     return {
       avancer: () => {
         const s = ref.current;
         if (s.grille) setSelection((x) => Math.min(x + 1, deckConfig.screens.length - 1));
+        else if (s.couverture) setCouverture(false);
         else s.regie.avancer();
       },
       reculer: () => {
         const s = ref.current;
         if (s.grille) setSelection((x) => Math.max(x - 1, 0));
+        else if (!s.couverture && s.regie.beatIndex === 0) setCouverture(true);
         else s.regie.reculer();
       },
       bas: () => {
@@ -103,6 +110,7 @@ export default function App() {
           const n = parseInt(s.saisie, 10);
           if (n >= 1 && n <= deckConfig.screens.length) {
             setGrille(false);
+            setCouverture(false);
             s.regie.allerAEcran(n - 1);
           }
           setSaisie('');
@@ -126,9 +134,16 @@ export default function App() {
   // pilotage externe : captures Playwright et dépannage le jour J
   useEffect(() => {
     (window as unknown as Record<string, unknown>).__deck = {
-      aller: (n: number) => regie.allerAEcran(n),
-      avancer: regie.avancer,
+      aller: (n: number) => {
+        setCouverture(false);
+        regie.allerAEcran(n);
+      },
+      avancer: () => {
+        if (ref.current.couverture) setCouverture(false);
+        else regie.avancer();
+      },
       reculer: regie.reculer,
+      couverture: (v: boolean) => setCouverture(v),
       beatIndex: regie.beatIndex,
       chainesEnAttente: regie.chainesEnAttente,
       nbBeats: regie.seq.length - 1,
@@ -147,7 +162,7 @@ export default function App() {
   if (vuePresentateurSeule) {
     return (
       <div className="h-screen w-screen">
-        <Presentateur config={deckConfig} regie={regie} chrono={chrono} />
+        <Presentateur config={deckConfig} regie={regie} chrono={chrono} couverture={couverture} />
       </div>
     );
   }
@@ -174,6 +189,15 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
         <ObjetLayer etat={regie.objetEtat} live={regie.live} />
+        <Chrome
+          config={deckConfig}
+          screen={regie.screen}
+          screenIndex={regie.screenIndex}
+          beatIndex={regie.beatIndex}
+          nbBeats={regie.seq.length - 1}
+          objetEtat={regie.objetEtat}
+        />
+        <AnimatePresence>{couverture && <Couverture config={deckConfig} />}</AnimatePresence>
       </Stage>
 
       <AnimatePresence>
@@ -210,7 +234,7 @@ export default function App() {
         onFermee={() => setPresOuverte(false)}
         onFenetre={(win) => attacherClavier(win, handlers)}
       >
-        <Presentateur config={deckConfig} regie={regie} chrono={chrono} />
+        <Presentateur config={deckConfig} regie={regie} chrono={chrono} couverture={couverture} />
       </FenetrePresentateur>
     </>
   );

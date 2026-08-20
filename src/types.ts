@@ -262,8 +262,18 @@ export interface DeckConfig {
     titre: string;
     orateur: string;
     date: string;
-    dureeCible: Timecode;      // "30:04"
+    lieu: string;
+    jury: string;
+    dureeCible: Timecode;      // "30:08"
     debitMotsParMin: number;
+    /** la page de garde, affichée avant le noir de l'adresse (hors régie) */
+    couverture: {
+      surtitre: string;
+      titre: string;
+      mentions: string[];
+    };
+    /** noms courts des blocs, pour le chrome éditorial (section, folio) */
+    blocs: { id: BlocId; nom: string }[];
   };
   salleClaire: ModeSalleClaire;
   screens: Screen[];           // ordonnés, E01 → E21

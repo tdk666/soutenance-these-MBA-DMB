@@ -51,6 +51,11 @@ async function etatFinalEcran(i) {
 await page.goto(url);
 await page.waitForFunction(() => window.__deck !== undefined);
 
+// la page de garde, avant tout
+await page.waitForTimeout(2600);
+await page.screenshot({ path: `${sortie}/couverture.png` });
+console.log('couverture');
+
 /** détecte textes coupés et débordements : scrollWidth/Height des feuilles de
     texte, et boîtes qui sortent de la scène 1920×1080 */
 const problemes = [];

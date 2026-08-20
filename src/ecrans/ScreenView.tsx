@@ -4,6 +4,7 @@ import type { ObjetEtat, Screen, SimulateurParams } from '../types';
 import { EASE_ENTREE, EASE_MORPH } from '../moteur/motion';
 import { CompteurChiffre } from './CompteurChiffre';
 import { Masque } from './Masque';
+import { TitreAnime } from './TitreAnime';
 import { Entree, estBarre, estRevele } from './utils';
 import { Simulateur } from '../simulateur/Simulateur';
 
@@ -170,6 +171,29 @@ function PyramideDiamant({
           />
         );
       })}
+      {/* légendes de la pyramide, avant la métamorphose */}
+      <motion.div
+        className="absolute"
+        initial={live ? { opacity: 0 } : false}
+        animate={{ opacity: morph ? 0 : 1 }}
+        transition={{ duration: 0.6, ease: EASE_ENTREE, delay: morph ? 0 : 0.9 }}
+        style={{ left: 140, top: 690, width: 420 }}
+      >
+        <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
+          La base large : les juniors, dont on vendait les journées avec marge.
+        </div>
+      </motion.div>
+      <motion.div
+        className="absolute"
+        initial={live ? { opacity: 0 } : false}
+        animate={{ opacity: morph ? 0 : 1 }}
+        transition={{ duration: 0.6, ease: EASE_ENTREE, delay: morph ? 0 : 1.1 }}
+        style={{ right: 140, top: 236, width: 380, textAlign: 'right' }}
+      >
+        <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
+          Au sommet : les seniors.
+        </div>
+      </motion.div>
       <Entree visible={morph} live={live} delaiS={1.2} className="absolute" style={{ left: 140, top: 690, width: 420 }}>
         <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
           Aux extrémités de l'ancienne base : les recrutements qui ne se font pas.
@@ -229,8 +253,8 @@ export function ScreenView({
       return (
         <motion.div
           className="absolute whitespace-nowrap"
-          initial={live ? { scale: 1.035 } : false}
-          animate={{ scale: 1 }}
+          initial={live ? { scale: 1.035, fontWeight: 320 } : false}
+          animate={{ scale: 1, fontWeight: 560 }}
           transition={{ duration: 1.3, ease: EASE_ENTREE }}
           style={{
             left: 118,
@@ -453,18 +477,16 @@ export function ScreenView({
           className="absolute"
           style={{ left: 140, top: '50%', transform: 'translateY(-50%)', maxWidth: 1640, color: 'var(--blanc)' }}
         >
-          <Masque live={live} dureeS={1}>
-            <div
-              style={{
-                ...serif(120, 'var(--wght-titre)'),
-                fontSize: 128,
-                lineHeight: 1.12,
-                letterSpacing: '-0.015em',
-              }}
-            >
-              {screen.donnees.titre}
-            </div>
-          </Masque>
+          <TitreAnime
+            texte={screen.donnees.titre}
+            live={live}
+            style={{
+              ...serif(120, 'var(--wght-titre)'),
+              fontSize: 128,
+              lineHeight: 1.12,
+              letterSpacing: '-0.015em',
+            }}
+          />
         </div>
       );
 
@@ -589,11 +611,15 @@ export function ScreenView({
           </motion.div>
           {/* le baptême n° 1 : le terme n'apparaît qu'au moment où il est prononcé */}
           <div className="absolute" style={{ left: 140, bottom: 96 }}>
-            <Masque visible={bapteme} live={live} dureeS={1}>
-              <div style={{ ...serif(144, 'var(--wght-titre)'), fontSize: 136, letterSpacing: '-0.02em' }}>
-                {d.terme}
-              </div>
-            </Masque>
+            {bapteme && (
+              <TitreAnime
+                texte={d.terme}
+                live={live}
+                dureeS={0.8}
+                decalageS={0.024}
+                style={{ ...serif(144, 'var(--wght-titre)'), fontSize: 136, letterSpacing: '-0.02em' }}
+              />
+            )}
           </div>
         </div>
       );
@@ -603,21 +629,19 @@ export function ScreenView({
       return (
         <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
           <div className="absolute" style={{ left: 140, top: '46%', transform: 'translateY(-50%)' }}>
-            <Masque live={live} dureeS={1}>
-              <motion.div
-                initial={live ? { fontWeight: 300 } : false}
-                animate={{ fontWeight: 470 }}
-                transition={{ duration: 1.4, ease: EASE_ENTREE }}
-                style={{
-                  fontFamily: SERIF,
-                  fontVariationSettings: "'opsz' 144",
-                  fontSize: 150,
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                {screen.donnees.terme}
-              </motion.div>
-            </Masque>
+            <motion.div
+              initial={live ? { fontWeight: 300 } : false}
+              animate={{ fontWeight: 470 }}
+              transition={{ duration: 1.4, ease: EASE_ENTREE }}
+              style={{
+                fontFamily: SERIF,
+                fontVariationSettings: "'opsz' 144",
+                fontSize: 150,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              <TitreAnime texte={screen.donnees.terme} live={live} dureeS={0.85} decalageS={0.022} />
+            </motion.div>
           </div>
           {screen.donnees.sousLigne && (
             <Entree live={live} delaiS={0.7} className="absolute" style={{ left: 144, top: '61%' }}>
@@ -687,11 +711,13 @@ export function ScreenView({
         <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
           {/* le baptême n° 3 : « prix étagé », prononcé en entrant sur cet écran */}
           <div className="absolute" style={{ left: 140, top: 80 }}>
-            <Masque live={live} dureeS={0.9}>
-              <div style={{ ...serif(96, 'var(--wght-titre)'), fontSize: 96, letterSpacing: '-0.015em' }}>
-                {d.titre}
-              </div>
-            </Masque>
+            <TitreAnime
+              texte={d.titre}
+              live={live}
+              dureeS={0.8}
+              decalageS={0.022}
+              style={{ ...serif(96, 'var(--wght-titre)'), fontSize: 96, letterSpacing: '-0.015em' }}
+            />
           </div>
           {d.etages.map((e, i) => (
             <Entree

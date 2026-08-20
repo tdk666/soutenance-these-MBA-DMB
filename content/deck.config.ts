@@ -5,8 +5,29 @@ export const deckConfig: DeckConfig = {
     titre: 'Vendre du temps dans un monde où il ne vaut plus rien',
     orateur: 'Théophile Dequecker',
     date: '4 septembre 2026',
+    lieu: 'EFAP Paris',
+    jury: 'Mamadou Diagne',
     dureeCible: '30:08',
     debitMotsParMin: 120,
+    couverture: {
+      surtitre: 'Thèse professionnelle · MBA DMB, spécialisation IA & Data',
+      titre: 'L\u2019IA générative et le modèle économique des agences',
+      mentions: [
+        'Théophile Dequecker',
+        'EFAP Paris · 4 septembre 2026',
+        'Jury : Mamadou Diagne',
+      ],
+    },
+    blocs: [
+      { id: 1, nom: 'Le verdict' },
+      { id: 2, nom: 'D\u2019où je parle' },
+      { id: 3, nom: 'La méthode' },
+      { id: 4, nom: 'Le choc' },
+      { id: 5, nom: 'L\u2019usine' },
+      { id: 6, nom: 'La caisse' },
+      { id: 7, nom: 'Les vingt-quatre mois' },
+      { id: 8, nom: 'La sortie' },
+    ],
   },
 
   salleClaire: {
