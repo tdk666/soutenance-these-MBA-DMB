@@ -90,6 +90,47 @@ async function detecterDebordements(nom) {
         anomalies.push(`hors scène: « ${texte.trim().slice(0, 40)} »`);
       }
     }
+    // chevauchements : deux textes non apparentés qui se recouvrent.
+    // On mesure les glyphes réels (Range), pas les boîtes de bloc, et on
+    // ignore ce que l'opacité héritée rend invisible.
+    const opaciteEffective = (el) => {
+      let o = 1;
+      for (let n = el; n && n !== scene; n = n.parentElement) {
+        o *= parseFloat(getComputedStyle(n).opacity || '1');
+      }
+      return o;
+    };
+    const feuilles = [...scene.querySelectorAll('*')]
+      .filter(
+        (el) =>
+          el instanceof HTMLElement &&
+          el.children.length === 0 &&
+          (el.textContent ?? '').trim().length > 2 &&
+          opaciteEffective(el) > 0.1,
+      )
+      .map((el) => {
+        const plage = document.createRange();
+        plage.selectNodeContents(el);
+        return { el, rect: plage.getBoundingClientRect() };
+      })
+      .filter((f) => f.rect.width > 8 && f.rect.height > 4);
+    for (let i = 0; i < feuilles.length; i++) {
+      for (let j = i + 1; j < feuilles.length; j++) {
+        const a = feuilles[i], b = feuilles[j];
+        if (a.el.contains(b.el) || b.el.contains(a.el) || a.el.parentElement === b.el.parentElement) continue;
+        const ra = a.rect, rb = b.rect;
+        const ix = Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left);
+        const iy = Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top);
+        if (ix <= 0 || iy <= 0) continue;
+        const inter = ix * iy;
+        const petite = Math.min(ra.width * ra.height, rb.width * rb.height);
+        if (inter > 0.35 * petite) {
+          anomalies.push(
+            `chevauchement: « ${(a.el.textContent ?? '').trim().slice(0, 24)} » / « ${(b.el.textContent ?? '').trim().slice(0, 24)} »`,
+          );
+        }
+      }
+    }
     return [...new Set(anomalies)].slice(0, 6);
   });
   for (const t of trouves) problemes.push(`${nom} · ${t}`);

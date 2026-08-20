@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "capture": "node scripts/capture.mjs",
-    "pdf": "node scripts/export-pdf.mjs"
+    "pdf": "node scripts/export-pdf.mjs",
+    "traversee": "node scripts/traversee.mjs"
   },
   "dependencies": {
     "motion": "^12.23.0",

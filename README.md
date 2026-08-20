@@ -28,7 +28,8 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 - `npm run dev` : développement.
 - `npm run build` : produit `dist/index.html`, autonome, s'ouvre en double-clic sans réseau.
 - `npm test` : tests du moteur (séquence, chrono, invariants du config).
-- `npm run capture` : captures de vérification de tous les écrans + grille + présentateur (`captures-verification/`).
+- `npm run capture` : captures de vérification de tous les écrans + grille + présentateur (`captures-verification/`), avec détection des textes coupés, hors scène et des chevauchements.
+- `npm run traversee` : rejoue les 40 gestes dans l'ordre du jour J et vérifie chaque état intermédiaire (une image par geste dans `captures-verification/traversee/`).
 - Déploiement continu : chaque push publie sur Netlify (`these-theophile.netlify.app`).
 
 ## Clavier (scène et fenêtre présentateur)

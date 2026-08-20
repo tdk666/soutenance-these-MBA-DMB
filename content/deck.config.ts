@@ -58,7 +58,7 @@ export const deckConfig: DeckConfig = {
       },
     },
 
-    /* ---------- E02 · Bloc 1 · « 3 février 2026 » ---------- */
+    /* ---------- E02 · Bloc 1 · « 3 février 2026 » ---------- */
     {
       id: 'E02',
       bloc: 1,
@@ -89,7 +89,7 @@ export const deckConfig: DeckConfig = {
       donnees: { de: '0,00 %', valeur: '−9,24 %' },
       steps: [],
       notes: {
-        script: `Et le même jour, l’annonce d’un simple outil d’IA juridique fait perdre plus de 10 % chacun à RELX et à Wolters Kluwer, deux géants de l’information professionnelle que rien, dans leurs comptes, ne condamnait. (r) Alors que s’est-il passé entre le communiqué du matin et le cours du soir ? Rien qui concerne les résultats, et c’est justement le point. La Bourse n’achète jamais le passé : elle achète des promesses. Or ce jour-là, une crainte s’est glissée dans toutes les promesses du secteur : et si une intelligence artificielle savait bientôt produire, en quelques minutes et pour presque rien, ce que ces entreprises vendent cher et fabriquent lentement ? (r) Ce que la séance a sanctionné, ce ne sont donc pas les résultats, c’est la machine qui les produit : le modèle économique. Ce 3 février n’était pas un accident de séance, c’était un verdict anticipé. Et mon travail s’est donné une seule tâche : comprendre sur quoi porte ce verdict, et y répondre.`,
+        script: `Et le même jour, l’annonce d’un simple outil d’IA juridique fait perdre plus de 10 % chacun à RELX et à Wolters Kluwer, deux géants de l’information professionnelle que rien, dans leurs comptes, ne condamnait. (r) Alors que s’est-il passé entre le communiqué du matin et le cours du soir ? Rien qui concerne les résultats, et c’est justement le point. La Bourse n’achète jamais le passé : elle achète des promesses. Or ce jour-là, une crainte s’est glissée dans toutes les promesses du secteur : et si une intelligence artificielle savait bientôt produire, en quelques minutes et pour presque rien, ce que ces entreprises vendent cher et fabriquent lentement ? (r) Ce que la séance a sanctionné, ce ne sont donc pas les résultats, c’est la machine qui les produit : le modèle économique. Ce 3 février n’était pas un accident de séance, c’était un verdict anticipé. Et mon travail s’est donné une seule tâche : comprendre sur quoi porte ce verdict, et y répondre.`,
         silences: [],
         consignes: "Entrer juste après S1. Le chiffre reste affiché pendant toute l’explication.",
       },
@@ -141,7 +141,7 @@ export const deckConfig: DeckConfig = {
         ],
         citation: {
           texte:
-            '« Une super idée, ça peut se trouver en deux jours. Et ça va générer un chiffre d’affaires de malade. »',
+            '« Une super idée, ça peut se trouver en deux jours. Et ça va générer un chiffre d’affaires de malade. »',
           attribution: 'Un directeur financier, sur le terrain',
         },
       },
@@ -158,7 +158,7 @@ export const deckConfig: DeckConfig = {
       notes: {
         script: `Deux mots sur moi, parce qu’ils expliquent la question. Je suis un littéraire devenu communicant. J’ai d’abord suivi une double licence, histoire à la Sorbonne et information média à Assas, dans l’idée de faire du journalisme. Puis je me suis tourné vers la communication, avec un master en conduite du changement à l’IAE d’Aix-en-Provence, et ses stages : la régie publicitaire des Échos - Le Parisien, puis le partenariat avec les Jeux de Paris chez Air Liquide. Et j’ai repris une année d’études pour partir en alternance chez Havas Paris Social, comme consultant social media. (r) Si j’ai choisi ce MBA, spécialisation IA et Data, c’est précisément pour ajouter un bagage technique à ce profil. Et la démarche DMB, vous allez la voir à l'œuvre : partir de son terrain, y trouver une question de transformation, et la conduire jusqu’à des recommandations applicables lundi matin. Or mon terrain m’a placé à l’endroit exact où la valeur se négocie. (r)
 
-Parce que mon sujet initial n’était pas celui-ci. Je voulais écrire sur la créativité : l’IA générative, menace ou moteur pour les créatifs en agence ? C’est mon coach, Bastien Jaffre, qui m’a poussé vers plus dense, plus économique. Et le terrain a fini le travail, le jour où un directeur financier m’a dit, à propos d’une idée créative : « Une super idée, ça peut se trouver en deux jours. Et ça va générer un chiffre d’affaires de malade. » Quand deux jours de travail peuvent produire un chiffre d’affaires de malade, l’unité qui facture les deux jours ne mesure plus rien de ce qui compte. (r) ◈ Je me demandais si l’IA allait remplacer les créatifs. J’ai compris que la question urgente était de savoir ce qu’elle allait remplacer dans le modèle économique qui permettait de les payer. ◆ S2`,
+Parce que mon sujet initial n’était pas celui-ci. Je voulais écrire sur la créativité : l’IA générative, menace ou moteur pour les créatifs en agence ? C’est mon coach, Bastien Jaffre, qui m’a poussé vers plus dense, plus économique. Et le terrain a fini le travail, le jour où un directeur financier m’a dit, à propos d’une idée créative : « Une super idée, ça peut se trouver en deux jours. Et ça va générer un chiffre d’affaires de malade. » Quand deux jours de travail peuvent produire un chiffre d’affaires de malade, l’unité qui facture les deux jours ne mesure plus rien de ce qui compte. (r) ◈ Je me demandais si l’IA allait remplacer les créatifs. J’ai compris que la question urgente était de savoir ce qu’elle allait remplacer dans le modèle économique qui permettait de les payer. ◆ S2`,
         silences: ['S2'],
       },
     },
@@ -175,11 +175,11 @@ Parce que mon sujet initial n’était pas celui-ci. Je voulais écrire sur la c
       layout: 'citation-seule',
       donnees: {
         texte:
-          "Comment l’intelligence artificielle générative contraint-elle les agences de communication à restructurer leur modèle économique historique pour survivre à un choc déflationniste technologique ?",
+          "Comment l’intelligence artificielle générative contraint-elle les agences de communication à restructurer leur modèle économique historique pour survivre à un choc déflationniste technologique ?",
       },
       steps: [],
       notes: {
-        script: `D’où ma problématique : comment l’intelligence artificielle générative contraint-elle les agences de communication à restructurer leur modèle économique historique pour survivre à un choc déflationniste technologique ?`,
+        script: `D’où ma problématique : comment l’intelligence artificielle générative contraint-elle les agences de communication à restructurer leur modèle économique historique pour survivre à un choc déflationniste technologique ?`,
         silences: [],
       },
     },
@@ -304,7 +304,7 @@ Dernière précision : ce mémoire a été rédigé avec l’IA comme moteur de 
       notes: {
         script: `Premier mouvement : le diagnostic. Et je commence par une scène, parce qu’elle contient tout.
 
-Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’est le directeur financier, David Kajman, qui me l’a racontée. Le client arrive désormais outillé, il a essayé les mêmes technologies que l’agence, et il ouvre par un constat : « avec l’IA, vous mettez trois fois moins de temps [pour produire des contenus] ». L’agence, dont les coûts ne baissent pas d’autant, tente alors de monter son prix de journée, de mille cinq cents euros vers mille sept cents ou mille huit cents. Et la réponse tombe : « vous me divisez le nombre de jours par deux ».`,
+Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’est le directeur financier, David Kajman, qui me l’a racontée. Le client arrive désormais outillé, il a essayé les mêmes technologies que l’agence, et il ouvre par un constat : « avec l’IA, vous mettez trois fois moins de temps [pour produire des contenus] ». L’agence, dont les coûts ne baissent pas d’autant, tente alors de monter son prix de journée, de mille cinq cents euros vers mille sept cents ou mille huit cents. Et la réponse tombe : « vous me divisez le nombre de jours par deux ».`,
         silences: [],
       },
     },
@@ -332,7 +332,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
         },
         source: 'David Kajman, directeur administratif et financier, Havas Paris',
         citation: {
-          texte: '« Avec l’IA, vous mettez trois fois moins de temps. »',
+          texte: '« Avec l’IA, vous mettez trois fois moins de temps. »',
           attribution: 'Le client, en ouverture de négociation',
         },
       },
@@ -373,7 +373,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
         },
       ],
       notes: {
-        script: `◈ Posons l’arithmétique, parce qu’elle chiffre toute ma thèse. La hausse tentée, c’est environ 15 % sur le prix. La riposte, elle, divise le nombre de jours par deux. Ce qui fait que sur les missions concernées, le revenu fond de l’ordre de 40 %. (r) Et tant que l’on compte en journées, la partie est perdue, parce que le client contrôle le nombre de journées quand l’agence ne contrôle que leur prix. Le verdict du directeur financier tombe : « ce n’est même pas une bonne réponse ». Il n’existe pas de bonne réponse à l’intérieur de ce système de prix. ◆ S3`,
+        script: `◈ Posons l’arithmétique, parce qu’elle chiffre toute ma thèse. La hausse tentée, c’est environ 15 % sur le prix. La riposte, elle, divise le nombre de jours par deux. Ce qui fait que sur les missions concernées, le revenu fond de l’ordre de 40 %. (r) Et tant que l’on compte en journées, la partie est perdue, parce que le client contrôle le nombre de journées quand l’agence ne contrôle que leur prix. Le verdict du directeur financier tombe : « ce n’est même pas une bonne réponse ». Il n’existe pas de bonne réponse à l’intérieur de ce système de prix. ◆ S3`,
         silences: ['S3'],
       },
     },
@@ -401,7 +401,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
       },
       steps: [],
       notes: {
-        script: `Deuxième preuve : les comptes, publiés par Havas en juillet 2026. Tout ce que le groupe achetait à l’extérieur pour produire recule de 13 % : la production rentre à la maison. La masse salariale, elle, n’a pas bougé, autrement dit personne n’a été licencié. Et pourtant, la marge monte. Or aucune ligne de ces comptes ne s’intitule « intelligence artificielle », et c’est toute la leçon : la productivité de l’IA n’apparaît sur aucune ligne, mais elle apparaît dans tous les ratios.
+        script: `Deuxième preuve : les comptes, publiés par Havas en juillet 2026. Tout ce que le groupe achetait à l’extérieur pour produire recule de 13 % : la production rentre à la maison. La masse salariale, elle, n’a pas bougé, autrement dit personne n’a été licencié. Et pourtant, la marge monte. Or aucune ligne de ces comptes ne s’intitule « intelligence artificielle », et c’est toute la leçon : la productivité de l’IA n’apparaît sur aucune ligne, mais elle apparaît dans tous les ratios.
 
 ⟦RÉSERVE R2 — à prononcer seulement si avance à la fin du bloc 3⟧ Et la recherche confirme le mécanisme là où rien ne l’amortit : sur les places de marché de freelances, une étude d’Organization Science mesure une baisse significative de l’emploi et des revenus des métiers exposés. Ce que l’on observe en agence n’est donc pas l’absence du choc, c’est son amortissement par la marque, le contrat et la relation.`,
         silences: [],
@@ -602,7 +602,7 @@ Le troisième chantier, c’est l’usine elle-même : produire beaucoup plus po
 
 > Voici un contrat au temps passé, classique, rentable.
 
-2. Monter lentement le curseur « gain de productivité IA » de 0 à 50 %. Les jours facturés fondent, le revenu s’effondre, à valeur créée constante pour le client.
+2. Monter lentement le curseur « gain de productivité IA » de 0 à 50 %. Les jours facturés fondent, le revenu s’effondre, à valeur créée constante pour le client.
 
 > Je monte le gain de productivité. Regardez le revenu. ◆ S5 La valeur créée pour le client n’a pas bougé, et pourtant le revenu de l’agence a disparu.
 
@@ -631,7 +631,7 @@ Le troisième chantier, c’est l’usine elle-même : produire beaucoup plus po
           {
             nom: 'Le conseil',
             metrique: 'au temps',
-            ancrage: '« tous les consultants restent au temps passé »',
+            ancrage: '« tous les consultants restent au temps passé »',
           },
           {
             nom: 'La production',
@@ -641,12 +641,12 @@ Le troisième chantier, c’est l’usine elle-même : produire beaucoup plus po
           {
             nom: 'La création',
             metrique: 'en droits et en usage',
-            ancrage: 'protéger une œuvre assistée suppose une direction créative humaine',
+            ancrage: 'une direction créative humaine, démontrable',
           },
           {
             nom: "L’effet",
             metrique: 'en variable, dans les deux sens',
-            ancrage: "« Havas Delta, c’est de la rémunération »",
+            ancrage: "« Havas Delta, c’est de la rémunération »",
           },
         ],
       },
@@ -654,7 +654,7 @@ Le troisième chantier, c’est l’usine elle-même : produire beaucoup plus po
       notes: {
         script: `Cette autre unité de compte, je l’appelle le prix étagé, et ma thèse tient en une phrase : on ne remplace pas le modèle au temps, on le stratifie. ◈ Quatre étages, une métrique par nature de travail. Et chacun de ces étages existe déjà dans mon corpus.
 
-Le premier étage garde le conseil au temps, parce que l’erreur historique n’était pas de vendre du temps : c’était de tout vendre en temps. Le directeur financier le confirme : tous les consultants restent au temps passé. (r) Le deuxième étage vend la production au livrable : un prix en face d’un visuel, un prix en face d’une animation. Ludovic Chevallier décrit cette palette déjà en place sur les gros contrats. Le troisième étage vend la création en droits et en usage, et le droit vient de basculer : depuis cet été, protéger une œuvre assistée par IA suppose de démontrer une direction créative humaine. Le dossier de création devient donc une pièce de contrat, donc une licence, donc un revenu. (r) Et le quatrième étage paie l’effet, en variable qui joue dans les deux sens. Havas a déjà l’outil, Delta, et son directeur financier le dit : « Havas Delta, c’est de la rémunération ». Avec cette conséquence : « là, on est partenaires ».`,
+Le premier étage garde le conseil au temps, parce que l’erreur historique n’était pas de vendre du temps : c’était de tout vendre en temps. Le directeur financier le confirme : tous les consultants restent au temps passé. (r) Le deuxième étage vend la production au livrable : un prix en face d’un visuel, un prix en face d’une animation. Ludovic Chevallier décrit cette palette déjà en place sur les gros contrats. Le troisième étage vend la création en droits et en usage, et le droit vient de basculer : depuis cet été, protéger une œuvre assistée par IA suppose de démontrer une direction créative humaine. Le dossier de création devient donc une pièce de contrat, donc une licence, donc un revenu. (r) Et le quatrième étage paie l’effet, en variable qui joue dans les deux sens. Havas a déjà l’outil, Delta, et son directeur financier le dit : « Havas Delta, c’est de la rémunération ». Avec cette conséquence : « là, on est partenaires ».`,
         silences: [],
       },
     },
@@ -679,7 +679,7 @@ Le premier étage garde le conseil au temps, parce que l’erreur historique n�
           },
           {
             nom: 'La mesure',
-            objection: 'Comment payer ce que personne ne sait attribuer ?',
+            objection: 'Comment payer ce que personne ne sait attribuer ?',
             parade:
               "On ne paie jamais quelqu’un sur ce qu’il ne contrôle pas (Bengt Holmström, prix Nobel 2016) · et la clause de l’acheteuse : des gains cherchés ensemble, un co-investissement documenté, un prorata",
           },
@@ -713,9 +713,9 @@ Le premier étage garde le conseil au temps, parce que l’erreur historique n�
 
 Le premier verrou, c’est l’argent. Au 30 juin, Havas affiche une trésorerie négative de 76 millions : il sort plus d’argent qu’il n’en rentre. Greffer là-dessus une rémunération entièrement au résultat serait irresponsable. Mais l’objection tombe devant un variable bien construit, en quatre clauses : une base fixe, payée au livrable, qui couvre tous les coûts, pour que le risque porte sur la marge, jamais sur les salaires ; un variable plafonné dans les deux sens ; une avance versée à la signature ; et des comptes faits tous les trois mois, au lieu d’attendre un an. ⟦COUPE C5 — début⟧ Sur un contrat d’un million d’euros : une base qui couvre tout, et une facture finale entre neuf cent mille et un million cent mille selon les résultats mesurés. Quoi qu’il arrive, l’année n’est jamais déficitaire. ⟦COUPE C5 — fin⟧
 
-Le deuxième verrou, c’est la mesure : comment payer sur une performance que personne ne sait attribuer ? Bengt Holmström, prix Nobel d’économie 2016, l’a démontré : on ne paie jamais quelqu’un sur ce qu’il ne contrôle pas. Traduit en contrat : un indicateur que l’agence peut réellement influencer, jamais le chiffre d’affaires global de l’annonceur ; un petit nombre d’indicateurs, dont un de long terme sur la marque ; et un variable minoritaire, ce que les étages garantissent d’eux-mêmes. Et mon acheteuse pose elle-même la clause type : ◈ pas de supplément déclaratif « parce que tu participes à l’IA », mais des gains cherchés ensemble, un co-investissement documenté, un prorata. (r)
+Le deuxième verrou, c’est la mesure : comment payer sur une performance que personne ne sait attribuer ? Bengt Holmström, prix Nobel d’économie 2016, l’a démontré : on ne paie jamais quelqu’un sur ce qu’il ne contrôle pas. Traduit en contrat : un indicateur que l’agence peut réellement influencer, jamais le chiffre d’affaires global de l’annonceur ; un petit nombre d’indicateurs, dont un de long terme sur la marque ; et un variable minoritaire, ce que les étages garantissent d’eux-mêmes. Et mon acheteuse pose elle-même la clause type : ◈ pas de supplément déclaratif « parce que tu participes à l’IA », mais des gains cherchés ensemble, un co-investissement documenté, un prorata. (r)
 
-Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plus contre-intuitif : ce mur s’est retourné. Fin 2024, la fédération mondiale des annonceurs interroge plus de quatre-vingts grands comptes : trois marques sur quatre veulent changer de modèle sous trois ans, et 87 % jugent les modèles actuels opaques. Et la preuve française vient de mon terrain : dans les appels d’offres, ce sont les acheteurs qui exigent désormais une grille IA, en livrables et en coûts d’outils. Élise Pierin le dit : « ce qu’on avait précédemment négocié, ça ne marche plus du tout ». L’objection des achats n’est donc pas une objection au principe, c’est une objection à l’outillage. Et une objection d’outillage, ça se lève avec de l’outillage.`,
+Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plus contre-intuitif : ce mur s’est retourné. Fin 2024, la fédération mondiale des annonceurs interroge plus de quatre-vingts grands comptes : trois marques sur quatre veulent changer de modèle sous trois ans, et 87 % jugent les modèles actuels opaques. Et la preuve française vient de mon terrain : dans les appels d’offres, ce sont les acheteurs qui exigent désormais une grille IA, en livrables et en coûts d’outils. Élise Pierin le dit : « ce qu’on avait précédemment négocié, ça ne marche plus du tout ». L’objection des achats n’est donc pas une objection au principe, c’est une objection à l’outillage. Et une objection d’outillage, ça se lève avec de l’outillage.`,
         silences: [],
         consignes: 'Le verrou 3 se barre dans la transition vers la frise.',
       },
@@ -940,7 +940,7 @@ S’il fallait tout résumer en une phrase, ce serait celle-ci. ◆ S6`,
 
 Je vous remercie.
 
-[Se taire. Ne rien ajouter. Pas de « voilà ». Attendre les questions debout, mains libres.]`,
+[Se taire. Ne rien ajouter. Pas de « voilà ». Attendre les questions debout, mains libres.]`,
         silences: ['S7'],
         consignes:
           "Débit lent. Chaque phrase apparaît en même temps qu’elle est prononcée. Tenir le regard deux secondes après S7.",
@@ -968,7 +968,7 @@ Je vous remercie.
       },
       steps: [],
       notes: {
-        script: `[Après « Je vous remercie » et les deux secondes de regard, un dernier appui : l’écran de fin reste affiché pendant les questions.]`,
+        script: `[Après « Je vous remercie » et les deux secondes de regard, un dernier appui : l’écran de fin reste affiché pendant les questions.]`,
         silences: [],
         consignes: 'Rien à dire sur cet écran. Il tient seul pendant toute la séance de questions.',
       },
@@ -1002,7 +1002,7 @@ Je vous remercie.
         {
           condition: { type: 'retard', seuilS: 45 },
           instruction:
-            "Armer C3. Raccord : « D’un côté, on industrialise la preuve de conformité, désormais obligatoire, et on la vend en plus. De l’autre... »",
+            "Armer C3. Raccord : « D’un côté, on industrialise la preuve de conformité, désormais obligatoire, et on la vend en plus. De l’autre... »",
         },
       ],
     },
@@ -1067,7 +1067,7 @@ Je vous remercie.
       gainS: 40,
       contenuSacrifie: 'Vendre la preuve / article 50 / client régulé',
       phraseRaccord:
-        "« D’un côté, on industrialise la preuve de conformité, désormais obligatoire, et on la vend en plus. De l’autre... »",
+        "« D’un côté, on industrialise la preuve de conformité, désormais obligatoire, et on la vend en plus. De l’autre... »",
     },
     {
       id: 'C5',
@@ -1075,7 +1075,7 @@ Je vous remercie.
       gainS: 30,
       contenuSacrifie: "Exemple du contrat d’un million",
       phraseRaccord:
-        "Enchaîner directement sur « Le deuxième verrou, c’est la mesure... » — dernier recours, ce chiffre parle à Diagne",
+        "Enchaîner directement sur « Le deuxième verrou, c’est la mesure... » — dernier recours, ce chiffre parle à Diagne",
     },
     {
       id: 'C6',
@@ -1083,7 +1083,7 @@ Je vous remercie.
       gainS: 35,
       contenuSacrifie: 'Compression du trimestre 4 en une phrase',
       phraseRaccord:
-        "« À douze mois, trois indicateurs décident de la suite, avec une cible de 15 à 25 % du chiffre d’affaires facturé autrement qu’au temps. »",
+        "« À douze mois, trois indicateurs décident de la suite, avec une cible de 15 à 25 % du chiffre d’affaires facturé autrement qu’au temps. »",
     },
   ],
 
