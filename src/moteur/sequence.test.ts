@@ -11,11 +11,11 @@ import {
 const seq = buildSequence(deckConfig);
 
 describe('séquence de régie', () => {
-  it('respecte le budget de régie : 39 beats manuels', () => {
-    // 24 entrées d’écran (la première ne se déclenche pas) + 15 révélations
-    // ancrées sur un mot. Le constat client d’E11 fait partie de l’entrée :
-    // la charge de pilotage ne monte plus.
-    expect(nbBeatsManuels(seq)).toBe(39);
+  it('respecte le budget de régie : 40 beats manuels', () => {
+    // 24 entrées d’écran (la première ne se déclenche pas) + 16 révélations
+    // ancrées sur un mot, ligne de crête comprise : elle remplace le détail
+    // de l’année 2 à l’écran, elle ne peut donc pas partir en chaîne.
+    expect(nbBeatsManuels(seq)).toBe(40);
   });
 
   it('le baptême « déflation latente » est un beat de la figure d’enquête', () => {
@@ -70,7 +70,7 @@ describe('séquence de régie', () => {
   it('la frise s’allume segment par segment jusqu’à 4', () => {
     const iE19 = deckConfig.screens.findIndex((s) => s.id === 'E21');
     const beatsE19 = seq.filter((b) => b.screenIndex === iE19);
-    expect(beatsE19.length).toBe(5); // entrée + 4 segments
+    expect(beatsE19.length).toBe(6); // entrée + 4 segments + ligne de crête
     const dernier = beatsE19.at(-1)!;
     const etat = objetEtatAt(deckConfig, seq, dernier.index, dernier.chains.length);
     expect(etat).toEqual({ kind: 'frise', allumes: 4 });

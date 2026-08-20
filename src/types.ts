@@ -98,7 +98,7 @@ export type LayoutDonnees =
         transparence: string[];
       };
     }
-  | { layout: 'titre-plein'; donnees: { titre: string } }
+  | { layout: 'titre-plein'; donnees: { titre: string; kicker?: string } }
   | {
       layout: 'arithmetique';
       donnees: {
@@ -157,7 +157,7 @@ export type LayoutDonnees =
       layout: 'frise-24-mois';
       donnees: {
         segments: { nom: string; periode: string; decisions: string[] }[];
-        ligneDeCrete: string;
+        ligneDeCrete: { regle: string; chaine: string; chute: string };
       };
     }
   | { layout: 'trois-suites'; donnees: { suites: string[] } }

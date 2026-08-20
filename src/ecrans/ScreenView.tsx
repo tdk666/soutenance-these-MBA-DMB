@@ -498,6 +498,8 @@ export function ScreenView({
 
     case 'titre-plein':
       return (
+        <>
+          {screen.donnees.kicker && <Kicker texte={screen.donnees.kicker} />}
         <div
           className="absolute"
           style={{ left: 140, top: '50%', transform: 'translateY(-50%)', maxWidth: 1640, color: 'var(--blanc)' }}
@@ -513,6 +515,7 @@ export function ScreenView({
             }}
           />
         </div>
+        </>
       );
 
     case 'arithmetique': {
@@ -858,63 +861,95 @@ export function ScreenView({
       const w = 1640;
       const gap = 12;
       const unite = (w - 3 * gap) / total;
-      let x = 0;
+      const gauches: number[] = [];
+      const centres: number[] = [];
+      {
+        let x = 0;
+        parts.forEach((p) => {
+          gauches.push(140 + x);
+          centres.push(140 + x + (p * unite) / 2);
+          x += p * unite + gap;
+        });
+      }
       const actif = allumes > 0 ? allumes - 1 : null;
+      const crete = estRevele(screen, faits, 'ligne-crete');
       return (
         <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
           <Kicker texte="Vingt-quatre mois, quatre segments" />
-          {d.segments.map((s, i) => {
-            const left = 140 + x;
-            x += parts[i] * unite + gap;
-            return (
-              <motion.div
-                key={s.nom}
-                className="absolute"
-                initial={false}
-                animate={{ opacity: i < allumes ? 1 : 0.4 }}
-                transition={{ duration: 0.5, ease: EASE_ENTREE }}
-                style={{ left, top: 600, width: parts[i] * unite }}
-              >
-                <div style={{ fontFamily: GROTESQUE, fontWeight: 600, fontSize: 32 }}>{s.periode}</div>
-              </motion.div>
-            );
-          })}
+          {d.segments.map((s, i) => (
+            <motion.div
+              key={s.nom}
+              className="absolute"
+              initial={false}
+              animate={{ opacity: i === actif ? 1 : i < allumes ? 0.7 : 0.4 }}
+              transition={{ duration: 0.5, ease: EASE_ENTREE }}
+              style={{ left: gauches[i], top: 600, width: parts[i] * unite }}
+            >
+              <div style={{ fontFamily: GROTESQUE, fontWeight: 600, fontSize: 32 }}>{s.periode}</div>
+            </motion.div>
+          ))}
+          {/* le fil : la zone de détail est ancrée au segment qui vient de s'allumer */}
+          {actif !== null && (
+            <motion.div
+              className="absolute"
+              initial={false}
+              animate={{ left: centres[actif], opacity: crete ? 0 : 1 }}
+              transition={{ duration: 0.55, ease: EASE_ENTREE }}
+              style={{ top: 586, width: 1.5, height: 96, background: 'rgba(255,255,255,0.45)' }}
+            />
+          )}
           <AnimatePresence mode="wait">
-            {actif !== null && (
+            {actif !== null && !crete && (
               <motion.div
                 key={actif}
                 className="absolute"
-                initial={{ opacity: 0, y: 26 }}
+                initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, transition: { duration: 0.25 } }}
-                transition={{ duration: 0.6, ease: EASE_ENTREE }}
-                style={{ left: 140, top: 690, width: 1640 }}
+                exit={{ opacity: 0, transition: { duration: 0.22 } }}
+                transition={{ duration: 0.5, ease: EASE_ENTREE }}
+                style={{ left: 140, top: 682, width: 1640 }}
               >
+                <div className="etiquette" style={{ color: 'var(--gris-clair)', marginBottom: 4 }}>
+                  {d.segments[actif].periode}
+                </div>
                 {d.segments[actif].decisions.map((dec, j) => (
                   <motion.div
                     key={dec}
                     className="flex items-baseline"
                     initial={{ opacity: 0, y: 12, filter: 'blur(5px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    transition={{ duration: 0.45, ease: EASE_ENTREE, delay: 0.08 + j * 0.09 }}
-                    style={{ padding: '16px 0', borderBottom: j < d.segments[actif].decisions.length - 1 ? '1px solid rgba(255,255,255,0.18)' : 'none' }}
+                    transition={{ duration: 0.45, ease: EASE_ENTREE, delay: 0.12 + j * 0.1 }}
+                    style={{ padding: '15px 0', borderBottom: j < d.segments[actif].decisions.length - 1 ? '1px solid rgba(255,255,255,0.18)' : 'none' }}
                   >
                     <span className="etiquette" style={{ color: 'var(--gris-clair)', width: 90, flex: '0 0 auto' }}>
                       {String(j + 1).padStart(2, '0')}
                     </span>
-                    <span style={{ fontFamily: GROTESQUE, fontSize: 38, lineHeight: 1.3 }}>{dec}</span>
+                    <span style={{ fontFamily: GROTESQUE, fontSize: 35, lineHeight: 1.3 }}>{dec}</span>
                   </motion.div>
                 ))}
               </motion.div>
             )}
           </AnimatePresence>
-          <div className="absolute" style={{ left: 140, bottom: 52, maxWidth: 1640 }}>
-            <Masque visible={estRevele(screen, faits, 'ligne-crete')} live={live}>
-              <div style={{ ...serif(38, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 38, lineHeight: 1.3 }}>
-                {d.ligneDeCrete}
-              </div>
-            </Masque>
-          </div>
+          {/* la ligne de crête : la règle, la chaîne, la chute. Elle remplace le détail. */}
+          {crete && (
+            <div className="absolute" style={{ left: 140, top: 682, width: 1640 }}>
+              <Entree live={live}>
+                <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
+                  {d.ligneDeCrete.regle}
+                </div>
+              </Entree>
+              <Entree live={live} delaiS={0.45}>
+                <div style={{ ...serif(38, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 40, lineHeight: 1.32, marginTop: 22 }}>
+                  {d.ligneDeCrete.chaine}
+                </div>
+              </Entree>
+              <Entree live={live} delaiS={1.05}>
+                <div style={{ ...serif(52, 'var(--wght-titre)'), fontSize: 54, marginTop: 34 }}>
+                  {d.ligneDeCrete.chute}
+                </div>
+              </Entree>
+            </div>
+          )}
         </div>
       );
     }

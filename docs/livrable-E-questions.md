@@ -24,7 +24,7 @@ Probable parce que le sujet du mémoire est exactement cela, et que tu as ouvert
 - La note méthodologique y consacre un chapitre et les annexes documentent les interactions.
 - J'ai fait vérifier l'appareil de notes par un audit indépendant que j'ai commandé : je ne demande pas qu'on me croie, je montre le contrôle.
 
-Écran : 09. Piège : minimiser le rôle de l'IA. La cohérence avec la thèse impose de l'assumer pleinement : un communicant qui n'aurait pas industrialisé sa propre production n'aurait pas compris son sujet.
+Écran : 09. Piège : minimiser le rôle de l'IA. La cohérence avec la thèse impose de l'assumer pleinement : un communicant qui n'aurait pas industrialisé sa propre production n'aurait pas compris son sujet. Vigilance : « l'audit indépendant » doit exister comme pièce montrable, sinon dire « relecture croisée indépendante de la rédaction » (voir docs/verification-these.md); et sache défendre les notes volontairement marquées « référence à fixer ».
 
 ### 3. Votre déflation latente, en quoi est-ce différent d'une banale pression achats sur les prix ?
 

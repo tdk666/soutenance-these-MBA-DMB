@@ -20,50 +20,36 @@ L'impression de coq à l'âne ne vient pas de l'histoire, elle vient de trois d�
 - **Le compteur de preuves du bloc 4** : les kickers d'écran disent maintenant « Première preuve · la négociation annuelle », « Deuxième preuve · les comptes Havas », « Troisième preuve · l'enquête ». Le script dit déjà « Deuxième preuve », « Troisième preuve » : l'écran cesse d'être en retard sur cette structure. Le rassemblement (« rassemblons les trois preuves ») retombe sur ses pieds.
 - **Le chrome** : bloc et folio en permanence en haut à droite, crans d'écrans sur le filet de progression.
 
-## Les coutures faibles, une proposition chacune
+## Les coutures faibles, réécrites dans ta voix
 
-Chaque proposition est une ou deux phrases à dire, à valider avant toute intégration aux notes. Aucune ne change un chiffre ni un terme nommé.
+Tu as trouvé les premières versions trop hachées, trop « punchy » : tu avais raison. J'ai fait lire la thèse entière à un agent pour en tirer ta signature d'écriture, et elle contredit mes premières propositions sur deux points précis : tu n'ouvres jamais par un fragment sans verbe (« Premier mouvement : le choc » n'est pas dans ta grammaire, tes phrases courtes concluent, elles n'annoncent pas), et tu n'interpelles jamais le lecteur (« regardez bien » n'existe nulle part dans le manuscrit). Tes transitions écrites sont des raisonnements : tu récapitules l'acquis en une phrase, tu nommes ce qui manque, et la suite arrive comme une conséquence. Voici les coutures réécrites sur ce modèle, deux variantes chacune, à dire avec tes mots. Rien n'entre dans les notes sans ton accord.
 
-### 1. Le sommaire n'annonce pas les images du récit (bloc 2, la plus payante)
+### 1. Fin du sommaire, annoncer les images du récit (la plus payante)
 
-Le sommaire dit « d'où vient ce sujet, comment je l'ai instruit, ce que j'ai trouvé, ce que j'en fais ». Puis le récit bascule dans un autre vocabulaire : « premier mouvement », « deuxième mouvement ». Le jury n'a jamais reçu la correspondance, c'est la source principale de l'impression de sauts.
+- « Et ce que j'ai trouvé peut se dire en trois images, qui feront mes trois mouvements : un choc, une usine, et une caisse enregistreuse qui date de l'ancien monde. Le reste, vous le verrez, n'est qu'une affaire de calendrier. »
+- « Ce que j'ai trouvé, enfin, tient en trois images, et je vais les suivre dans l'ordre : le choc, l'usine, la caisse. Quand elles seront posées, ce qu'il faut en faire tiendra dans un calendrier. »
 
-Proposition, une phrase ajoutée à la fin du sommaire :
+### 2. Entrée du diagnostic
 
-> « Et ce que j'ai trouvé tient en trois images, qui seront mes trois mouvements : un choc, une usine, une caisse. Le reste est un calendrier. »
+- « Le premier mouvement, c'est donc le choc. Et je commence par une scène plutôt que par un chiffre, parce que tout ce que j'ai à démontrer ensuite s'y trouve déjà. »
+- « Premier mouvement, le choc. Et pour le raconter, je commence là où ce mémoire lui-même commence : par une scène, parce que cette scène contient tout le diagnostic. »
 
-Coût : ~8 secondes. Effet : chaque interlude de chapitre devient une retrouvaille au lieu d'une surprise, et « Premier mouvement » a un antécédent.
+### 3. Pivot vers la confiance (l'endroit où tu t'étais arrêté)
 
-### 2. L'entrée du bloc 4 dit « diagnostic », l'écran dit « Le choc »
+- « Voilà pour le versant prix du choc. Mais il a un second versant, qui touche à la confiance, et lui aussi se raconte le mieux par une histoire. »
+- « La déflation ne dit pourtant que la moitié du choc. L'autre moitié touche à la confiance, et je vous la raconte, là encore, par une histoire. »
 
-Le script ouvre par « Premier mouvement : le diagnostic. » pendant que l'écran affiche « Le choc ». Proposition d'alignement minimal :
+### 4. Entrée de l'usine
 
-> « Premier mouvement : le choc. Et je commence par une scène, parce qu'elle contient tout. »
+- « Deuxième mouvement, l'usine. Face à ce choc, les groupes n'ont pas attendu, et leur réponse tient en un déplacement : ils ont transformé leur bilan, pas leur facture. »
+- « J'en viens au deuxième mouvement, l'usine, parce que face à ce choc, les groupes ont bel et bien répondu. Simplement, ils ont répondu dans le bilan, jamais dans la facture, et toute la suite tient dans cet écart. »
 
-Coût : zéro seconde, un mot remplacé. Alternative : renommer le bloc à l'écran en « Le diagnostic », mais « Le choc » est plus fort et c'est le titre du bloc dans le script lui-même.
+### 5. Amener les trois convictions finales
 
-### 3. Le pivot Deloitte (bloc 4, l'endroit exact où tu t'es arrêté)
+« Trois convictions résument ce parcours » est déjà dans ta voix; il suffit de ne pas la laisser seule (chez toi, une phrase courte ne reste jamais seule). Sinon :
 
-« Et ce diagnostic a un dernier étage » enchaîne le prix (déflation latente) vers la confiance (dette de vérification) en une phrase, et le jury doit deviner le lien. Proposition :
-
-> « La déflation, c'est le versant prix du choc. Mais il a un second versant, la confiance, et je le raconte aussi par une histoire. »
-
-Coût : ~5 secondes. La symétrie prix / confiance resurgit d'ailleurs au bloc 8 (« le prix, le travail, la confiance ») : la poser ici la fait travailler deux fois.
-
-### 4. L'entrée du bloc 5 : « les groupes n'ont pas attendu »
-
-Attendu quoi ? Le référent est deux phrases en arrière. Proposition :
-
-> « Deuxième mouvement : l'usine. Face à ce choc, les groupes n'ont pas attendu. Mais regardez bien où ils ont répondu : dans le bilan, pas dans la facture. »
-
-Coût : ~3 secondes, et le mot « usine » précède les trois plans qui s'affichent.
-
-### 5. Les trois convictions du bloc 8 parlent dans le vide
-
-« La contrainte s'exerce par trois canaux... la survie passe par trois déplacements » : six idées abstraites, l'écran est encore sur les suites ou la frise. C'est le seul endroit du deck où une liste prononcée n'a aucun appui visuel. Deux options :
-
-- **Option écran** (ma préférence) : un écran « Trois canaux, trois déplacements » avant les suites, six lignes courtes en deux colonnes (le prix, le travail, la confiance / comptable, tarifaire, commercial). Coût : un écran et un beat de plus, à faire seulement si tu valides.
-- **Option coupe** : réduire la parole à une phrase (« Trois canaux de contrainte, trois déplacements de survie : c'est le résumé, et il est dans le mémoire ») et garder l'écran des suites. Coût : moins 15 secondes de parole.
+- « Ce parcours me laisse trois convictions, et je voudrais finir en les nommant simplement. »
+- « Reste à conclure. S'il fallait résumer ce que ces deux années m'ont appris, cela tiendrait en trois convictions, et chacune s'est formée sur pièces. »
 
 ## Mots prononcés, jamais montrés (audit complet)
 
@@ -75,7 +61,7 @@ Coût : ~3 secondes, et le mot « usine » précède les trois plans qui s'affic
 | B3 | quatre entretiens, conférence, enquête, piliers | tout affiché depuis la découpe en trois écrans | Réglé. |
 | B4 | « Deuxième preuve », « Troisième preuve » | compteur de preuves dans les kickers | Réglé dans cette passe. |
 | B4 | Deloitte, « le premier remboursement de l'ère générative » | l'histoire ouvre l'écran, le terme n'apparaît qu'à sa nomination | Fait (E14, un beat : baptême n° 2 en montrer-puis-nommer). |
-| B5 | « trois chantiers réels, financés, visibles » | les plans (1) et le diamant (2), le volume (3) n'existe pas à l'écran | Acceptable : le chantier volume est réfuté aussitôt. Option : rappeler « Trois chantiers · aucune caisse » en kicker sur l'écran usine sans caisse. |
+| B5 | « trois chantiers réels, financés, visibles » | les plans (1) et le diamant (2), le volume (3) n'existe pas à l'écran | Voulu : le récapitulatif se dit encore sur le diamant, et l'écran suivant est un verdict sur noir, qui arrive nu. On n'y ajoute rien. |
 | B6 | la clause Pierin (« pas de supplément déclaratif... prorata ») | la clause complète la parade du verrou de la mesure | Fait (E20). |
 | B8 | trois canaux, trois déplacements | un écran dédié, deux colonnes | Fait (E22, option écran retenue). |
 

@@ -38,11 +38,12 @@ Générée depuis le config (elle est donc toujours juste). Un geste = un appui 
 | 31 | révélation sur E21 | Frise 24 mois | « Aux trimestres deux et trois » |
 | 32 | révélation sur E21 | Frise 24 mois | « Au quatrième trimestre » |
 | 33 | révélation sur E21 | Frise 24 mois | « La deuxième année » |
-| 34 | bascule vers **E22 · Trois fois trois** | fin de l'écran précédent | entrée cible 27:23 |
-| 35 | bascule vers **E23 · Trois suites** | fin de l'écran précédent | entrée cible 27:23 |
-| 36 | bascule vers **E24 · Renversement** | fin de l'écran précédent | entrée cible ~29:45 |
-| 37 | révélation sur E24 | Renversement | « Ce n’est pas l’intelligence artificielle » |
-| 38 | révélation sur E24 | Renversement | « C’est l’agence qui continue » |
-| 39 | bascule vers **E25 · Colophon** | fin de l'écran précédent | entrée cible ~30:08 |
+| 34 | révélation sur E21 | Frise 24 mois | « une ligne de crête traverse ces vingt-quatre mois » |
+| 35 | bascule vers **E22 · Trois fois trois** | fin de l'écran précédent | entrée cible 27:23 |
+| 36 | bascule vers **E23 · Trois suites** | fin de l'écran précédent | entrée cible 27:23 |
+| 37 | bascule vers **E24 · Renversement** | fin de l'écran précédent | entrée cible ~29:45 |
+| 38 | révélation sur E24 | Renversement | « Ce n’est pas l’intelligence artificielle » |
+| 39 | révélation sur E24 | Renversement | « C’est l’agence qui continue » |
+| 40 | bascule vers **E25 · Colophon** | fin de l'écran précédent | entrée cible ~30:08 |
 
-**Total : 39 gestes.** 24 bascules d'image + 15 révélations ancrées. Le mode présentateur affiche en permanence ce que fera le prochain appui (carte jaune : même écran; carte bleue : changement d'écran) : en cas de doute, un coup d'œil suffit, et la flèche gauche répare tout.
+**Total : 40 gestes.** 24 bascules d'image + 16 révélations ancrées. Le mode présentateur affiche en permanence ce que fera le prochain appui (carte jaune : même écran; carte bleue : changement d'écran) : en cas de doute, un coup d'œil suffit, et la flèche gauche répare tout.

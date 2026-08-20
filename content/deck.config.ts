@@ -245,7 +245,7 @@ Le cœur du dispositif, ce sont quatre entretiens semi-directifs, choisis pour c
             titre: "L’enquête · close le 2 août",
             montant: '34 répondants',
             details: [
-              'Moitié annonceurs, moitié producteurs',
+              'Douze annonceurs, onze producteurs : les deux rives',
               'Des nombres absolus, jamais de pourcentages',
             ],
           },
@@ -430,7 +430,7 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
           { label: 'Agences : gain restitué au client', valeur: 0, total: 11 },
         ],
         lecture:
-          "Personne ne demande de baisse, personne n’en subit. Et le gain de temps ne redescend jamais.",
+          'Presque personne ne demande de baisse, presque personne n’en subit. Et le gain de temps ne redescend jamais.',
         terme: 'Déflation latente',
       },
       steps: [
@@ -641,7 +641,7 @@ Le troisième chantier, c’est l’usine elle-même : produire beaucoup plus po
           {
             nom: 'La création',
             metrique: 'en droits et en usage',
-            ancrage: 'depuis cet été, le droit exige une direction créative humaine',
+            ancrage: 'protéger une œuvre assistée suppose une direction créative humaine',
           },
           {
             nom: "L’effet",
@@ -737,24 +737,26 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
             nom: 'T1',
             periode: 'Trimestre 1',
             decisions: [
-              'Plus aucune réponse au seul temps passé : la double colonne',
-              "Reconvertir l’exécution vers la vérification et la direction d’outils",
+              'Plus aucune réponse au seul temps passé : chaque proposition sort en double colonne',
+              'Un inventaire arrête trois listes : à standardiser, légitimement au temps, porteur de droits',
+              'La décision sociale : chaque poste vidé trouve, la même année, son poste de contrôle',
             ],
           },
           {
             nom: 'T2-T3',
-            periode: 'Trimestres 2-3',
+            periode: 'Trimestres 2 et 3',
             decisions: [
-              "La preuve devient un produit, l’aval humain facturé en plus",
+              "La preuve devient un produit, l’aval humain facturé en plus · premier client : un annonceur régulé",
               "Le premier contrat payé à l’effet : entre 90 et 110, comptes tous les trois mois",
+              "L’objectif n’est pas le revenu, c’est le précédent : un cas signé, mesuré, réglé sans litige",
             ],
           },
           {
             nom: 'T4',
             periode: 'Trimestre 4',
             decisions: [
-              "15 à 25 % du chiffre d’affaires facturé autrement qu’au temps",
-              "En cas de litige : on redescend d’un cran, on ré-équipe la mesure",
+              "Le bilan : 15 à 25 % du chiffre d’affaires facturé autrement qu’au temps",
+              "En cas de litige : on redescend d’un cran, on ré-équipe la mesure avant de retenter",
             ],
           },
           {
@@ -762,12 +764,16 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
             periode: 'Deuxième année',
             decisions: [
               'Les droits, généralisés sur les grandes productions',
-              'Le catalogue lisible par les machines des acheteurs',
+              'Le catalogue de l’agence rendu lisible par les machines des acheteurs',
             ],
           },
         ],
-        ligneDeCrete:
-          'La grille paie la preuve, la preuve paie le premier contrat, ce contrat paie les droits, et les droits paient le catalogue.',
+        ligneDeCrete: {
+          regle: 'On n’abandonne jamais le temps passé : on le cantonne aux missions où il reste l’étalon honnête.',
+          chaine:
+            'La grille paie la preuve, la preuve paie le premier contrat, ce contrat paie les droits, et les droits paient le catalogue.',
+          chute: 'Quatre étages là où il n’y avait qu’un guichet',
+        },
       },
       steps: [
         {
@@ -800,11 +806,10 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
         },
         {
           id: 'E21.ligne-de-crete',
-          mode: 'chaine',
-          delaiMs: 1200,
+          mode: 'beat',
           action: { type: 'reveler', cible: 'ligne-crete' },
           pourquoi:
-            "La ligne de crête se révèle d’elle-même une fois la frise entièrement allumée, pour clore le bloc sans clic.",
+            "La ligne de crête prend la place du détail : elle ne peut pas effacer l’année 2 pendant qu’il la commente, elle attend sa phrase.",
           repereParole: 'une ligne de crête traverse ces vingt-quatre mois',
         },
       ],

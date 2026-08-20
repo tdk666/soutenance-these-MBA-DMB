@@ -17,7 +17,7 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 
 ## Jour J et répétitions
 
-- **Répéter** : `docs/chaine-des-gestes.md` liste les 39 gestes dans l'ordre, avec le mot d'ancrage de chacun. La carte du présentateur dit toujours ce que fera le prochain appui (jaune : même écran; bleu : changement d'écran). Une avancée accidentelle se répare à la flèche gauche : le constat de checkpoint se recale tout seul à la vraie sortie d'écran.
+- **Répéter** : `docs/chaine-des-gestes.md` liste les 40 gestes dans l'ordre, avec le mot d'ancrage de chacun. La carte du présentateur dit toujours ce que fera le prochain appui (jaune : même écran; bleu : changement d'écran). Une avancée accidentelle se répare à la flèche gauche : le constat de checkpoint se recale tout seul à la vraie sortie d'écran.
 - **Questions** : `docs/livrable-E-questions.md`, quinze questions probables avec l'ossature de réponse et l'écran d'appui (numéro puis Entrée; retour au colophon avec 25 puis Entrée).
 - **Test projecteur** (à faire avant le 27 août) : brancher la machine au vidéoprojecteur, écran étendu; la scène sur le projecteur, la fenêtre P sur le portable; vérifier la lisibilité au fond de salle; si l'image est délavée, touche L (mode salle claire).
 - **PDF de secours** : `npm run pdf` produit `soutenance-secours.pdf` (une page par écran, 26 pages). À copier sur une clé USB avec `dist/index.html` (qui s'ouvre en double-clic, sans réseau).
