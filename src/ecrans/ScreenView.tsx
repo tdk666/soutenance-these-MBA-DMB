@@ -344,15 +344,23 @@ export function ScreenView({
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.2, ease: EASE_ENTREE }}
           />
+          {/* chaque élément est positionné par l’Entree elle-même : un enfant
+              absolu à ancrage bas dans un parent filtré partirait hors scène */}
           {etapes.map((e, i) => {
             const haut = i % 2 === 0;
             return (
-              <Entree key={e.libelle} live={live} delaiS={0.25 + i * 0.13}>
-                <div
+              <div key={e.libelle}>
+                <Entree
+                  live={live}
+                  delaiS={0.25 + i * 0.13}
                   className="absolute"
-                  style={{ left: x0 + i * pas - 9, top: 552, width: 18, height: 18, background: 'var(--encre)' }}
-                />
-                <div
+                  style={{ left: x0 + i * pas - 9, top: 552, width: 18, height: 18 }}
+                >
+                  <div style={{ width: 18, height: 18, background: 'var(--encre)' }} />
+                </Entree>
+                <Entree
+                  live={live}
+                  delaiS={0.25 + i * 0.13}
                   className="absolute"
                   style={
                     haut
@@ -366,8 +374,8 @@ export function ScreenView({
                       {e.detail}
                     </div>
                   )}
-                </div>
-              </Entree>
+                </Entree>
+              </div>
             );
           })}
           {screen.donnees.citation && (

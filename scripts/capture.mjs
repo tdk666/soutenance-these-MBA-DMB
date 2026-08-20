@@ -77,9 +77,16 @@ async function detecterDebordements(nom) {
       ) {
         anomalies.push(`coupé: « ${texte.trim().slice(0, 40)} »`);
       }
-      // boîte qui sort de la scène
+      // boîte qui sort de la scène, dans les quatre directions; un élément
+      // entièrement au-dessus ou à gauche est un texte disparu, pas un détail
       const r = el.getBoundingClientRect();
-      if (texte.trim() && (r.right > sc.right + 2 * echelle || r.bottom > sc.bottom + 2 * echelle)) {
+      if (
+        texte.trim() &&
+        (r.right > sc.right + 2 * echelle ||
+          r.bottom > sc.bottom + 2 * echelle ||
+          r.bottom < sc.top - 2 * echelle ||
+          r.right < sc.left - 2 * echelle)
+      ) {
         anomalies.push(`hors scène: « ${texte.trim().slice(0, 40)} »`);
       }
     }

@@ -58,7 +58,9 @@ export function Entree({
       className={className}
       style={style}
       initial={live ? { opacity: 0, y: 14, filter: 'blur(5px)' } : false}
-      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      // filter 'none' en fin de course : un filtre résiduel ferait de ce bloc
+      // le référent des descendants positionnés (ancrages bas hors scène)
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)', transitionEnd: { filter: 'none' } }}
       transition={{ duration: dureeS, ease: EASE_ENTREE, delay: delaiS }}
     >
       {children}
