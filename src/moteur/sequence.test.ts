@@ -11,8 +11,17 @@ import {
 const seq = buildSequence(deckConfig);
 
 describe('séquence de régie', () => {
-  it('respecte le budget contractuel : 33 beats manuels', () => {
-    expect(nbBeatsManuels(seq)).toBe(33);
+  it('respecte le budget contractuel v3 : 34 beats manuels', () => {
+    // 33 beats validés à l'étape 1, plus le baptême « déflation latente »
+    // sur la figure d'enquête (seule balise ajoutée par la v3)
+    expect(nbBeatsManuels(seq)).toBe(34);
+  });
+
+  it('le baptême « déflation latente » est un beat de la figure d’enquête', () => {
+    const iE11 = deckConfig.screens.findIndex((s) => s.id === 'E11');
+    const beatsE11 = seq.filter((b) => b.screenIndex === iE11);
+    expect(beatsE11.length).toBe(2); // entrée + baptême
+    expect(beatsE11[1].step?.id).toBe('E11.bapteme-deflation');
   });
 
   it('commence sur E01 et finit sur E21', () => {

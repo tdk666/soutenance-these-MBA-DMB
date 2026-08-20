@@ -164,6 +164,7 @@ export default function App() {
               faits={regie.faits}
               live={regie.live}
               objetEtat={regie.objetEtat}
+              sim={deckConfig.simulateur}
             />
           </motion.div>
         </AnimatePresence>

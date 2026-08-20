@@ -1,41 +1,62 @@
-# La chaîne des images — aide de mémorisation
+# La chaîne des images — ce que tu mémorises (v3, version du coach)
 
-Une image par écran, un mécanisme par image. C'est cette chaîne qu'on mémorise, pas le texte : chaque image appelle la suivante, et le script ne sert plus qu'à puiser les formulations exactes des phrases qui doivent tomber au mot près. Basée sur le script v2 : les formulations seront réalignées sur la v3 quand elle existera, la chaîne elle-même ne bougera pas.
+**Trente-cinq images dans l'ordre. Chacune appelle la suivante. Le script est la source des 7 phrases exactes (◈), pas un texte à apprendre.**
 
-## Les 21 images
+## Bloc 1 — Le matin et le soir
 
-1. **Noir.** Je m'adresse au jury : vous avez lu, je trie, je ne relis pas.
-2. **« 3 février 2026 ».** Le meilleur jour possible pour Publicis : tout dépasse les attentes.
-3. **−9,24 %.** Et pourtant la plus forte chute du CAC 40. Le marché n'a pas sanctionné les résultats, il a sanctionné la machine qui les produit.
-4. **Le sommaire.** D'où vient le sujet, comment je l'ai instruit, ce que j'ai trouvé, ce que j'en fais.
-5. **Le parcours.** Un littéraire devenu communicant, arrivé à l'endroit exact où la valeur se négocie.
-6. **La problématique.** Une phrase, seule à l'écran.
-7. **Les deux côtés de la table.** Quatre entretiens choisis pour couvrir la chaîne de décision, trois regards de conférence, trente-quatre répondants, les comptes publiés. Et la transparence : quatre entretiens sur dix demandés, rédaction avec l'IA, audit commandé.
-8. **« Mesuré partout, facturé nulle part ».** Le choc ne se lit sur aucune facture.
-9. **La scène Kajman.** Le client outillé ouvre : trois fois moins de temps. L'agence tente +13 à 20 % sur le prix. Riposte : les jours divisés par deux. Résultat : −40 % de revenu. La barre perd sa moitié sous les yeux du jury.
-10. **Les quatre lignes Havas.** Revenu +2,5 %, coûts refacturés −12,9 %, masse salariale stable, marge 11 %. L'IA n'est sur aucune ligne et dans tous les ratios.
-11. **L'enquête.** 8 agences sur 11 gagnent au moins un quart du temps, 0 sur 11 le restituent, 3 annonceurs sur 11 attendent la baisse. La négociation frontale n'a pas lieu, donc la déflation opère ailleurs.
-12. **La dette de vérification.** Personne ne facturait le contrôle, quelqu'un le paie toujours : Deloitte rembourse.
-13. **Les trois plans.** Publicis, Havas, WPP répondent dans le bilan, pas dans la facture.
-14. **La pyramide devient diamant.** Les juniors qu'on ne recrute plus, le senior augmenté au centre.
-15. **« Une usine sans caisse enregistreuse ».** Tout est transformé sauf la facture.
-16. **Le simulateur.** Je monte le curseur : le revenu fond, la valeur créée ne bouge pas (le jaune apparaît). Je bascule : la marge tient.
-17. **Les quatre étages.** Conseil au temps, production au livrable, création aux droits, effet au variable. Chacun existe déjà dans le corpus.
-18. **Les trois verrous, barrés.** Trésorerie (le variable encadré par quatre garde-fous), audit (un indicateur attribuable, jamais le CA global), achats (le mur s'est retourné : 3 marques sur 4 veulent changer).
-19. **La frise 24 mois.** Chaque pièce déménagée est payée par la précédente : la grille, la preuve, le couloir, les droits, l'interface.
-20. **Les suites.** Havas Paris Social en poste : la feuille de route a un terrain d'épreuve. Les concepts sont livrés pour d'autres travaux.
-21. **Le renversement.** Noir, deux phrases, merci.
+1. ◈ **L'adresse** : « vous avez lu, je ne relis pas, je trie ».
+2. **Le matin** : Publicis publie, tout dépasse les attentes, meilleure marge de son histoire.
+3. **Le soir** : −9,24 %, pire chute du CAC 40. → silence S1.
+4. **Le même jour** : un outil d'IA juridique fait plonger deux géants de l'information de plus de 10 %.
+5. **La clé** : la Bourse n'achète pas le passé, elle achète des promesses → ce qui est sanctionné, c'est le modèle économique. Le verdict : ma tâche.
 
-## Les phrases à savoir au mot près (liste « jamais couper » du script)
+## Bloc 2 — D'où je parle
 
-1. L'adresse d'ouverture (bloc 1).
-2. La formule de bascule (bloc 2) : « Quand deux jours de travail peuvent produire un chiffre d'affaires de malade, l'unité qui facture les deux jours ne mesure plus rien de ce qui compte. »
-3. L'arithmétique Kajman (bloc 4), avec sa chute : « ce n'est même pas une bonne réponse ».
-4. Les quatre étages (bloc 6) : « Quatre étages, une métrique par nature de travail. »
-5. La clause Pierin (bloc 6) : « ce qu'on avait précédemment négocié, ça ne marche plus du tout ».
-6. La ligne de crête (bloc 7) : « la grille finance la preuve, la preuve finance le couloir, le couloir finance les droits, et les droits financent l'interface ».
-7. Le renversement (bloc 8) : « Ce n'est pas l'intelligence artificielle qui tue l'agence. C'est l'agence qui continue de vendre du temps, dans un monde où il ne vaut plus rien. »
+6. **Le sommaire dit en une phrase** : d'où vient le sujet, comment instruit, trouvé, ce que j'en fais.
+7. **Moi** : littéraire devenu communicant → ta phrase parcours → Les Échos, Air Liquide, Havas → MBA pour le bagage technique.
+8. **Le sujet qui bifurque** : créativité → le coach pousse vers l'économie → un DAF me dit : ◈ « une super idée en deux jours, un chiffre d'affaires de malade ».
+9. ◈ **La bascule** : « je me demandais si l'IA remplacerait les créatifs ; j'ai compris qu'elle remplaçait ce qui les payait ». → silence S2. → la problématique.
 
-## Les 7 silences, accrochés aux images
+## Bloc 3 — Les deux côtés de la table
 
-S1 après −9,24 % (image 3) · S2 après la formule de bascule (image 5-6) · S3 après « pas une bonne réponse » (image 9) · S4 après « usine sans caisse » (image 15) · S5 sur « regardez le revenu » (image 16) · S6 avant le renversement (image 21) · S7 après, avant « je vous remercie ».
+10. **Quatre chaises côté agence et annonceur** : la relation (Rebouil), le commerce (Chevallier), les comptes (Kajman), les achats (Pierin) — la fonction qu'on accuse, interrogée en direct.
+11. **Autour** : trois voix de conférence, 34 questionnaires en miroir, et les comptes des trois groupes. Plus de deux cents notes.
+12. **La transparence** : dix demandés, quatre conduits, compensé par la couverture des fonctions et par les comptes. Et l'IA comme moteur de rédaction, auditée — j'y reviens en questions.
+
+## Bloc 4 — Le choc qu'aucune facture ne montre
+
+13. **La scène de la négociation** (Kajman) : le client outillé ouvre : « trois fois moins de temps » → l'agence monte son prix → « vous me divisez le nombre de jours par deux ».
+14. ◈ **L'arithmétique** : +15 % sur le prix, ÷2 sur les jours, ≈ −40 % de revenu → « ce n'est même pas une bonne réponse » : aucune bonne réponse n'existe tant qu'on compte en journées. → silence S3.
+15. **Les comptes Havas** : ce qu'on achète dehors recule de 13 %, personne n'est licencié, la marge monte : l'IA n'est sur aucune ligne, elle est dans tous les ratios. *(réserve R2 : les freelances, là où rien n'amortit)*
+16. **Mon enquête, le silence symétrique** : personne ne demande de baisse, personne n'en subit — et pourtant huit sur onze gagnent du temps, zéro le rendent au client.
+17. **Le baptême n° 1** : mesuré partout, facturé nulle part → **déflation latente**.
+18. **L'accident Deloitte** : un rapport truffé de références inventées, remboursé — le premier remboursement de l'ère générative.
+19. **Le baptême n° 2** : le coût de tout vérifier, que personne ne facturait → **dette de vérification**. Et la nuance : cette déflation trie, elle ne rase pas.
+
+## Bloc 5 — L'usine
+
+20. **Où les groupes ont répondu** : dans le bilan, pas dans la facture — moins de salaires à l'heure, plus de machines et de données possédées. Publicis : 300 millions, vingtième trimestre au-dessus du secteur. *(réserve R1 : Havas l'interopérable, WPP vend son usine)*
+21. **La pyramide qui devient diamant** : l'IA vide le travail des juniors → le levier qui finançait tout casse → pas de licenciements, des recrutements qui ne se font pas.
+22. **L'usine tourne** : produire beaucoup plus pour le même budget — mais c'est l'acheteur qui décide du volume.
+23. ◈ **La chute** : trois chantiers transforment l'outil, aucun la facture → « une usine sans caisse enregistreuse ». → silence S4. Il reste à construire la caisse.
+
+## Bloc 6 — La caisse
+
+24. **Le simulateur** : le contrat au temps → je monte la productivité → « regardez le revenu » (silence S5) → je bascule → « la marge tient ».
+25. ◈ **Les quatre étages** (baptême n° 3 : **prix étagé**) : le conseil au temps · la production au livrable · la création en droits · l'effet en variable. Chacun existe déjà : Kajman, la palette de Chevallier, le droit depuis cet été, Delta (« c'est de la rémunération », « là, on est partenaires »).
+26. **Verrou 1, l'argent** : trésorerie négative → la parade en quatre clauses : base fixe qui couvre les coûts, variable plafonné dans les deux sens, avance à la signature, comptes tous les trois mois. *(C5 : l'exemple du million)*
+27. **Verrou 2, la mesure** : le Nobel en une phrase — on ne paie jamais quelqu'un sur ce qu'il ne contrôle pas → ◈ **la clause Pierin** : pas de supplément déclaratif, des gains cherchés ensemble, un prorata.
+28. **Verrou 3, le mur qui s'est retourné** : trois annonceurs sur quatre veulent changer, 87 % trouvent ça opaque — et chez nous, ce sont les acheteurs qui exigent la grille IA. Une objection d'outillage se lève avec de l'outillage.
+
+## Bloc 7 — Les vingt-quatre mois
+
+29. **T1, deux gestes** : plus jamais de réponse au seul temps (double colonne) + reconvertir l'exécution vers la vérification et la direction d'outils — sinon le diamant est un plan social qui ne dit pas son nom.
+30. **T2-T3** : vendre la preuve (marquage obligatoire, aval humain facturé) *(C3)* + le premier contrat à l'effet, chez le client qu'on mesure déjà : l'objectif n'est pas le revenu, c'est le précédent.
+31. **T4** : le bilan — 15 à 25 % du chiffre hors temps ; en cas de litige, on redescend d'un cran et on ré-équipe la mesure.
+32. **Année 2** : les droits, puis le catalogue lisible par les machines des acheteurs. **La ligne de crête** : on n'abandonne rien, on cantonne — chaque pièce paie la suivante.
+
+## Bloc 8 — La sortie
+
+33. **Trois canaux, trois déplacements**, les limites dites (fenêtre brûlante : valeur documentaire, pas de recul).
+34. **Les suites** : fin septembre, la feuille de route entre en vrai chez Havas. *(réserve R3 : la revue professionnelle)* Et d'autres devront tester ailleurs — le terrain m'a corrigé trois fois, tant mieux.
+35. ◈ **Le renversement** (silence S6) : « ce n'est pas l'IA qui tue l'agence… » (silence S7) → « je vous remercie » → se taire.

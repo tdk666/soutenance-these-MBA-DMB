@@ -44,7 +44,13 @@ export function MiniEcran({
           backgroundColor: couleurFond(screen.fond, config, salleClaire),
         }}
       >
-        <ScreenView screen={screen} faits={faitsEffectifs} live={false} objetEtat={objetEffectif} />
+        <ScreenView
+          screen={screen}
+          faits={faitsEffectifs}
+          live={false}
+          objetEtat={objetEffectif}
+          sim={config.simulateur}
+        />
         <ObjetLayer etat={objetEffectif} live={false} />
       </div>
     </div>

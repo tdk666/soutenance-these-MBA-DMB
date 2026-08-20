@@ -60,6 +60,28 @@ for (let i = 0; i < 21; i++) {
   console.log(`ecran-${id}`);
 }
 
+// le simulateur : la séquence des trois gestes (E16, index 15)
+await deck('aller', 15);
+await page.waitForTimeout(800);
+await page.screenshot({ path: `${sortie}/sim-geste-1-contrat.png` });
+for (const [g, nom] of [[25, 'sim-geste-2a-mi-course'], [50, 'sim-geste-2b-choc']]) {
+  await page.evaluate((v) => window.__sim.gain(v), g);
+  await page.waitForTimeout(900);
+  await page.screenshot({ path: `${sortie}/${nom}.png` });
+}
+await page.evaluate(() => window.__sim.bascule(true));
+await page.waitForTimeout(1400);
+await page.screenshot({ path: `${sortie}/sim-geste-3-bascule.png` });
+await page.evaluate(() => window.__sim.hypotheses(true));
+await page.waitForTimeout(600);
+await page.screenshot({ path: `${sortie}/sim-hypotheses.png` });
+await page.evaluate(() => {
+  window.__sim.hypotheses(false);
+  window.__sim.bascule(false);
+  window.__sim.gain(0);
+});
+console.log('simulateur');
+
 // la grille (Échap)
 await deck('aller', 8);
 await page.keyboard.press('Escape');

@@ -17,10 +17,18 @@ const CARTE = '#151A24';
 
 /** met en évidence les marqueurs du script : silences ◆ Sx, (r), blocs ⟦...⟧ */
 function NotesScript({ texte }: { texte: string }) {
-  const morceaux = texte.split(/(\(r\)|◆\s*\*{0,2}S\d\*{0,2}|⟦[^⟧]*⟧)/g);
+  const morceaux = texte.split(/(\(r\)|◈|◆\s*\*{0,2}S\d\*{0,2}|⟦[^⟧]*⟧)/g);
   return (
     <p style={{ whiteSpace: 'pre-wrap', lineHeight: 1.65 }}>
       {morceaux.map((m, i) => {
+        if (m === '◈') {
+          // phrase à dire au mot près
+          return (
+            <span key={i} style={{ color: JAUNE, fontWeight: 700 }}>
+              ◈
+            </span>
+          );
+        }
         if (/^◆/.test(m)) {
           return (
             <span

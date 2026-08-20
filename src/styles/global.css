@@ -107,6 +107,37 @@ body,
   text-transform: uppercase;
 }
 
+/* curseur du simulateur (geste 2) : grand, sobre, manipulé en direct */
+.curseur-sim {
+  appearance: none;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+.curseur-sim::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.curseur-sim::-webkit-slider-thumb {
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--blanc);
+  margin-top: -15px;
+}
+.curseur-sim::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.curseur-sim::-moz-range-thumb {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 999px;
+  background: var(--blanc);
+}
+
 /* réduction de mouvement : les composants Motion suivent reducedMotion="user",
    ceci couvre les transitions CSS résiduelles */
 @media (prefers-reduced-motion: reduce) {

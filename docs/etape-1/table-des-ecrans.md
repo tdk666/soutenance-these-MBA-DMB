@@ -1,6 +1,8 @@
-# Table des écrans — extraite du script v2
+# Table des écrans — extraite du script v2, amendée v3
 
-Source : `Livrable_B_Script_Soutenance_v2.md` (version de référence).
+**Addendum v3 (fait foi, voir `docs/journal-revisions-v3.md`)** : la structure des 21 écrans est inchangée. Ce qui change : les six cibles de checkpoint deviennent 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08; un beat s'ajoute sur E11 (le baptême « déflation latente », seule balise ajoutée), soit **34 beats**; E10 passe à deux lignes (achats extérieurs −13 %, masse salariale inchangée); E11 passe à deux barres (le 3/11 disparaît du discours donc de l'écran); E09 affiche « ≈ +15 % »; E13 ne garde que 300 M€ et 20e trimestre; E12 perd sa sous-ligne Deloitte (l'histoire est racontée avant la balise); l'interrupteur du simulateur porte l'étiquette neutre « autre unité de compte »; tous les textes affichés suivent le lexique de traduction (`docs/lexique-traduction-v3.md`). Les timecodes d'entrée recalculés vivent dans `content/deck.config.ts`.
+
+Source historique : `Livrable_B_Script_Soutenance_v2.md` (archivée : `docs/v3-archive-script-v2.md`); version de référence actuelle : `docs/script-soutenance-v3.md`.
 Règle contractuelle : l'écran n'anticipe jamais la parole. Chaque entrée d'écran et chaque déclenchement interne est manuel (flèche ou télécommande). Les timecodes sont des cibles indicatives calculées au débit de 120 mots/minute; le chrono du mode présentateur se cale sur les checkpoints officiels, pas sur ces valeurs intermédiaires.
 
 Fonds : NOIR (écrans de bascule et de verdict) · BLEU #1F2A7A (écrans de démonstration) · PAPIER #F5F3EE (écrans d'exposition : plan, parcours, méthode, suites).

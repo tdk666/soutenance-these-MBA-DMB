@@ -5,8 +5,10 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 ## État du projet
 
 - **Étape 1 (validée)** : table des écrans, direction artistique, écrans témoins (`docs/etape-1/`, `mockups/`).
-- **Étape 2 (en validation)** : moteur complet (Vite + React + TS + Motion), 33 beats + chaînes, mode présentateur en fenêtre séparée, chrono à checkpoints avec décisions du script, grille Échap, aller-à par numéro, mode salle claire (L), build offline en un seul fichier.
-- Étapes suivantes : simulateur calibré (3), tous les écrans définitifs + métamorphoses (4), polish + PDF de secours (5).
+- **Étape 2 (validée)** : moteur complet (Vite + React + TS + Motion), mode présentateur en fenêtre séparée, chrono à checkpoints, grille Échap, mode salle claire, build offline en un seul fichier.
+- **Script v3 intégré** : 34 beats, cibles 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08, textes d'écran alignés sur le lexique de traduction, baptêmes « montrer puis nommer ».
+- **Étape 3 (en validation)** : le simulateur, calibré sur l'arithmétique Kajman (≈ +15 % prix, ÷2 jours, ≈ −40 % revenu à 50 % de gain) et couvert par 8 tests; interrupteur à étiquette neutre, hypothèses sourcées affichables d'un clic.
+- Étapes suivantes : tous les écrans définitifs + métamorphoses (4), polish + PDF de secours (5).
 
 ## Commandes
 
@@ -20,4 +22,4 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 
 → / espace / PageDown : avancer · ← / PageUp : reculer · Échap : grille · 1-21 puis Entrée : aller à un écran · S : chrono marche/pause · Maj+R : chrono à zéro · P : fenêtre présentateur · F : plein écran · L : mode salle claire.
 
-Le script de référence est `docs/script-soutenance-v2.md`. Aucun chiffre n'est inventé : tout vient du script ou de la thèse déposée.
+Le script de référence est `docs/script-soutenance-v3.md` (avec `docs/journal-revisions-v3.md` et `docs/lexique-traduction-v3.md`). Aucun chiffre n'est inventé : tout vient du script ou de la thèse déposée.

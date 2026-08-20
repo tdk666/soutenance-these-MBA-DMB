@@ -30,6 +30,12 @@ export interface ClavierHandlers {
 
 export function attacherClavier(win: Window, h: ClavierHandlers): () => void {
   const onKeyDown = (e: KeyboardEvent) => {
+    // le simulateur a des contrôles à la souris (curseur, interrupteur) :
+    // quand l'un d'eux a le focus, les touches de navigation lui restent
+    const cible = e.target as HTMLElement | null;
+    if (cible && (cible.tagName === 'INPUT' || cible.tagName === 'BUTTON')) {
+      if (e.key !== 'Escape') return;
+    }
     switch (e.key) {
       case 'ArrowRight':
       case ' ':

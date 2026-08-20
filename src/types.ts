@@ -113,6 +113,8 @@ export type LayoutDonnees =
         kicker: string;
         barres: { label: string; valeur: number; total: number }[];
         lecture: string;
+        /** le baptême n° 1 (v3) : révélé par un step, jamais affiché avant la parole */
+        terme: string;
       };
     }
   | { layout: 'terme-seul'; donnees: { terme: string; sousLigne?: string } }
@@ -208,27 +210,45 @@ export interface ModeSalleClaire {
   grain: false;
 }
 
-/* ---------- simulateur (rempli à l'étape 3) ---------- */
+/* ---------- simulateur (étape 3) ---------- */
 
 export interface SimulateurParams {
+  /** l'état sain du contrat au temps passé */
   contrat: {
-    jours: number;
-    tjmEUR: number;
-    coutsDirectsJourEUR: number;
-    fraisStructureTauxPct: number;
+    jours: number;                 // 10
+    tjmEUR: number;                // 1500
+    /** coût complet d'une journée travaillée (salaires chargés) */
+    coutJourEUR: number;
+    /** part de frais fixes de l'agence allouée à la mission (ne fond pas avec les jours) */
+    structureEUR: number;
+    /** coût des outils IA à plein gain (croît linéairement avec le curseur) */
+    outilsPleinGainEUR: number;
   };
-  calibration: {
-    gainPct: number;
-    hausseTjmPct: { min: number; max: number };
-    contractionRevenuAttendue: { minPct: number; maxPct: number };
-  };
+  /** borne du curseur « gain de productivité IA » */
+  gainMaxPct: number;              // 50
+  /** hausse du prix de journée tentée par l'agence, atteinte à gain max (v3 : ≈ +15 %) */
+  hausseTjmMaxPct: number;
+  /** la redistribution en prix étagé de la même mission */
   etage: {
-    conseilTempsPct: number;
-    productionLivrablePct: number;
-    droitsPct: number;
-    effetVariable: { soclePct: number; couloir: { basPct: number; hautPct: number } };
+    lignes: {
+      nom: string;
+      metrique: string;            // « au temps », « au livrable »...
+      montantEUR: number;          // pour la ligne à l'effet : montant attendu
+      nature: 'temps' | 'livrable' | 'droits' | 'variable';
+    }[];
+    couloir: { basPct: number; hautPct: number };  // 90 / 110 sur la ligne variable
   };
+  /** calibration contractuelle : l'arithmétique Kajman, vérifiée par les tests */
+  calibration: {
+    aGainPct: number;              // 50
+    contractionRevenu: { minPct: number; maxPct: number };  // [-45, -38]
+  };
+  /** hypothèses affichables d'un clic, chacune sourcée */
   hypotheses: { cle: string; valeur: string; source: string }[];
+  /** étiquette NEUTRE de l'interrupteur (jamais « prix étagé » avant la parole) */
+  etiquetteBascule: string;
+  etiquetteCurseur: string;
+  etiquetteValeurClient: string;
 }
 
 /* ---------- racine ---------- */

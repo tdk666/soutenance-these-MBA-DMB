@@ -1,9 +1,10 @@
 import { motion } from 'motion/react';
 import type { CSSProperties } from 'react';
-import type { ObjetEtat, Screen } from '../types';
+import type { ObjetEtat, Screen, SimulateurParams } from '../types';
 import { EASE_ENTREE, EASE_MORPH } from '../moteur/motion';
 import { CompteurChiffre } from './CompteurChiffre';
 import { Entree, estBarre, estRevele } from './utils';
+import { Simulateur } from '../simulateur/Simulateur';
 
 /*
  * Rendu des écrans. Étape 2 : les écrans typographiques simples sont
@@ -73,11 +74,13 @@ export function ScreenView({
   faits,
   live,
   objetEtat,
+  sim,
 }: {
   screen: Screen;
   faits: Set<string>;
   live: boolean;
   objetEtat: ObjetEtat;
+  sim?: SimulateurParams;
 }) {
   const surPapier = screen.fond === 'papier';
   const couleurTexte = surPapier ? 'var(--encre)' : 'var(--blanc)';
@@ -421,6 +424,25 @@ export function ScreenView({
               </div>
             </Entree>
           </div>
+          {/* le baptême n° 1 (v3) : le terme n'apparaît qu'au moment où il est prononcé */}
+          <Entree
+            visible={estRevele(screen, faits, 'terme-deflation')}
+            live={live}
+            dureeS={0.9}
+            className="absolute"
+            style={{ left: 140, bottom: 100 }}
+          >
+            <div
+              style={{
+                ...serif(144, 'var(--wght-titre)'),
+                fontSize: 128,
+                letterSpacing: '-0.02em',
+                color: 'var(--blanc)',
+              }}
+            >
+              {d.terme}
+            </div>
+          </Entree>
           <Maquette screen={screen} note="figure D3 définitive à l'étape 4" />
         </div>
       );
@@ -522,27 +544,8 @@ export function ScreenView({
     }
 
     case 'simulateur':
-      return (
-        <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
-          <div className="etiquette absolute" style={{ left: 140, top: 92, color: 'var(--gris-clair)' }}>
-            Le simulateur · un contrat au temps passé
-          </div>
-          <div
-            className="absolute flex items-center justify-center"
-            style={{
-              left: 140,
-              right: 140,
-              top: 200,
-              bottom: 200,
-              border: '1.5px dashed rgba(255,255,255,0.35)',
-            }}
-          >
-            <span style={{ fontFamily: GROTESQUE, fontSize: 34, color: 'var(--gris-clair)' }}>
-              Simulateur interactif : construit et calibré à l'étape 3
-            </span>
-          </div>
-        </div>
-      );
+      if (!sim) return null;
+      return <Simulateur params={sim} live={live} />;
 
     case 'quatre-etages': {
       const d = screen.donnees;
