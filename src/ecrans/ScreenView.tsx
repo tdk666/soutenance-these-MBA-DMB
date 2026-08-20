@@ -4,8 +4,8 @@ import type { ObjetEtat, Screen, SimulateurParams } from '../types';
 import { EASE_ENTREE, EASE_MORPH } from '../moteur/motion';
 import { CompteurChiffre } from './CompteurChiffre';
 import { Masque } from './Masque';
-import { TitreAnime } from './TitreAnime';
-import { Entree, estBarre, estRevele } from './utils';
+import { MotsAnime, TitreAnime } from './TitreAnime';
+import { Entree, estBarre, estRevele, estReveleOuLibre } from './utils';
 import { Simulateur } from '../simulateur/Simulateur';
 
 /*
@@ -298,11 +298,12 @@ export function ScreenView({
                 >
                   0{i + 1}
                 </span>
-                <Masque live={live} delaiS={0.15 + i * 0.18}>
-                  <span style={{ ...serif(72, 'var(--wght-titre)'), fontSize: taille, lineHeight: 1.18, display: 'inline-block', maxWidth: 1440 }}>
-                    {ligne}
-                  </span>
-                </Masque>
+                <MotsAnime
+                  texte={ligne}
+                  live={live}
+                  delaiS={0.15 + i * 0.18}
+                  style={{ ...serif(72, 'var(--wght-titre)'), fontSize: taille, lineHeight: 1.18, maxWidth: 1440 }}
+                />
               </div>
               <motion.div
                 initial={live ? { scaleX: 0 } : false}
@@ -390,37 +391,20 @@ export function ScreenView({
 
     case 'citation-seule': {
       // la question entre mot à mot, comme la page de garde : cinétique, jamais une glissade
-      const mots = screen.donnees.texte.split(' ');
       return (
         <div className="absolute inset-0" style={{ color: couleurTexte }}>
           <div className="etiquette absolute" style={{ left: 160, top: 150, color: couleurSecondaire }}>
             La problématique
           </div>
           <div className="absolute" style={{ left: 160, top: '50%', transform: 'translateY(-50%)', maxWidth: 1580 }}>
-            <div style={{ ...serif(60, 'var(--wght-texte)'), fontSize: 64, lineHeight: 1.34 }} aria-label={screen.donnees.texte} role="text">
-              {mots.map((m, i) => (
-                <span
-                  key={i}
-                  style={{
-                    display: 'inline-block',
-                    overflow: 'hidden',
-                    verticalAlign: 'top',
-                    whiteSpace: 'pre',
-                    padding: '0.08em 0.03em 0.16em',
-                    margin: '-0.08em -0.03em -0.16em',
-                  }}
-                >
-                  <motion.span
-                    style={{ display: 'inline-block' }}
-                    initial={live ? { y: '112%', opacity: 0 } : false}
-                    animate={{ y: '0%', opacity: 1 }}
-                    transition={{ duration: 0.6, ease: EASE_ENTREE, delay: 0.08 + i * 0.038 }}
-                  >
-                    {m + (i < mots.length - 1 ? ' ' : '')}
-                  </motion.span>
-                </span>
-              ))}
-            </div>
+            <MotsAnime
+              texte={screen.donnees.texte}
+              live={live}
+              delaiS={0.08}
+              dureeS={0.6}
+              decalageS={0.038}
+              style={{ ...serif(60, 'var(--wght-texte)'), fontSize: 64, lineHeight: 1.34 }}
+            />
           </div>
         </div>
       );
@@ -435,26 +419,30 @@ export function ScreenView({
             { cote: d.gauche, x: 160, dir: -1 },
             { cote: d.droite, x: 1140, dir: 1 },
           ].map(({ cote, x, dir }) => (
-            <motion.div
-              key={cote.titre}
-              className="absolute"
-              initial={live ? { opacity: 0, x: x + dir * -46 } : false}
-              animate={{ opacity: 1, x }}
-              transition={{ duration: 0.8, ease: EASE_ENTREE, delay: 0.15 }}
-              style={{ left: 0, top: 150, width: 620 }}
-            >
-              <div className="etiquette" style={{ color: couleurSecondaire, marginBottom: 34 }}>
-                {cote.titre}
-              </div>
-              {cote.items.map((it) => (
+            <div key={cote.titre} className="absolute" style={{ left: x, top: 150, width: 620 }}>
+              <Entree live={live} delaiS={dir === -1 ? 0.05 : 0.15}>
+                <div className="etiquette" style={{ color: couleurSecondaire, marginBottom: 34 }}>
+                  {cote.titre}
+                </div>
+              </Entree>
+              {cote.items.map((it, ii) => (
                 <div key={it.nom} style={{ marginBottom: 30 }}>
-                  <div style={{ ...serif(44, 'var(--wght-titre)'), fontSize: 46 }}>{it.nom}</div>
-                  <div style={{ fontFamily: GROTESQUE, fontSize: 28, color: couleurSecondaire, marginTop: 4 }}>
-                    {it.role}
-                  </div>
+                  <TitreAnime
+                    texte={it.nom}
+                    live={live}
+                    dureeS={0.6}
+                    decalageS={0.018}
+                    delaiS={0.18 + (dir === -1 ? 0 : 0.1) + ii * 0.14}
+                    style={{ ...serif(44, 'var(--wght-titre)'), fontSize: 46 }}
+                  />
+                  <Entree live={live} delaiS={0.34 + (dir === -1 ? 0 : 0.1) + ii * 0.14}>
+                    <div style={{ fontFamily: GROTESQUE, fontSize: 28, color: couleurSecondaire, marginTop: 4 }}>
+                      {it.role}
+                    </div>
+                  </Entree>
                 </div>
               ))}
-            </motion.div>
+            </div>
           ))}
           <motion.div
             className="absolute"
@@ -562,8 +550,9 @@ export function ScreenView({
           </div>
           {d.citation && (
             <Entree
-              visible={estRevele(screen, faits, 'citation')}
+              visible={estReveleOuLibre(screen, faits, 'citation')}
               live={live}
+              delaiS={0.9}
               className="absolute"
               style={{ left: 1000, top: 186, width: 780 }}
             >

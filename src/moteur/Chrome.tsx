@@ -31,8 +31,11 @@ export function Chrome({
   const filet = surPapier ? 'rgba(16,20,31,0.3)' : 'rgba(255,255,255,0.32)';
   const repere = surPapier ? 'rgba(16,20,31,0.16)' : 'rgba(255,255,255,0.14)';
   const bloc = config.meta.blocs.find((b) => b.id === screen.bloc);
-  // la trace de l’objet occupe ce coin sur les écrans en retrait : le chrome s’efface
-  const coinOccupe = objetEtat.kind === 'strates' && objetEtat.position === 'retrait';
+  // le coin s’efface quand quelque chose y vit déjà : la trace de l’objet en
+  // retrait, ou les barres hautes du simulateur
+  const coinOccupe =
+    (objetEtat.kind === 'strates' && objetEtat.position === 'retrait') ||
+    screen.layout === 'simulateur';
   return (
     <>
       {!coinOccupe && (

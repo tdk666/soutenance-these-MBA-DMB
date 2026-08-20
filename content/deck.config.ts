@@ -338,14 +338,6 @@ Chez Havas Paris, la discussion annuelle des tarifs a changé de nature, et c’
       },
       steps: [
         {
-          id: 'E11.constat',
-          mode: 'beat',
-          action: { type: 'reveler', cible: 'citation' },
-          pourquoi:
-            'Le constat du client ouvre la scène : le jury sait qui parle et pourquoi l’arithmétique arrive.',
-          repereParole: 'il ouvre par un constat',
-        },
-        {
           id: 'E11.ligne-1',
           mode: 'beat',
           action: { type: 'reveler', cible: 'ligne-1' },

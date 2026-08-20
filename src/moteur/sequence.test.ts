@@ -11,10 +11,11 @@ import {
 const seq = buildSequence(deckConfig);
 
 describe('séquence de régie', () => {
-  it('respecte le budget de régie : 40 beats manuels', () => {
-    // 33 beats validés à l’étape 1, plus le baptême « déflation latente » (v3),
-    // plus l’écran ajouté par l’éclatement de la méthodologie en trois vues
-    expect(nbBeatsManuels(seq)).toBe(40);
+  it('respecte le budget de régie : 39 beats manuels', () => {
+    // 24 entrées d’écran (la première ne se déclenche pas) + 15 révélations
+    // ancrées sur un mot. Le constat client d’E11 fait partie de l’entrée :
+    // la charge de pilotage ne monte plus.
+    expect(nbBeatsManuels(seq)).toBe(39);
   });
 
   it('le baptême « déflation latente » est un beat de la figure d’enquête', () => {

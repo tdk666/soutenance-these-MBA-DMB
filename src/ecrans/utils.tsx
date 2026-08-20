@@ -19,13 +19,28 @@ export function estBarre(screen: Screen, faits: Set<string>, cible: string): boo
   return step !== undefined && faits.has(step.id);
 }
 
-/** Entrée standard d’un bloc de contenu : masque montant, un seul mouvement. */
+/**
+ * Révélé, ou libre : un élément qu’aucun step ne cible est visible d’office
+ * (il fait partie de l’état d’entrée de l’écran).
+ */
+export function estReveleOuLibre(screen: Screen, faits: Set<string>, cible: string): boolean {
+  const step = screen.steps.find(
+    (s) => s.action.type === 'reveler' && s.action.cible === cible,
+  );
+  return step === undefined || faits.has(step.id);
+}
+
+/**
+ * Entrée standard d’un bloc de contenu : le texte se pose, net, depuis le
+ * flou. Course courte, jamais de glissade : la grammaire de la frise et des
+ * comptes, partout.
+ */
 export function Entree({
   children,
   visible = true,
   live,
   delaiS = 0,
-  dureeS = 0.6,
+  dureeS = 0.5,
   className,
   style,
 }: {
@@ -42,8 +57,8 @@ export function Entree({
     <motion.div
       className={className}
       style={style}
-      initial={live ? { opacity: 0, y: 34 } : false}
-      animate={{ opacity: 1, y: 0 }}
+      initial={live ? { opacity: 0, y: 14, filter: 'blur(5px)' } : false}
+      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       transition={{ duration: dureeS, ease: EASE_ENTREE, delay: delaiS }}
     >
       {children}

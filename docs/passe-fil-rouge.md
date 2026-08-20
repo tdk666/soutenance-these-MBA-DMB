@@ -90,4 +90,4 @@ Pas de reformulation générale du script : le texte v3 est bon, il est raconté
 
 ## Addendum du 20 août au soir
 
-Le retour de répétition a tranché les candidates d'écran : elles sont toutes intégrées (citation du financier sur E05, constat du client sur E11, histoire Deloitte sur E14, clause de l'acheteuse sur E20, écran des convictions E22). Le deck passe à 25 écrans et 40 gestes, avec un colophon (E25) qui tient l'écran pendant les questions. Restent à valider les cinq coutures de parole ci-dessus : elles n'entrent pas dans les notes sans ton accord.
+Le retour de répétition a tranché les candidates d'écran : elles sont toutes intégrées (citation du financier sur E05, constat du client sur E11, histoire Deloitte sur E14, clause de l'acheteuse sur E20, écran des convictions E22). Le deck passe à 25 écrans et 39 gestes (le constat client d'E11 fait partie de l'entrée), avec un colophon (E25) qui tient l'écran pendant les questions. Restent à valider les cinq coutures de parole ci-dessus : elles n'entrent pas dans les notes sans ton accord.
