@@ -131,7 +131,7 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
               <Ligne label="Coûts (équipe, structure, outils)">
                 <Compteur valeur={tjm.coutsEUR} format={formatEUR} taille={44} />
               </Ligne>
-              <Ligne label="Marge" forte>
+              <Ligne label="Marge brute sur la mission" forte>
                 <Compteur valeur={tjm.margePct} format={(n) => formatPct(n)} taille={84} />
               </Ligne>
             </motion.div>
@@ -155,7 +155,7 @@ export function Simulateur({ params, live }: { params: SimulateurParams; live: b
               <Ligne label="Revenu de la mission" forte>
                 <Compteur valeur={etage.totalAttenduEUR} format={formatEUR} taille={64} />
               </Ligne>
-              <Ligne label="Marge" forte>
+              <Ligne label="Marge brute sur la mission" forte>
                 <Compteur valeur={etage.margePct} format={(n) => formatPct(n)} taille={84} couleur="var(--jaune)" />
               </Ligne>
             </motion.div>

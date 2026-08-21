@@ -1,5 +1,5 @@
 /**
- * La traversée complète : rejoue les 40 gestes du jour J dans l'ordre, du
+ * La traversée complète : rejoue tous les gestes du jour J dans l'ordre, du
  * premier appui (sortie de la page de garde) au colophon, photographie
  * chaque état dans captures-verification/traversee/ et vérifie à chaque
  * arrêt : textes coupés, hors scène (quatre directions), corps sous 28 px.
@@ -8,7 +8,10 @@
  * `npm run traversee` après tout changement transversal.
  */
 import { chromium } from 'playwright-core';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, rmSync } from 'node:fs';
+// repartir d'un dossier vide : un fichier d'une numérotation antérieure
+// survivrait au renommage des états et fausserait la captation
+rmSync('captures-verification/traversee', { recursive: true, force: true });
 mkdirSync('captures-verification/traversee', { recursive: true });
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
 const page = await (await b.newContext({ viewport: { width: 1920, height: 1080 } })).newPage();

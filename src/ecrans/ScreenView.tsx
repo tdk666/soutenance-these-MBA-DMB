@@ -881,6 +881,7 @@ export function ScreenView({
       }
       const actif = allumes > 0 ? allumes - 1 : null;
       const crete = estRevele(screen, faits, 'ligne-crete');
+      const plan = estRevele(screen, faits, 'plan-complet');
       return (
         <div className="absolute inset-0" style={{ color: 'var(--blanc)' }}>
           <Kicker texte="Vingt-quatre mois, quatre segments" />
@@ -889,7 +890,7 @@ export function ScreenView({
               key={s.nom}
               className="absolute"
               initial={false}
-              animate={{ opacity: i === actif ? 1 : i < allumes ? 0.7 : 0.4 }}
+              animate={{ opacity: plan ? 1 : i === actif ? 1 : i < allumes ? 0.7 : 0.4 }}
               transition={{ duration: 0.5, ease: EASE_ENTREE }}
               style={{ left: gauches[i], top: 600, width: parts[i] * unite }}
             >
@@ -939,25 +940,60 @@ export function ScreenView({
             )}
           </AnimatePresence>
           {/* la ligne de crête : la règle, la chaîne, la chute. Elle remplace le détail. */}
-          {crete && (
-            <div className="absolute" style={{ left: 140, top: 682, width: 1640 }}>
-              <Entree live={live}>
-                <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
-                  {d.ligneDeCrete.regle}
-                </div>
-              </Entree>
-              <Entree live={live} delaiS={0.45}>
-                <div style={{ ...serif(38, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 40, lineHeight: 1.32, marginTop: 22 }}>
-                  {d.ligneDeCrete.chaine}
-                </div>
-              </Entree>
-              <Entree live={live} delaiS={1.05}>
-                <div style={{ ...serif(52, 'var(--wght-titre)'), fontSize: 54, marginTop: 34 }}>
-                  {d.ligneDeCrete.chute}
-                </div>
-              </Entree>
-            </div>
-          )}
+          <AnimatePresence mode="wait">
+            {crete && !plan && (
+              <motion.div
+                key="crete"
+                className="absolute"
+                exit={{ opacity: 0, transition: { duration: 0.25 } }}
+                style={{ left: 140, top: 682, width: 1640 }}
+              >
+                <Entree live={live}>
+                  <div style={{ fontFamily: GROTESQUE, fontSize: 30, color: 'var(--gris-clair)', lineHeight: 1.4 }}>
+                    {d.ligneDeCrete.regle}
+                  </div>
+                </Entree>
+                <Entree live={live} delaiS={0.45}>
+                  <div style={{ ...serif(38, 'var(--wght-texte)'), fontStyle: 'italic', fontSize: 40, lineHeight: 1.32, marginTop: 22 }}>
+                    {d.ligneDeCrete.chaine}
+                  </div>
+                </Entree>
+                <Entree live={live} delaiS={1.05}>
+                  <div style={{ ...serif(52, 'var(--wght-titre)'), fontSize: 54, marginTop: 34 }}>
+                    {d.ligneDeCrete.chute}
+                  </div>
+                </Entree>
+              </motion.div>
+            )}
+            {/* le plan complet : exigence d'audit, les quatre segments et leurs
+                échéances ensemble, pour que la feuille de route existe entière
+                devant le jury. La chute reste : c'est elle qu'il prononce en dernier. */}
+            {plan && (
+              <motion.div key="plan" className="absolute" style={{ left: 140, top: 668, width: 1640 }}>
+                {d.segments.map((s, i) => (
+                  <Entree key={s.nom} live={live} delaiS={0.1 + i * 0.12}>
+                    <div
+                      className="flex items-baseline"
+                      style={{
+                        padding: '13px 0',
+                        borderBottom: i < d.segments.length - 1 ? '1px solid rgba(255,255,255,0.18)' : 'none',
+                      }}
+                    >
+                      <span className="etiquette" style={{ color: 'var(--gris-clair)', width: 400, flex: '0 0 auto', paddingRight: 24 }}>
+                        {s.periode}
+                      </span>
+                      <span style={{ fontFamily: GROTESQUE, fontSize: 33, lineHeight: 1.25 }}>{s.echeance}</span>
+                    </div>
+                  </Entree>
+                ))}
+                <Entree live={live} delaiS={0.75}>
+                  <div style={{ ...serif(44, 'var(--wght-titre)'), fontSize: 46, marginTop: 30 }}>
+                    {d.ligneDeCrete.chute}
+                  </div>
+                </Entree>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     }

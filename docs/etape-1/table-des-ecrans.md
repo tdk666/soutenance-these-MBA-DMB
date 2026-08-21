@@ -86,7 +86,7 @@ La découpe a été affinée après la première répétition sur le mode prése
 Les écrans E08 à E21 de la table ci-dessus deviennent E10 à E23. Le config (`content/deck.config.ts`) fait foi : 23 écrans, 35 déclenchements manuels, cibles chrono 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08 (CP0 à la sortie d'E09). La page de garde noire précède E01 et se quitte à la première avancée.
 
 
-## Addendum étape 4.4 : 25 écrans, 40 gestes
+## Addendum étape 4.4 : 25 écrans, 41 gestes (plan complet de la frise ajouté le 21 août, exigence d'audit)
 
 Après la répétition du 20 août, la règle « tout ce qui est prononcé se voit » ajoute deux écrans et quatre échos :
 

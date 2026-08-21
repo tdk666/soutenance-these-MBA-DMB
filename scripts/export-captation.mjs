@@ -1,8 +1,8 @@
 /**
  * La captation : le dossier qui permet à un évaluateur externe (coach, sosie
  * de jury) de vivre la soutenance en conditions réelles sans le logiciel.
- * Trois parties : le film de la projection (les 42 états dans l'ordre exact
- * des 40 appuis, légendés avec les mots qui les déclenchent), les
+ * Trois parties : le film de la projection (tous les états dans l'ordre exact
+ * des appuis, légendés avec les mots qui les déclenchent), les
  * métamorphoses en mouvement, et le texte intégral de l'oral (livrable A,
  * reproduit à l'identique). Prérequis : `npm run traversee` et
  * `npm run capture` (les images sources). Sortie : public/soutenance-captation.pdf,
@@ -31,7 +31,10 @@ for (const ligne of chaine.split('\n')) {
   m = ligne.match(/^\| (\d+) \| révélation sur (\S+) \| (.+?) \| (.+?) \|$/);
   if (m) gestes.set(Number(m[1]), { type: 'revelation', ecran: `${m[2]} · ${m[3]}`, detail: m[4] });
 }
-if (gestes.size !== 40) throw new Error(`chaîne des gestes : ${gestes.size} lignes lues, 40 attendues`);
+const nbGestes = gestes.size;
+for (let n = 1; n <= nbGestes; n++) {
+  if (!gestes.has(n)) throw new Error(`chaîne des gestes : le geste ${n} manque (${nbGestes} lus)`);
+}
 
 /* ── réencodage des images en JPEG (pas d'outil externe : Chromium) ── */
 const L = 1536, H = 864; // 16:9, assez fin pour lire chaque mot de l'écran
@@ -52,6 +55,12 @@ async function versJpeg(cheminPng, nomJpeg) {
 }
 
 const fichiersTraversee = readdirSync(dossierTraversee).filter((f) => f.endsWith('.png')).sort();
+// garde-fou : des captures de traversée périmées feraient mentir la captation
+if (fichiersTraversee.length !== nbGestes + 2) {
+  throw new Error(
+    `traversée : ${fichiersTraversee.length} images pour ${nbGestes} gestes (${nbGestes + 2} attendues). Relancer npm run traversee.`,
+  );
+}
 const film = [];
 for (const f of fichiersTraversee) {
   film.push({ png: f, jpeg: await versJpeg(join(dossierTraversee, f), f.replace('.png', '.jpg')) });
@@ -131,7 +140,7 @@ function pageFilm({ jpeg }, indexEtat) {
       ? `À la fin de l’écran précédent · ${g.detail}`
       : `Déclenchée sur les mots prononcés : ${g.detail}`;
   }
-  const etat = indexEtat === 0 ? '' : `<span class="etat">état ${indexEtat} / 41</span>`;
+  const etat = indexEtat === 0 ? '' : `<span class="etat">état ${indexEtat} / ${nbGestes + 1}</span>`;
   return `<section class="page film">
     <img src="${img64(jpeg)}">
     <div class="legende"><p class="titre">${typo(echappe(titre))}${etat}</p>
@@ -188,7 +197,7 @@ const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
   Jeudi 4 septembre 2026, 14 h · durée : 30 minutes, puis questions · projection 16:9 plein écran</p>
   <p>Ce dossier restitue la soutenance telle qu’elle se jouera. Trois parties :</p>
   <ol>
-    <li><strong>Le film de la projection.</strong> Les 41 états de l’écran, dans l’ordre exact des 40 appuis du présentateur, précédés de la page de garde. Chaque page indique le geste qui produit l’image et les mots prononcés à cet instant précis.</li>
+    <li><strong>Le film de la projection.</strong> Les ${nbGestes + 1} états de l’écran, dans l’ordre exact des ${nbGestes} appuis du présentateur, précédés de la page de garde. Chaque page indique le geste qui produit l’image et les mots prononcés à cet instant précis.</li>
     <li><strong>Les métamorphoses en mouvement.</strong> Le jour J, un même objet graphique se transforme en continu sous les yeux du jury ; quatre séquences sont données en trois instants.</li>
     <li><strong>Le texte intégral de l’oral</strong> (version 3), calibré à 120 mots par minute, avec ses marqueurs d’écran, son chrono par bloc, ses coupes et ses réserves.</li>
   </ol>

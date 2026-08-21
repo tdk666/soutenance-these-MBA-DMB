@@ -156,7 +156,7 @@ export type LayoutDonnees =
   | {
       layout: 'frise-24-mois';
       donnees: {
-        segments: { nom: string; periode: string; decisions: string[] }[];
+        segments: { nom: string; periode: string; decisions: string[]; echeance: string }[];
         ligneDeCrete: { regle: string; chaine: string; chute: string };
       };
     }

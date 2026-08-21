@@ -741,6 +741,7 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
               'Un inventaire arrête trois listes : à standardiser, légitimement au temps, porteur de droits',
               'La décision sociale : chaque poste vidé trouve, la même année, son poste de contrôle',
             ],
+            echeance: 'La double colonne, l’inventaire, la reconversion',
           },
           {
             nom: 'T2-T3',
@@ -750,6 +751,7 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
               "Le premier contrat payé à l’effet : entre 90 et 110, comptes tous les trois mois",
               "L’objectif n’est pas le revenu, c’est le précédent : un cas signé, mesuré, réglé sans litige",
             ],
+            echeance: 'La preuve vendue, le premier contrat à l’effet',
           },
           {
             nom: 'T4',
@@ -758,6 +760,7 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
               "Le bilan : 15 à 25 % du chiffre d’affaires facturé autrement qu’au temps",
               "En cas de litige : on redescend d’un cran, on ré-équipe la mesure avant de retenter",
             ],
+            echeance: 'Le bilan : 15 à 25 % autrement qu’au temps',
           },
           {
             nom: 'Année 2',
@@ -766,6 +769,7 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
               'Les droits, généralisés sur les grandes productions',
               'Le catalogue de l’agence rendu lisible par les machines des acheteurs',
             ],
+            echeance: 'Les droits généralisés, le catalogue lisible',
           },
         ],
         ligneDeCrete: {
@@ -811,6 +815,14 @@ Le troisième verrou, c’est le mur des achats, et c’est mon résultat le plu
           pourquoi:
             "La ligne de crête prend la place du détail : elle ne peut pas effacer l’année 2 pendant qu’il la commente, elle attend sa phrase.",
           repereParole: 'une ligne de crête traverse ces vingt-quatre mois',
+        },
+        {
+          id: 'E21.plan-complet',
+          mode: 'beat',
+          action: { type: 'reveler', cible: 'plan-complet' },
+          pourquoi:
+            "Exigence d’audit : sans cet état, le plan n’existe jamais entier devant le jury. Les quatre segments et leurs échéances se posent ensemble au moment du bilan des vingt-quatre mois.",
+          repereParole: 'au terme des vingt-quatre mois',
         },
       ],
       notes: {
@@ -1174,6 +1186,11 @@ Je vous remercie.
         cle: "Ligne à l’effet",
         valeur: 'la facture joue entre 90 et 110 selon les résultats mesurés',
         source: 'Feuille de route, bloc 7',
+      },
+      {
+        cle: 'Marge affichée',
+        valeur: 'marge brute de la mission, avant frais généraux du groupe : elle ne se compare pas à une marge opérationnelle',
+        source: 'Convention de lecture',
       },
     ],
     etiquetteBascule: 'Autre unité de compte',
