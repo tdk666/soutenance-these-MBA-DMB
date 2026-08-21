@@ -30,9 +30,17 @@ export type ObjetEtat =
 
 /* ---------- écrans et déclenchements ---------- */
 
-/** Un déclenchement manuel à l'intérieur d'un écran. */
+/**
+ * Un pas d'animation. Deux régimes :
+ * - 'beat'   : déclenchement manuel (télécommande), ancré sur un mot du script.
+ * - 'chaine' : lancé automatiquement par le pas précédent après `delaiMs`.
+ * Budget contractuel : 33 beats sur toute la soutenance (voir table des écrans).
+ */
 export interface Step {
   id: string;                    // "E09.divise-par-deux"
+  mode: 'beat' | 'chaine';
+  /** requis si mode 'chaine' : délai depuis la fin du pas précédent */
+  delaiMs?: number;
   /** ce que le déclenchement fait (le moteur mappe vers une animation nommée) */
   action:
     | { type: 'reveler'; cible: string }                       // élément du layout
@@ -147,6 +155,16 @@ export interface SimulateurParams {
 
 /* ---------- racine ---------- */
 
+/** Mode salle claire (touche L) : mêmes teintes, contraste de luminance renforcé. */
+export interface ModeSalleClaire {
+  bleuFonce: string;               // '#18215F'
+  grisSecondaire: string;          // '#D5D8DE'
+  opaciteFantomesPct: number;      // 60 (au lieu de 45)
+  opacitePhraseReculPct: number;   // 65 (au lieu de 50)
+  gainGraisseVariable: number;     // +60 sur l'axe wght
+  grain: false;
+}
+
 export interface DeckConfig {
   meta: {
     titre: string;
@@ -154,6 +172,7 @@ export interface DeckConfig {
     dureeCibleMs: TimecodeMs;      // 30:04
     debitMotsParMin: 120;
   };
+  salleClaire: ModeSalleClaire;
   screens: Screen[];               // ordonnés, E01 → E21
   checkpoints: Checkpoint[];
   coupes: Coupe[];

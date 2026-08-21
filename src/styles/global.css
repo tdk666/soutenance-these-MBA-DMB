@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+/* ---------- polices variables auto-hébergées (inlinées au build) ---------- */
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('../assets/fonts/fraunces-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('../assets/fonts/fraunces-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 100 900;
+  src: url('../assets/fonts/fraunces-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  src: url('../assets/fonts/spacegrotesk-normal-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  src: url('../assets/fonts/spacegrotesk-normal-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0;
+}
+
+/* ---------- jetons ---------- */
+
+:root {
+  --noir: #000000;
+  --bleu: #1f2a7a;
+  --jaune: #e8b400; /* réservé : la valeur qui reste */
+  --blanc: #ffffff;
+  --gris: #8a8f98;
+  --gris-clair: #b9bdc4;
+  --papier: #f5f3ee;
+  --encre: #10141f;
+
+  --serif: 'Fraunces', 'Times New Roman', serif;
+  --grotesque: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+
+  /* graisses variables, renforcées en mode salle claire */
+  --wght-verdict: 560;
+  --wght-titre: 480;
+  --wght-valeur: 440;
+  --wght-texte: 360;
+}
+
+/* mode salle claire (touche L) : mêmes teintes, contraste renforcé */
+.salle-claire {
+  --bleu: #18215f;
+  --gris-clair: #d5d8de;
+  --wght-verdict: 620;
+  --wght-titre: 540;
+  --wght-valeur: 500;
+  --wght-texte: 420;
+}
+.salle-claire .grain {
+  display: none;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--noir);
+}
+
+.scene {
+  font-family: var(--grotesque);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* grain statique : évite le banding des aplats au vidéoprojecteur */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* étiquettes de données (corps minimal à l'écran : 28 px en base 1920×1080) */
+.etiquette {
+  font-family: var(--grotesque);
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* curseur du simulateur (geste 2) : grand, sobre, manipulé en direct */
+.curseur-sim {
+  appearance: none;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+.curseur-sim::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.curseur-sim::-webkit-slider-thumb {
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--blanc);
+  margin-top: -15px;
+}
+.curseur-sim::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.35);
+}
+.curseur-sim::-moz-range-thumb {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 999px;
+  background: var(--blanc);
+}
+
+/* réduction de mouvement : les composants Motion suivent reducedMotion="user",
+   ceci couvre les transitions CSS résiduelles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

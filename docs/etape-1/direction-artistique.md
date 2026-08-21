@@ -56,7 +56,14 @@ Le jury ne le formulera pas, mais il le sentira : le jaune n'apparaît que quand
 
 Captures 1920×1080 dans `mockups/captures/`.
 
-## 7. Ce que je propose en plus du cahier des charges
+## 7. Conditions réelles de projection (ajout après retour superviseur)
+
+La soutenance est à 14 h, salle probablement claire, vidéoprojecteur inconnu. Deux dispositions :
+
+- **Mode salle claire**, bascule clavier (touche L), stocké dans le config : le bleu descend à #18215F, le gris secondaire monte à #D5D8DE, la phrase 1 du renversement passe de 50 % à 65 % d'opacité, les fantômes de la barre de 45 % à 60 %, les graisses de texte gagnent +60 sur l'axe variable, le grain se coupe. Mêmes teintes, contraste de luminance renforcé partout : la DA survit, la lisibilité prime.
+- **Vérification en conditions dégradées** : à partir de l'étape 4, chaque passe Playwright produit aussi des captures avec lavage simulé de projecteur (luminosité +30 %, contraste −25 %, gamma 1,4) et la lisibilité y est contrôlée au même titre que les captures propres.
+
+## 8. Ce que je propose en plus du cahier des charges
 
 1. **La trace fantôme** (état 1) : la moitié amputée ne disparaît jamais pendant le bloc 4. Coût nul, effet mémoriel fort.
 2. **Le jaune raconté** (règle des trois apparitions) : transforme une couleur d'accent en dispositif narratif.

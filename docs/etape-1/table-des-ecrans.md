@@ -1,6 +1,8 @@
-# Table des écrans — extraite du script v2
+# Table des écrans — extraite du script v2, amendée v3
 
-Source : `Livrable_B_Script_Soutenance_v2.md` (version de référence).
+**Addendum v3 (fait foi, voir `docs/journal-revisions-v3.md`)** : la structure des 21 écrans est inchangée. Ce qui change : les six cibles de checkpoint deviennent 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08; un beat s'ajoute sur E11 (le baptême « déflation latente », seule balise ajoutée), soit **34 beats**; E10 passe à deux lignes (achats extérieurs −13 %, masse salariale inchangée); E11 passe à deux barres (le 3/11 disparaît du discours donc de l'écran); E09 affiche « ≈ +15 % »; E13 ne garde que 300 M€ et 20e trimestre; E12 perd sa sous-ligne Deloitte (l'histoire est racontée avant la balise); l'interrupteur du simulateur porte l'étiquette neutre « autre unité de compte »; tous les textes affichés suivent le lexique de traduction (`docs/lexique-traduction-v3.md`). Les timecodes d'entrée recalculés vivent dans `content/deck.config.ts`.
+
+Source historique : `Livrable_B_Script_Soutenance_v2.md` (archivée : `docs/v3-archive-script-v2.md`); version de référence actuelle : `docs/script-soutenance-v3.md`.
 Règle contractuelle : l'écran n'anticipe jamais la parole. Chaque entrée d'écran et chaque déclenchement interne est manuel (flèche ou télécommande). Les timecodes sont des cibles indicatives calculées au débit de 120 mots/minute; le chrono du mode présentateur se cale sur les checkpoints officiels, pas sur ces valeurs intermédiaires.
 
 Fonds : NOIR (écrans de bascule et de verdict) · BLEU #1F2A7A (écrans de démonstration) · PAPIER #F5F3EE (écrans d'exposition : plan, parcours, méthode, suites).
@@ -34,9 +36,34 @@ Fonds : NOIR (écrans de bascule et de verdict) · BLEU #1F2A7A (écrans de dém
 - **R1** (bloc 5, Converged/Open Pro détaillés) et **R2** (bloc 4, Organization Science) se prononcent sur les écrans existants (E13 et E10-E11) : aucun écran supplémentaire, le mode présentateur affiche la consigne. **R3** (bloc 8) se prononce sur E20.
 - **C3, C5, C6** sont des coupes de parole : aucun écran ne saute. Le mode présentateur affiche la phrase de raccord au checkpoint concerné.
 
-## Comptage des déclenchements (télécommande)
+## Régie des déclenchements (révisée après retour superviseur)
 
-21 écrans, ~44 déclenchements au total (entrées + étapes internes). Le mode présentateur affiche toujours le déclenchement suivant (« prochain geste : ÷2 sur la barre ») pour éliminer tout risque de désynchronisation.
+Deux régimes de pas, typés dans le config :
+
+- **beat** : déclenchement manuel, ancré sur un mot précis du script. Réservé aux moments où un chiffre ou une phrase doit tomber exactement sur la parole.
+- **chaîne** : séquence automatique lancée par le beat précédent, avec délais écrits dans le config. Réservée aux rythmes internes d'une même respiration (cascade du sommaire, étiquettes des étages, dessin d'une figure).
+
+Budget révisé : **33 beats** (contre 44 dans la v1 de cette table), obtenus en chaînant tout ce qui n'exige pas d'ancrage au mot : les quatre lignes du sommaire (E04), les étapes du parcours (E05), les quatre lignes Havas (E10, annoncées par « quatre lignes suffisent », elles entrent ensemble puis il les parcourt), la figure d'enquête (E11), les étiquettes des étages (E17), le panneau transparence unique d'E07 (4/10 et rédaction IA regroupés), et le verrou 3 qui se barre dans la transition vers la frise.
+
+| Écran | Beats | Ancrages |
+|-------|-------|----------|
+| E02-E06 | 5 | une entrée par écran |
+| E07 | 2 | entrée · « un mot de transparence » |
+| E08 | 1 | entrée |
+| E09 | 4 | entrée · « 13 à 20 % » · « divise l'assiette par deux » (+ amputation chaînée) · « de l'ordre de 40 % » |
+| E10-E13 | 4 | une entrée par écran |
+| E14 | 2 | entrée (pyramide) · « devient un diamant » (morph) |
+| E15-E17 | 3 | une entrée par écran (les 3 gestes du simulateur sont à la souris, hors télécommande) |
+| E18 | 3 | entrée · fin verrou 1 · fin verrou 2 |
+| E19 | 5 | entrée (morph frise) · T1 · T2-T3 · T4 · Année 2 |
+| E20 | 1 | entrée |
+| E21 | 3 | bascule noir · phrase 1 · phrase 2 |
+
+Pourquoi 33 et pas 25 : descendre en dessous obligerait à chaîner des révélations qui doivent tomber sur un mot (l'arithmétique, les segments de la frise, les deux phrases finales). Une chaîne qui court en avance sur une parole dite de tête viole la règle « l'écran n'anticipe jamais », et c'est pire qu'un clic. Trois garde-fous compensent la densité : le mode présentateur affiche en permanence le prochain ancrage (« prochain geste : ÷2 »), la flèche droite pendant une chaîne l'avance sans casser l'état, et après les répétitions (étape 5) tout beat dont le rythme s'avère stable pourra être rétrogradé en chaîne. Densité réelle : 8 beats sur les 8 premières minutes, les pointes sont sur E09 (4 en 90 s) et E19 (5 en 4 min), là où le script lui-même impose le rythme.
+
+## Langage écran (règle ajoutée)
+
+L'écran montre, la parole nomme. Les mots affichés sont toujours plus simples que les mots prononcés : jamais de « assiette », « périmètre », « instrumentation » à l'écran. Quatre concepts nommés au maximum sur toute la soutenance (déflation latente, dette de vérification, prix étagé, l'unité de compte), tout le reste en français ordinaire. Les étiquettes des écrans témoins seront alignées sur cette règle quand la v3 du script sera posée (exemple : E09 « De revenu sur le périmètre » deviendra « Résultat sur le revenu »).
 
 ## Checkpoints du chrono (contrat du mode présentateur)
 
@@ -47,3 +74,24 @@ Fonds : NOIR (écrans de bascule et de verdict) · BLEU #1F2A7A (écrans de dém
 | CP2 | fin bloc 5 (sortie E15) | 16:26 | retard persistant → confirmer C3 · ne pas toucher au bloc 6 |
 | CP3 | fin bloc 6 (sortie E18) | 23:02 | retard ≥ 45 s → C3+C6 · ≥ 90 s → C3+C6+C5 · avance ≥ 30 s → ouvrir R3 |
 | Fin | sortie E21 | 30:04 | · |
+
+## Addendum étape 4 : structure à 23 écrans
+
+La découpe a été affinée après la première répétition sur le mode présentateur : tout ce qui est nommé à la parole doit être vu à l'écran. La méthode passe de un à trois écrans, sans changer une ligne du script.
+
+- **E07 · Les entretiens** : les intervenants des quatre entretiens, nommés, côté agence et côté annonceur.
+- **E08 · Autour du cœur** : la conférence Trois voix (les trois profils cités), l'enquête (34 répondants), le pilier documentaire (les comptes 2024-2026).
+- **E09 · Transparence** : les trois suites (entretiens compensés, IA sous supervision, audit indépendant).
+
+Les écrans E08 à E21 de la table ci-dessus deviennent E10 à E23. Le config (`content/deck.config.ts`) fait foi : 23 écrans, 35 déclenchements manuels, cibles chrono 8:28 / 13:24 / 16:26 / 23:08 / 27:23 / 30:08 (CP0 à la sortie d'E09). La page de garde noire précède E01 et se quitte à la première avancée.
+
+
+## Addendum étape 4.4 : 25 écrans, 41 gestes (plan complet de la frise ajouté le 21 août, exigence d'audit)
+
+Après la répétition du 20 août, la règle « tout ce qui est prononcé se voit » ajoute deux écrans et quatre échos :
+
+- **E22 · Trois canaux, trois déplacements** : les convictions du bloc 8, en deux colonnes, avant les suites.
+- **E25 · Colophon** : Merci, place aux questions, la barre-signature; il tient l'écran pendant toute la séance de questions.
+- Échos : la citation du financier (E05), le constat du client en ouverture de négociation (E11), l'histoire Deloitte avant le baptême de la dette de vérification (E14), la clause de l'acheteuse dans la parade du verrou de la mesure (E20).
+
+Les anciens E22 et E23 deviennent E23 et E24. Le config fait foi : 25 écrans, 40 déclenchements manuels.
