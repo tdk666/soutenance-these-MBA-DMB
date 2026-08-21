@@ -21,6 +21,7 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 - **Questions** : `docs/livrable-E-questions.md`, quinze questions probables avec l'ossature de réponse et l'écran d'appui (numéro puis Entrée; retour au colophon avec 25 puis Entrée).
 - **Test projecteur** (à faire avant le 27 août) : brancher la machine au vidéoprojecteur, écran étendu; la scène sur le projecteur, la fenêtre P sur le portable; vérifier la lisibilité au fond de salle; si l'image est délavée, touche L (mode salle claire).
 - **PDF de secours** : `npm run pdf` produit `soutenance-secours.pdf` (une page par écran, 26 pages). À copier sur une clé USB avec `dist/index.html` (qui s'ouvre en double-clic, sans réseau).
+- **Audit externe** : `npm run captation` produit `public/soutenance-captation.pdf` (film des 41 états légendé geste par geste, métamorphoses, texte intégral de l'oral), pour faire évaluer la soutenance en conditions réelles par un évaluateur qui n'a pas le logiciel (coach, sosie du jury). Prompt prêt : `docs/prompt-audit-soutenance.md`. Le fichier est aussi servi par Netlify (`/soutenance-captation.pdf`).
 - **Gel** : après le 27 août, plus aucune modification qui ne soit pas dictée par une répétition ratée.
 
 ## Commandes
@@ -30,6 +31,7 @@ Support de soutenance (4 septembre 2026, EFAP, 30 minutes). Un objet graphique u
 - `npm test` : tests du moteur (séquence, chrono, invariants du config).
 - `npm run capture` : captures de vérification de tous les écrans + grille + présentateur (`captures-verification/`), avec détection des textes coupés, hors scène et des chevauchements.
 - `npm run traversee` : rejoue les 40 gestes dans l'ordre du jour J et vérifie chaque état intermédiaire (une image par geste dans `captures-verification/traversee/`).
+- `npm run captation` : assemble `public/soutenance-captation.pdf` pour l'évaluation externe (après `npm run traversee` et `npm run capture`, qui produisent ses images).
 - Déploiement continu : chaque push publie sur Netlify (`these-theophile.netlify.app`).
 
 ## Clavier (scène et fenêtre présentateur)
